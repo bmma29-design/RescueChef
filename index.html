@@ -828,6 +828,14 @@ function getSystemPrompt(featureType) {
     ? "\n\nזוהי שאלת מניעה: תן רשימה של כל הנקודות הקריטיות לפני הכנת המנה — נקודות כישלון, טמפרטורות, תזמון, וטיפים לתוצאה מושלמת."
     : "\n\nThis is a prevention question: List all critical points before making this dish — failure points, temperatures, timing, and tips for perfect results.";
 
+  const depthNote = devMode
+    ? (profile.lang==="he"
+        ? `\n\nמשתמש מנוי — תן תשובה מלאה ומעמיקה: הסבר את הכימיה/פיזיקה מאחורי הבעיה, תן פתרון שלב-אחר-צעד, וכלול טיפ מניעה מפורט.`
+        : `\n\nSubscribed user — give a FULL deep answer: explain the chemistry/physics behind the problem, provide step-by-step rescue, and include a detailed prevention tip.`)
+    : (profile.lang==="he"
+        ? `\n\nמשתמש חינמי — תן תשובה קצרה ומעשית בלבד: 2-3 שורות מקסימום. פתרון מיידי בלבד, ללא הסברים עמוקים, ללא כימיה, ללא מניעה. בסוף הוסף: "🔒 לתשובה מלאה עם הסבר מדויק, כימיה ומניעה — שדרגי למנוי."`
+        : `\n\nFree user — give a SHORT practical answer only: 2-3 lines maximum. Immediate fix only, no deep explanations, no chemistry, no prevention. End with: "🔒 For a full answer with detailed explanation, chemistry and prevention — upgrade to Pro."`);
+
   return `You are RescueChef — a professional culinary expert at Le Cordon Bleu level.
 Respond ONLY in ${langName}.
 User level: ${levelText}.
@@ -844,6 +852,7 @@ Rules:
 - If dish cannot be rescued, say so honestly and suggest alternative
 - Adapt depth to user level
 - Always respect dietary restrictions and allergies
+${depthNote}
 ${featureNote}`;
 }
 
