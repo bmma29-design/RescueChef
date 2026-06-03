@@ -246,7 +246,7 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
       <label class="setup-label" id="s-lang-lbl">שפה</label>
       <select id="setup-lang" class="setup-select" onchange="onSetupLangChange(this.value)">
         <option value="he">🇮🇱 עברית</option>
-        <option value="en">🇺🇸 English</option>
+        <option value="en" selected>🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
         <option value="fr">🇫🇷 Français</option>
       </select>
@@ -261,8 +261,8 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
     </div>
   </div>
 
-  <label class="setup-label" id="s-gender-lbl">פנייה מועדפת</label>
-  <div class="gender-row">
+  <label class="setup-label" id="s-gender-lbl" style="display:none;">פנייה מועדפת</label>
+  <div class="gender-row" style="display:none;">
     <button class="gender-btn active" id="gender-f" onclick="setGender('f')">👩 נקבה</button>
     <button class="gender-btn" id="gender-m" onclick="setGender('m')">👨 זכר</button>
   </div>
@@ -278,12 +278,9 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
   <label class="setup-label" id="s-allergy-lbl" style="margin-top:8px;">אלרגיות</label>
   <div class="checkbox-grid" id="allergy-options"></div>
 
-  <button class="setup-btn" id="s-start-btn" onclick="startApp()">בואו נתחיל! 🚀</button>
-  <div id="setup-error" class="setup-error">המפתח לא תקין. ודאי שהעתקת אותו בשלמותו.</div>
-  <div style="text-align:center;margin-top:14px;font-size:11px;color:#665550;line-height:1.7;">
-    בלחיצה על "בואו נתחיל" את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span> שלנו.
-    <br>אנחנו לא אוספים נתונים ללא הסכמתך.
-  </div>
+  <button class="setup-btn" id="s-start-btn" onclick="startApp()">Let's start! 🚀</button>
+  <div id="setup-error" class="setup-error"></div>
+  <div id="s-legal-text" style="text-align:center;margin-top:14px;font-size:11px;color:#665550;line-height:1.7;"></div>
 </div>
 </div>
 
@@ -294,70 +291,70 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
       <span class="header-emoji">🍳</span>
       <div>
         <div class="header-name">RescueChef</div>
-        <div class="header-tagline" id="header-tagline">השף הדיגיטלי שלך</div>
+        <div class="header-tagline" id="header-tagline">Your digital chef</div>
       </div>
     </div>
     <div class="header-actions">
-      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">👤 פרופיל</button>
-      <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑 נקה</button>
+      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">👤 Profile</button>
+      <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑 Clear</button>
     </div>
   </div>
   <div class="overlay" id="overlay" onclick="closeProfile()"></div>
   <div class="profile-panel" id="profile-panel">
     <div class="panel-header">
-      <div class="panel-title" id="p-panel-title">הפרופיל שלי</div>
+      <div class="panel-title" id="p-panel-title">My Profile</div>
       <button class="panel-close" onclick="closeProfile()">✕</button>
     </div>
-    <div class="panel-section" id="p-sec-personal">פרטים אישיים</div>
-    <label class="setup-label" id="p-lbl-name">שם</label>
+    <div class="panel-section" id="p-sec-personal">Personal Details</div>
+    <label class="setup-label" id="p-lbl-name">Name</label>
     <input type="text" id="p-name" class="panel-input"/>
-    <label class="setup-label" id="p-lbl-gender">פנייה</label>
-    <div class="gender-row">
-      <button class="gender-btn active" id="p-gender-f" onclick="setPGender('f')">👩 נקבה</button>
-      <button class="gender-btn" id="p-gender-m" onclick="setPGender('m')">👨 זכר</button>
+    <label class="setup-label" id="p-lbl-gender" style="display:none;">Address</label>
+    <div class="gender-row" style="display:none;">
+      <button class="gender-btn active" id="p-gender-f" onclick="setPGender('f')">👩 Female</button>
+      <button class="gender-btn" id="p-gender-m" onclick="setPGender('m')">👨 Male</button>
     </div>
-    <label class="setup-label" id="p-lbl-lang">שפה</label>
+    <label class="setup-label" id="p-lbl-lang">Language</label>
     <select id="p-lang" class="panel-select">
       <option value="he">🇮🇱 עברית</option>
       <option value="en">🇺🇸 English</option>
       <option value="es">🇪🇸 Español</option>
       <option value="fr">🇫🇷 Français</option>
     </select>
-    <label class="setup-label" id="p-lbl-level">רמת מיומנות</label>
+    <label class="setup-label" id="p-lbl-level">Skill Level</label>
     <select id="p-level" class="panel-select"></select>
-    <div class="panel-section" id="p-sec-diet">תזונה</div>
+    <div class="panel-section" id="p-sec-diet">Diet</div>
     <select id="p-diet" class="panel-select"></select>
-    <div class="panel-section" id="p-sec-allergy">אלרגיות</div>
+    <div class="panel-section" id="p-sec-allergy">Allergies</div>
     <div class="checkbox-grid" id="p-allergy-options"></div>
-    <div class="panel-section">🔧 מצב מפתח</div>
+    <div class="panel-section">🔧 Developer Mode</div>
     <div class="dev-toggle-row">
-      <span id="dev-mode-label">כל הפיצ'רים פתוחים</span>
+      <span id="dev-mode-label">All features unlocked</span>
       <label class="toggle-switch">
         <input type="checkbox" id="dev-mode-toggle" onchange="toggleDevMode(this.checked)">
         <span class="toggle-slider"></span>
       </label>
     </div>
     <div class="dev-hint" id="dev-hint">כבוי — המשתמש רואה גרסה חינמית רגילה</div>
-    <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 שמור שינויים</button>
-    <button class="delete-btn" onclick="openModal('delete-modal')">🗑 מחק את כל המידע שלי</button>
+    <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 Save Changes</button>
+    <button class="delete-btn" onclick="openModal('delete-modal')">🗑 Delete all my data</button>
     <div class="legal-links" style="margin-top:16px;">
-      <span class="legal-link" onclick="openModal('privacy-modal')">מדיניות פרטיות</span>
+      <span class="legal-link" onclick="openModal('privacy-modal')" id="link-privacy">Privacy Policy</span>
       <span style="color:#665550;font-size:11px;">·</span>
-      <span class="legal-link" onclick="openModal('terms-modal')">תנאי שימוש</span>
+      <span class="legal-link" onclick="openModal('terms-modal')" id="link-terms">Terms of Use</span>
     </div>
   </div>
   <div class="messages" id="messages"></div>
   <div class="input-area">
     <div class="status-bar">
       <div class="status-dot" id="status-dot"></div>
-      <span id="status-text">מוכן לעזור</span>
+      <span id="status-text">Ready to help</span>
     </div>
     <div class="input-row">
       <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
-      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" placeholder="תארי את הבעיה במטבח שלך..."></textarea>
+      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" placeholder="Describe your kitchen problem..."></textarea>
       <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()">➤</button>
     </div>
-    <div class="input-hint" id="input-hint">Enter לשליחה · Shift+Enter לשורה חדשה · 🎤 לדיבור</div>
+    <div class="input-hint" id="input-hint">Enter to send · Shift+Enter new line · 🎤 to speak</div>
   </div>
 </div>
 
@@ -377,11 +374,14 @@ const T = {
     diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],
            ["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],
-               ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🫘 סויה"]],
+               ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"]],
     tagline:"השף הדיגיטלי שלך", profileBtn:"👤 פרופיל", clearBtn:"🗑 נקה",
     panelTitle:"הפרופיל שלי", pSecPersonal:"פרטים אישיים", pLblName:"שם",
     pLblGender:"פנייה", pLblLang:"שפה", pLblLevel:"רמת מיומנות",
     pSecDiet:"תזונה", pSecAllergy:"אלרגיות", pSaveBtn:"💾 שמור שינויים",
+    devModeLabel:"כל הפיצ'רים פתוחים", devHintOn:"פועל — רואה את כל הפיצ'רים", devHintOff:"כבוי — גרסה חינמית רגילה",
+    linkPrivacy:"מדיניות פרטיות", linkTerms:"תנאי שימוש",
+    legalText:`בלחיצה על "בואו נתחיל" את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span> שלנו.<br>אנחנו לא אוספים נתונים ללא הסכמתך.`,
     welcomeTitle:(n,g)=>`שלום${n?" "+n:""}! אני RescueChef`,
     welcomeDesc:(g)=>g==="f"?"תארי לי כל בעיה במטבח — אאבחן, אסביר למה זה קרה, ואתן לך פתרון מיידי.":"תאר לי כל בעיה במטבח — אאבחן, אסביר למה זה קרה, ואתן לך פתרון מיידי.",
     placeholder:(g)=>g==="f"?"תארי את הבעיה במטבח שלך...":"תאר את הבעיה במטבח שלך...",
@@ -423,11 +423,14 @@ const T = {
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],
            ["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],
-               ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🫘 Soy"]],
+               ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"]],
     tagline:"Your digital chef", profileBtn:"👤 Profile", clearBtn:"🗑 Clear",
     panelTitle:"My Profile", pSecPersonal:"Personal Details",
     pLblName:"Name", pLblGender:"Pronoun", pLblLang:"Language", pLblLevel:"Skill Level",
     pSecDiet:"Diet", pSecAllergy:"Allergies", pSaveBtn:"💾 Save Changes",
+    devModeLabel:"All features unlocked", devHintOn:"On — user sees all features", devHintOff:"Off — free version",
+    linkPrivacy:"Privacy Policy", linkTerms:"Terms of Use",
+    legalText:`By clicking "Let's start" you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms of Use</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.<br>We do not collect data without your consent.`,
     welcomeTitle:(n)=>`Hello${n?" "+n:""}! I\'m RescueChef`,
     welcomeDesc:()=>"Describe any kitchen problem — I\'ll diagnose it, explain why it happened, and give you an immediate solution.",
     placeholder:()=>"Describe your kitchen problem...",
@@ -469,11 +472,14 @@ const T = {
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],
            ["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],
-               ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🫘 Soja"]],
+               ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"]],
     tagline:"Tu chef digital", profileBtn:"👤 Perfil", clearBtn:"🗑 Limpiar",
     panelTitle:"Mi Perfil", pSecPersonal:"Datos Personales",
     pLblName:"Nombre", pLblGender:"Pronombre", pLblLang:"Idioma", pLblLevel:"Nivel",
     pSecDiet:"Dieta", pSecAllergy:"Alergias", pSaveBtn:"💾 Guardar",
+    devModeLabel:"Todas las funciones desbloqueadas", devHintOn:"Activado — ve todas las funciones", devHintOff:"Desactivado — versión gratuita",
+    linkPrivacy:"Política de Privacidad", linkTerms:"Términos de Uso",
+    legalText:`Al hacer clic en "¡Empecemos!" aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos de Uso</span> y nuestra <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.<br>No recopilamos datos sin tu consentimiento.`,
     welcomeTitle:(n)=>`¡Hola${n?" "+n:""}! Soy RescueChef`,
     welcomeDesc:()=>"Descríbeme cualquier problema en la cocina — diagnosticaré, explicaré por qué pasó y te daré una solución inmediata.",
     placeholder:()=>"Describe tu problema en la cocina...",
@@ -515,11 +521,14 @@ const T = {
     diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],
            ["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],
-               ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🫘 Soja"]],
+               ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"]],
     tagline:"Votre chef digital", profileBtn:"👤 Profil", clearBtn:"🗑 Effacer",
     panelTitle:"Mon Profil", pSecPersonal:"Détails Personnels",
     pLblName:"Prénom", pLblGender:"Pronom", pLblLang:"Langue", pLblLevel:"Niveau",
     pSecDiet:"Régime", pSecAllergy:"Allergies", pSaveBtn:"💾 Enregistrer",
+    devModeLabel:"Toutes les fonctions déverrouillées", devHintOn:"Activé — voit toutes les fonctions", devHintOff:"Désactivé — version gratuite",
+    linkPrivacy:"Politique de Confidentialité", linkTerms:"Conditions d'Utilisation",
+    legalText:`En cliquant sur "Commençons!" vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions d'Utilisation</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.<br>Nous ne collectons pas de données sans votre consentement.`,
     welcomeTitle:(n)=>`Bonjour${n?" "+n:""}! Je suis RescueChef`,
     welcomeDesc:()=>"Décrivez-moi tout problème en cuisine — je diagnostiquerai, expliquerai pourquoi c\'est arrivé et vous donnerai une solution immédiate.",
     placeholder:()=>"Décrivez votre problème en cuisine...",
@@ -551,46 +560,51 @@ const T = {
 };
 
 // ── STATE ──────────────────────────────────────────────────────────────────
-let profile = {apiKey:"",name:"",gender:"f",lang:"he",level:"intermediate",diet:["regular"],allergies:[],devMode:false};
+let profile = {apiKey:"",name:"",gender:"f",lang:"en",level:"intermediate",diet:["regular"],allergies:[],devMode:false};
 let devMode = false;
 let chatHistory=[], isLoading=false, recognition=null, isRecording=false, currentUtterance=null;
 let selectedGender="f", selectedDiet=["regular"], selectedAllergies=[];
 
 // ── SETUP SCREEN ────────────────────────────────────────────────────────────
 function renderSetup(lang) {
-  const t = T[lang]||T.he;
-  const isHe = lang==="he";
+  const t = T[lang]||T.en;
   document.documentElement.dir = t.dir;
   document.documentElement.lang = lang;
-  const el = id => document.getElementById(id);
-  el("s-sub").textContent = t.setupSub;
-  el("s-api-sec").textContent = t.apiSec;
-  el("s-api-lbl").textContent = t.apiLbl;
-  el("api-key-input").placeholder = "sk-ant-api03-...";
-  el("s-api-hint").textContent = t.apiHint;
-  el("s-personal-sec").textContent = t.personalSec;
-  el("s-lang-lbl").textContent = t.langLbl;
-  el("s-level-lbl").textContent = t.levelLbl;
-  el("s-gender-lbl").textContent = t.genderLbl;
-  el("gender-f").textContent = t.genderF;
-  el("gender-m").textContent = t.genderM;
-  el("s-name-lbl").textContent = t.nameLbl;
-  el("setup-name").placeholder = t.namePh;
-  el("s-diet-sec").textContent = t.dietSec;
-  el("s-diet-lbl").textContent = t.dietLbl;
-  el("s-allergy-lbl").textContent = t.allergyLbl;
-  el("s-start-btn").textContent = t.startBtn;
-  el("setup-error").textContent = t.keyError;
+  const el = i => document.getElementById(i);
+  const setText = (i, txt) => { if(el(i)) el(i).textContent = txt; };
+  setText("s-sub", t.setupSub);
+  setText("s-personal-sec", t.personalSec);
+  setText("s-lang-lbl", t.langLbl);
+  setText("s-level-lbl", t.levelLbl);
+  setText("s-gender-lbl", t.genderLbl);
+  if(el("gender-f")) el("gender-f").textContent = t.genderF;
+  if(el("gender-m")) el("gender-m").textContent = t.genderM;
+  setText("s-name-lbl", t.nameLbl);
+  if(el("setup-name")) el("setup-name").placeholder = t.namePh;
+  setText("s-diet-sec", t.dietSec);
+  setText("s-diet-lbl", t.dietLbl);
+  setText("s-allergy-lbl", t.allergyLbl);
+  if(el("s-start-btn")) el("s-start-btn").textContent = t.startBtn;
   // Levels
   const lvlSel = el("setup-level");
-  lvlSel.innerHTML = t.levels.map(([v,l])=>`<option value="${v}"${v==="intermediate"?" selected":""}>${l}</option>`).join("");
+  if(lvlSel) lvlSel.innerHTML = t.levels.map(([v,l])=>`<option value="${v}"${v==="intermediate"?" selected":""}>${l}</option>`).join("");
   // Diet checkboxes
-  el("diet-options").innerHTML = t.diets.map(([v,l])=>`<div class="checkbox-item${selectedDiet.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,\'diet\')">${l}</div>`).join("");
+  if(el("diet-options")) el("diet-options").innerHTML = t.diets.map(([v,l])=>`<div class="checkbox-item${selectedDiet.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,'diet')">${l}</div>`).join("");
   // Allergy checkboxes
-  el("allergy-options").innerHTML = t.allergies.map(([v,l])=>`<div class="checkbox-item${selectedAllergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,\'allergy\')">${l}</div>`).join("");
+  if(el("allergy-options")) el("allergy-options").innerHTML = t.allergies.map(([v,l])=>`<div class="checkbox-item${selectedAllergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,'allergy')">${l}</div>`).join("");
+  // legal text
+  if(el("s-legal-text")) el("s-legal-text").innerHTML = t.legalText||`By clicking "Let's start" you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms of Use</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.<br>We do not collect data without your consent.`;
 }
 
-function onSetupLangChange(lang) { renderSetup(lang); }
+function onSetupLangChange(lang) { 
+  renderSetup(lang);
+  // show gender row only for languages with grammatical gender
+  const genderRow = document.querySelector(".gender-row");
+  const genderLbl = document.getElementById("s-gender-lbl");
+  const showGender = ["he","es","fr"].includes(lang);
+  if(genderRow) genderRow.style.display = showGender ? "flex" : "none";
+  if(genderLbl) genderLbl.style.display = showGender ? "block" : "none";
+}
 
 function setGender(g) {
   selectedGender=g;
@@ -650,6 +664,18 @@ function applyLang() {
   id("p-sec-diet").textContent=t.pSecDiet;
   id("p-sec-allergy").textContent=t.pSecAllergy;
   id("p-save-btn").textContent=t.pSaveBtn;
+  // dev mode label
+  if(id("dev-mode-label")) id("dev-mode-label").textContent = t.devModeLabel||"All features unlocked";
+  if(id("dev-hint")) id("dev-hint").textContent = devMode ? (t.devHintOn||"On — user sees all features") : (t.devHintOff||"Off — user sees free version");
+  // legal links
+  if(id("link-privacy")) id("link-privacy").textContent = t.linkPrivacy||"Privacy Policy";
+  if(id("link-terms")) id("link-terms").textContent = t.linkTerms||"Terms of Use";
+  // show/hide gender in profile panel
+  const showGender = ["he","es","fr"].includes(profile.lang);
+  const pgRow = document.querySelector("#profile-panel .gender-row");
+  const pgLbl = document.getElementById("p-lbl-gender");
+  if(pgRow) pgRow.style.display = showGender ? "flex" : "none";
+  if(pgLbl) pgLbl.style.display = showGender ? "block" : "none";
   id("question-input").placeholder=t.placeholder(profile.gender);
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
@@ -1067,7 +1093,10 @@ function setStatus(text){id("status-text").textContent=text;}
 
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
-  renderSetup("he");
+  renderSetup("en");
+  // set language selector to English
+  const langSel = document.getElementById("setup-lang");
+  if(langSel) langSel.value = "en";
   const saved=localStorage.getItem("rc_profile");
   if(saved){
     try{
