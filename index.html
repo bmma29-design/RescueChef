@@ -1094,7 +1094,6 @@ function setStatus(text){id("status-text").textContent=text;}
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
   renderSetup("en");
-  // set language selector to English
   const langSel = document.getElementById("setup-lang");
   if(langSel) langSel.value = "en";
   const saved=localStorage.getItem("rc_profile");
@@ -1104,6 +1103,15 @@ window.addEventListener("load",()=>{
       if(p.name !== undefined){
         devMode = p.devMode || false;
         profile={...profile,...p};
+        // re-render setup in saved language so UI is consistent
+        renderSetup(profile.lang||"en");
+        if(langSel) langSel.value = profile.lang||"en";
+        // also show/hide gender based on saved language
+        const showGender = ["he","es","fr"].includes(profile.lang);
+        const gr = document.querySelector(".gender-row");
+        const gl = document.getElementById("s-gender-lbl");
+        if(gr) gr.style.display = showGender ? "flex" : "none";
+        if(gl) gl.style.display = showGender ? "block" : "none";
         initApp(); return;
       }
     }catch(e){}
