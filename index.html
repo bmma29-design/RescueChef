@@ -943,6 +943,32 @@ async function sendQuestion() {
   const input=id("question-input");
   const question=input.value.trim();
   if(!question||isLoading)return;
+
+  // Daily limit check for free users
+  if(!devMode) {
+    const today = new Date().toDateString();
+    const stored = JSON.parse(localStorage.getItem("rc_daily")||"{}");
+    const count = stored.date === today ? (stored.count||0) : 0;
+    const FREE_LIMIT = 3;
+    if(count >= FREE_LIMIT) {
+      const t=T[profile.lang]||T.en;
+      const msgs = {
+        he: `🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום. שדרגי למנוי Pro להמשך שימוש ללא הגבלה.`,
+        en: `🔒 You've reached your ${FREE_LIMIT} free questions for today. Upgrade to Pro for unlimited access.`,
+        es: `🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy. Mejora a Pro para acceso ilimitado.`,
+        fr: `🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui. Passez à Pro pour un accès illimité.`
+      };
+      const welcome=id("welcome");
+      if(welcome)welcome.style.display="none";
+      addMessage("user",question);
+      input.value=""; autoResize(input);
+      addMessage("assistant", msgs[profile.lang]||msgs.en);
+      return;
+    }
+    // Increment counter
+    localStorage.setItem("rc_daily", JSON.stringify({date:today, count:count+1}));
+  }
+
   const welcome=id("welcome");
   if(welcome)welcome.style.display="none";
   addMessage("user",question);
