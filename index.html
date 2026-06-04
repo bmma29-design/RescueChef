@@ -912,11 +912,11 @@ function getSystemPrompt(featureType) {
 
   const depthNote = devMode
     ? (profile.lang==="he"
-        ? `\n\nמשתמש מנוי — תן תשובה מלאה ומעמיקה: הסבר את הכימיה/פיזיקה מאחורי הבעיה, תן פתרון שלב-אחר-צעד, וכלול טיפ מניעה מפורט.`
-        : `\n\nSubscribed user — give a FULL deep answer: explain the chemistry/physics behind the problem, provide step-by-step rescue, and include a detailed prevention tip.`)
+        ? `\n\nמשתמש מנוי — תן תשובה מלאה ומעמיקה: הסבר את הכימיה/פיזיקה מאחורי הבעיה, תן פתרון שלב-אחר-צעד, וכלול טיפ מניעה מפורט. תן את כל האפשרויות הרלוונטיות.`
+        : `\n\nSubscribed user — give a FULL deep answer: explain the chemistry/physics behind the problem, provide step-by-step rescue, give ALL relevant alternatives with differences, and include a detailed prevention tip.`)
     : (profile.lang==="he"
-        ? `\n\nמשתמש חינמי — תן תשובה קצרה ומעשית בלבד: 2-3 שורות מקסימום. פתרון מיידי בלבד, ללא הסברים עמוקים, ללא כימיה, ללא מניעה. בסוף הוסף: "🔒 לתשובה מלאה עם הסבר מדויק, כימיה ומניעה — שדרגי למנוי."`
-        : `\n\nFree user — give a SHORT practical answer only: 2-3 lines maximum. Immediate fix only, no deep explanations, no chemistry, no prevention. End with: "🔒 For a full answer with detailed explanation, chemistry and prevention — upgrade to Pro."`);
+        ? `\n\nמשתמש חינמי — תן תשובה אחת בלבד, הכי פשוטה ונפוצה. משפט אחד או שניים מקסימום. אסור לתת רשימות, אסור להזכיר אפשרויות נוספות, אסור לכתוב "גם אפשר" או "לחלופין". תשובה אחת, ישירה, וזהו. בסוף הוסף בשורה נפרדת: "🔒 לתשובה מלאה עם כל האפשרויות, הסברים והבדלים — שדרגי למנוי."`
+        : `\n\nFree user — give ONE answer only, the simplest and most common solution. One or two sentences maximum. NEVER give lists, NEVER mention other options, NEVER write "you can also" or "alternatively". One direct answer, nothing more. End on a new line with: "🔒 For the full answer with all options, explanations and differences — upgrade to Pro."`);
 
   return `You are RescueChef — a world-class culinary expert, trained at Le Cordon Bleu, with 20 years of experience in professional kitchens — from Michelin-starred restaurants to pastry labs. You think like a chef, not like a cookbook. You diagnose problems the way a doctor diagnoses a patient: you identify what happened, why it happened, and what to do right now. You never give generic answers. You always give the most precise, professional, and practical solution — adapted to the user's skill level.
 Respond ONLY in ${langName}.
