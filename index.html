@@ -26,8 +26,8 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
 .setup-title{text-align:center;font-size:28px;font-weight:900;margin-bottom:4px;}
 .setup-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
 .setup-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
-.setup-section{font-size:11px;font-weight:700;color:#D4AF37;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;}
-.setup-label{font-size:13px;font-weight:600;color:#A89888;display:block;margin-bottom:5px;}
+.setup-section{font-size:12px;font-weight:700;color:#D4AF37;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;}
+.setup-label{font-size:15px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;}
 .setup-input,.setup-select{width:100%;background:#FAF6EF;border:1.5px solid var(--border);
   border-radius:10px;padding:11px 13px;font-family:"Heebo",sans-serif;font-size:14px;
   color:var(--text);margin-bottom:12px;transition:border-color 0.2s;}
@@ -93,15 +93,6 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 .welcome{text-align:center;padding:28px 16px;animation:fadeUp 0.5s ease forwards;}
-@media(min-width:900px){
-  .welcome{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:right;align-items:start;max-width:900px;margin:0 auto;padding:32px 24px;}
-  .welcome-left{grid-column:1;}
-  .welcome-right{grid-column:2;}
-  .welcome h2,.welcome p,.welcome-icon{text-align:right;}
-  .suggestion-grid{margin:0 0 14px 0;}
-  .pro-card{margin:0;}
-  .faq-section{margin:12px 0 0 0;text-align:right;}
-}
 .welcome-icon{font-size:48px;margin-bottom:12px;}
 .welcome h2{font-size:21px;font-weight:800;margin-bottom:5px;}
 .welcome p{font-size:16px;color:var(--soft);max-width:400px;margin:0 auto 14px;line-height:1.7;font-weight:700;}
@@ -325,7 +316,7 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
       <span class="header-emoji"><svg fill="#D4AF37" height="28px" width="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></span>
       <div>
         <div class="header-name">RescueChef</div>
-        <div class="header-tagline" id="header-tagline">Your digital chef</div>
+        <div class="header-tagline" id="header-tagline">Your personal sous-chef</div>
       </div>
     </div>
     <div class="header-actions">
@@ -406,10 +397,12 @@ const T = {
     startBtn:"בואו נתחיל! 🚀", keyError:"המפתח לא תקין. ודאי שהעתקת אותו בשלמותו.",
     levels:[["beginner","🏠 בשלן ביתי"],["intermediate","👨‍🍳 טבח מתפתח"],["professional","⭐ שף מקצועי"]],
     diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],
-           ["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"]],
+           ["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],
+           ["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],
-               ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"]],
-    tagline:"השף הדיגיטלי שלך", profileBtn:"😊 פרופיל", clearBtn:"🗑 נקה",
+               ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],
+               ["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
+    tagline:"הסו-שף הפרטי שלך", profileBtn:"😊 פרופיל", clearBtn:"🗑 נקה",
     panelTitle:"הפרופיל שלי", pSecPersonal:"פרטים אישיים", pLblName:"שם",
     pLblGender:"פנייה", pLblLang:"שפה", pLblLevel:"רמת מיומנות",
     pSecDiet:"תזונה", pSecAllergy:"אלרגיות", pSaveBtn:"💾 שמור שינויים",
@@ -455,10 +448,12 @@ const T = {
     startBtn:"Let\'s start! 🚀", keyError:"Invalid key. Make sure you copied it completely.",
     levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],
-           ["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"]],
+           ["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],
+           ["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],
-               ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"]],
-    tagline:"Your digital chef", profileBtn:"😊 Profile", clearBtn:"🗑 Clear",
+               ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],
+               ["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
+    tagline:"Your personal sous-chef", profileBtn:"😊 Profile", clearBtn:"🗑 Clear",
     panelTitle:"My Profile", pSecPersonal:"Personal Details",
     pLblName:"Name", pLblGender:"Pronoun", pLblLang:"Language", pLblLevel:"Skill Level",
     pSecDiet:"Diet", pSecAllergy:"Allergies", pSaveBtn:"💾 Save Changes",
@@ -504,10 +499,12 @@ const T = {
     startBtn:"¡Empecemos! 🚀", keyError:"Clave inválida. Asegúrate de haberla copiado completamente.",
     levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],
-           ["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"]],
+           ["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],
+           ["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],
-               ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"]],
-    tagline:"Tu chef digital", profileBtn:"😊 Perfil", clearBtn:"🗑 Limpiar",
+               ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],
+               ["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
+    tagline:"Tu sous-chef personal", profileBtn:"😊 Perfil", clearBtn:"🗑 Limpiar",
     panelTitle:"Mi Perfil", pSecPersonal:"Datos Personales",
     pLblName:"Nombre", pLblGender:"Pronombre", pLblLang:"Idioma", pLblLevel:"Nivel",
     pSecDiet:"Dieta", pSecAllergy:"Alergias", pSaveBtn:"💾 Guardar",
@@ -553,10 +550,12 @@ const T = {
     startBtn:"Commençons! 🚀", keyError:"Clé invalide. Assurez-vous de l\'avoir copiée entièrement.",
     levels:[["beginner","🏠 Cuisinier Amateur"],["intermediate","👨‍🍳 Chef en Développement"],["professional","⭐ Chef Professionnel"]],
     diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],
-           ["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"]],
+           ["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],
+           ["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],
-               ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"]],
-    tagline:"Votre chef digital", profileBtn:"😊 Profil", clearBtn:"🗑 Effacer",
+               ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],
+               ["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
+    tagline:"Votre sous-chef personnel", profileBtn:"😊 Profil", clearBtn:"🗑 Effacer",
     panelTitle:"Mon Profil", pSecPersonal:"Détails Personnels",
     pLblName:"Prénom", pLblGender:"Pronom", pLblLang:"Langue", pLblLevel:"Niveau",
     pSecDiet:"Régime", pSecAllergy:"Allergies", pSaveBtn:"💾 Enregistrer",
@@ -784,18 +783,14 @@ function renderWelcome() {
     </div>`).join("");
 
   w.innerHTML=`
-    <div class="welcome-left">
-      <div class="welcome-icon"><svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></div>
-      <h2>${t.welcomeTitle(profile.name,profile.gender)}</h2>
-      <p>${t.welcomeDesc(profile.gender)}</p>
-      <div class="suggestion-grid">${sugsHtml}</div>
-    </div>
-    <div class="welcome-right">
-      ${proCardHtml}
-      <div class="faq-section">
-        <div class="faq-title">${faqTitle}</div>
-        ${faqHtml}
-      </div>
+    <div class="welcome-icon"><svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></div>
+    <h2>${t.welcomeTitle(profile.name,profile.gender)}</h2>
+    <p>${t.welcomeDesc(profile.gender)}</p>
+    <div class="suggestion-grid">${sugsHtml}</div>
+    ${proCardHtml}
+    <div class="faq-section">
+      <div class="faq-title">${faqTitle}</div>
+      ${faqHtml}
     </div>`;
   msgs.appendChild(w);
 }
