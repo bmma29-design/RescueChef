@@ -129,7 +129,8 @@ html[dir="ltr"] .message.ai .msg-bubble{border-top-right-radius:var(--radius);bo
 html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .msg-bubble li{margin-bottom:5px;color:var(--soft);}
 .msg-bubble strong{color:#D4AF37;font-weight:700;}
-.tip-box{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.25);border-radius:8px;padding:9px 13px;
+.tip-box{background:#FAECE7;border-right:4px solid #D85A30;border-radius:0 8px 8px 0;padding:12px 16px;
+  font-size:14px;line-height:1.7;color:#4A1B0C;margin-top:6px;}
   margin-top:9px;font-size:13px;color:#2ECC71;}
 .zw-teaser{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);border-radius:8px;padding:10px 14px;
   margin-top:10px;font-size:13px;color:#D4AF37;}
@@ -409,7 +410,7 @@ const T = {
     devModeLabel:"כל הפיצ'רים פתוחים", devHintOn:"פועל — רואה את כל הפיצ'רים", devHintOff:"כבוי — גרסה חינמית רגילה",
     linkPrivacy:"מדיניות פרטיות", linkTerms:"תנאי שימוש",
     legalText:`בלחיצה על "בואו נתחיל" את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span> שלנו.<br>אנחנו לא אוספים נתונים ללא הסכמתך.`,
-    welcomeTitle:(n,g)=>`שלום${n?" "+n:""}! אני RescueChef`,
+    welcomeTitle:(n,g)=>`${n?n+" — ":""}אני RescueChef`,
     welcomeDesc:(g)=>g==="f"?"אני הסו-שף שלך במטבח, ספרי לי מה הבעיה ואני אתן לך את התשובה":"אני הסו-שף שלך במטבח, ספר לי מה הבעיה ואני אתן לך את התשובה",
     placeholder:(g)=>g==="f"?"תארי את הבעיה במטבח שלך...":"תאר את הבעיה במטבח שלך...",
     hint:"Enter לשליחה · Shift+Enter לשורה חדשה · 🎤 לדיבור",
@@ -460,7 +461,7 @@ const T = {
     devModeLabel:"All features unlocked", devHintOn:"On — user sees all features", devHintOff:"Off — free version",
     linkPrivacy:"Privacy Policy", linkTerms:"Terms of Use",
     legalText:`By clicking "Let's start" you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms of Use</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.<br>We do not collect data without your consent.`,
-    welcomeTitle:(n)=>`Hello${n?" "+n:""}! I\'m RescueChef`,
+    welcomeTitle:(n)=>`${n?n+" — ":""}I'm RescueChef`,
     welcomeDesc:()=>"Describe any kitchen problem — I\'ll diagnose it, explain why it happened, and give you an immediate solution.",
     placeholder:()=>"Describe your kitchen problem...",
     hint:"Enter to send · Shift+Enter for new line · 🎤 to speak",
@@ -511,7 +512,7 @@ const T = {
     devModeLabel:"Todas las funciones desbloqueadas", devHintOn:"Activado — ve todas las funciones", devHintOff:"Desactivado — versión gratuita",
     linkPrivacy:"Política de Privacidad", linkTerms:"Términos de Uso",
     legalText:`Al hacer clic en "¡Empecemos!" aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos de Uso</span> y nuestra <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.<br>No recopilamos datos sin tu consentimiento.`,
-    welcomeTitle:(n)=>`¡Hola${n?" "+n:""}! Soy RescueChef`,
+    welcomeTitle:(n)=>`${n?n+" — ":""}Soy RescueChef`,
     welcomeDesc:()=>"Descríbeme cualquier problema en la cocina — diagnosticaré, explicaré por qué pasó y te daré una solución inmediata.",
     placeholder:()=>"Describe tu problema en la cocina...",
     hint:"Enter para enviar · Shift+Enter nueva línea · 🎤 hablar",
@@ -562,7 +563,7 @@ const T = {
     devModeLabel:"Toutes les fonctions déverrouillées", devHintOn:"Activé — voit toutes les fonctions", devHintOff:"Désactivé — version gratuite",
     linkPrivacy:"Politique de Confidentialité", linkTerms:"Conditions d'Utilisation",
     legalText:`En cliquant sur "Commençons!" vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions d'Utilisation</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.<br>Nous ne collectons pas de données sans votre consentement.`,
-    welcomeTitle:(n)=>`Bonjour${n?" "+n:""}! Je suis RescueChef`,
+    welcomeTitle:(n)=>`${n?n+" — ":""}Je suis RescueChef`,
     welcomeDesc:()=>"Décrivez-moi tout problème en cuisine — je diagnostiquerai, expliquerai pourquoi c\'est arrivé et vous donnerai une solution immédiate.",
     placeholder:()=>"Décrivez votre problème en cuisine...",
     hint:"Entrée pour envoyer · Shift+Entrée nouvelle ligne · 🎤 parler",
@@ -926,6 +927,10 @@ function getSystemPrompt(featureType) {
         ? `\n\nמשתמש חינמי — תן תשובה אחת בלבד, הכי פשוטה ונפוצה. משפט אחד או שניים מקסימום. אסור לתת רשימות, אסור להזכיר אפשרויות נוספות, אסור לכתוב "גם אפשר" או "לחלופין". תשובה אחת, ישירה, וזהו. בסוף הוסף בשורה נפרדת: "🔒 לתשובה מלאה עם כל האפשרויות, הסברים והבדלים — שדרגי למנוי."`
         : `\n\nFree user — give ONE answer only, the simplest and most common solution. One or two sentences maximum. NEVER give lists, NEVER mention other options, NEVER write "you can also" or "alternatively". One direct answer, nothing more. End on a new line with: "🔒 For the full answer with all options, explanations and differences — upgrade to Pro."`);
 
+  const levelNote = profile.level === "beginner" 
+    ? "\n\nIMPORTANT: This user is a home cook. NEVER use professional culinary terms like emulsion, reduction, caramelization, maillard reaction, deglaze, blanch, temper, etc. Always explain using simple everyday kitchen language that anyone at home would understand. If you must describe a technique, describe it in plain words like 'mix until it comes together' not 'emulsify'."
+    : "";
+
   return `You are RescueChef — a world-class culinary expert, trained at Le Cordon Bleu, with 20 years of experience in professional kitchens — from Michelin-starred restaurants to pastry labs. You think like a chef, not like a cookbook. You diagnose problems the way a doctor diagnoses a patient: you identify what happened, why it happened, and what to do right now. You never give generic answers. You always give the most precise, professional, and practical solution — adapted to the user's skill level.
 Respond ONLY in ${langName}.
 User level: ${levelText}.
@@ -942,6 +947,7 @@ Rules:
 - If dish cannot be rescued, say so honestly and suggest alternative
 - Adapt depth to user level
 - Always respect dietary restrictions and allergies
+${levelNote}
 ${depthNote}
 ${featureNote}`;
 }
@@ -1142,7 +1148,9 @@ function formatAI(text) {
     .replace(/\n\n/g,"<br><br>")
     .replace(/\n/g,"<br>")
     .replace(/<h3>💡[^<]*<\/h3>(<br>)?(.*?)(?=<h3>|$)/gs,
-      (_,br,content)=>`<h3>💡 ${profile.lang==="he"?"טיפ למניעה":"Prevention tip"}</h3><div class="tip-box">${content}</div>`);
+      (_,br,content)=> devMode 
+        ? `<h3>💡 ${profile.lang==="he"?"טיפ למניעה":"Prevention tip"}</h3><div class="tip-box">${content}</div>`
+        : "");
 }
 
 function addTyping() {
