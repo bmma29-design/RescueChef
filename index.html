@@ -7,19 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#4A3525; --surface:#5A4030; --surface2:#523828;
-  --accent:#F5EDD0; --accent2:#E8D8A8; --gold:#C8DDB0;
-  --green:#F5EDD0; --text:#D4AF37; --soft:#C4A882;
-  --muted:#8A7A60; --border:rgba(168,200,144,0.25); --border2:rgba(168,200,144,0.15);
-  --radius:14px; --shadow:0 2px 20px rgba(0,0,0,0.4);
-  --orange:#C8DDB0;
+  --bg:#FAF6EF; --surface:#FFFFFF; --surface2:#F5EDD8;
+  --accent:#C8A850; --accent2:#B09040; --gold:#C8A850;
+  --green:#C8A850; --text:#5C3D1A; --soft:#9A7A50;
+  --muted:#B8A080; --border:rgba(200,168,80,0.25); --border2:rgba(200,168,80,0.15);
+  --radius:14px; --shadow:0 2px 20px rgba(0,0,0,0.08);
+  --orange:#C8A850;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.04) 0%, transparent 40%), radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.1) 0%, transparent 60%), repeating-linear-gradient(125deg, transparent, transparent 15px, rgba(255,255,255,0.02) 15px, rgba(255,255,255,0.02) 16px);}
+body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 20% 30%, rgba(200,168,80,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(200,168,80,0.05) 0%, transparent 40%), radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.03) 0%, transparent 60%), repeating-linear-gradient(125deg, transparent, transparent 15px, rgba(200,168,80,0.02) 15px, rgba(200,168,80,0.02) 16px);}
 
 /* SETUP */
 #setup-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
-  background:radial-gradient(ellipse at 40% 40%,rgba(168,200,144,0.10) 0%,#3A2A1A 70%);}
+  background:radial-gradient(ellipse at 40% 40%,rgba(168,200,144,0.10) 0%,#FAF6EF 70%);}
 .setup-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;
   padding:36px 32px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
 .setup-logo{text-align:center;font-size:48px;margin-bottom:8px;}
@@ -28,7 +28,7 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
 .setup-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
 .setup-section{font-size:11px;font-weight:700;color:#D4AF37;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;}
 .setup-label{font-size:13px;font-weight:600;color:#A89888;display:block;margin-bottom:5px;}
-.setup-input,.setup-select{width:100%;background:#3A2A1A;border:1.5px solid var(--border);
+.setup-input,.setup-select{width:100%;background:#FAF6EF;border:1.5px solid var(--border);
   border-radius:10px;padding:11px 13px;font-family:"Heebo",sans-serif;font-size:14px;
   color:var(--text);margin-bottom:12px;transition:border-color 0.2s;}
 .setup-input:focus,.setup-select:focus{outline:none;border-color:var(--accent);}
@@ -37,14 +37,14 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
 .setup-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .gender-row{display:flex;gap:10px;margin-bottom:12px;}
 .gender-btn{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:10px;
-  background:#3A2A1A;font-family:"Heebo",sans-serif;font-size:13px;cursor:pointer;
+  background:#FAF6EF;font-family:"Heebo",sans-serif;font-size:13px;cursor:pointer;
   text-align:center;transition:all 0.2s;color:var(--text);}
 .gender-btn.active{border-color:var(--orange);background:rgba(255,159,10,0.12);color:var(--orange);font-weight:700;}
 .checkbox-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
 .checkbox-item{padding:7px 13px;border:1.5px solid var(--border);border-radius:20px;
-  font-size:13px;cursor:pointer;transition:all 0.2s;background:#3A2A1A;color:var(--soft);user-select:none;}
+  font-size:13px;cursor:pointer;transition:all 0.2s;background:#FAF6EF;color:var(--soft);user-select:none;}
 .checkbox-item.active{border-color:var(--orange);background:rgba(255,159,10,0.12);color:var(--orange);font-weight:600;}
-.setup-btn{width:100%;background:var(--accent);color:#1A2A10;border:none;border-radius:10px;
+.setup-btn{width:100%;background:var(--accent);color:white;border:none;border-radius:10px;
   padding:13px;font-family:"Heebo",sans-serif;font-size:15px;font-weight:700;cursor:pointer;
   transition:all 0.2s;margin-top:6px;}
 .setup-btn:hover{background:var(--accent2);transform:translateY(-1px);}
@@ -68,7 +68,7 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
 /* PROFILE PANEL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99;display:none;}
 .overlay.show{display:block;}
-.profile-panel{position:fixed;top:0;width:320px;height:100vh;background:#5A4030;
+.profile-panel{position:fixed;top:0;width:320px;height:100vh;background:var(--surface);
   border:0.5px solid rgba(212,175,55,0.2);box-shadow:4px 0 24px rgba(44,26,14,0.12);z-index:100;
   transform:translateX(-110%);transition:transform 0.3s ease;overflow-y:auto;padding:22px 18px;}
 .profile-panel.open{transform:translateX(0);}
@@ -80,11 +80,11 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .panel-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);padding:4px;}
 .panel-section{font-size:11px;font-weight:700;color:#D4AF37;letter-spacing:1px;
   text-transform:uppercase;margin-bottom:8px;margin-top:16px;}
-.panel-input,.panel-select{width:100%;background:#3A2A1A;border:1.5px solid var(--border);
+.panel-input,.panel-select{width:100%;background:#FAF6EF;border:1.5px solid var(--border);
   border-radius:8px;padding:9px 11px;font-family:"Heebo",sans-serif;font-size:13px;
   color:var(--text);margin-bottom:9px;}
 .panel-input:focus,.panel-select:focus{outline:none;border-color:var(--accent);}
-.panel-save{width:100%;background:var(--accent);color:#1A2A10;border:none;border-radius:8px;
+.panel-save{width:100%;background:var(--accent);color:white;border:none;border-radius:8px;
   padding:11px;font-family:"Heebo",sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;}
 .panel-save:hover{background:var(--accent2);}
 
@@ -93,17 +93,26 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 .welcome{text-align:center;padding:28px 16px;animation:fadeUp 0.5s ease forwards;}
+@media(min-width:900px){
+  .welcome{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:right;align-items:start;max-width:900px;margin:0 auto;padding:32px 24px;}
+  .welcome-left{grid-column:1;}
+  .welcome-right{grid-column:2;}
+  .welcome h2,.welcome p,.welcome-icon{text-align:right;}
+  .suggestion-grid{margin:0 0 14px 0;}
+  .pro-card{margin:0;}
+  .faq-section{margin:12px 0 0 0;text-align:right;}
+}
 .welcome-icon{font-size:48px;margin-bottom:12px;}
 .welcome h2{font-size:21px;font-weight:800;margin-bottom:5px;}
-.welcome p{font-size:16px;color:var(--soft);max-width:400px;margin:0 auto 14px;line-height:1.7;}
+.welcome p{font-size:16px;color:var(--soft);max-width:400px;margin:0 auto 14px;line-height:1.7;font-weight:700;}
 .welcome-icon{font-size:42px;margin-bottom:8px;}
 .suggestion-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:460px;margin:0 auto 14px;}
 .suggestion{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);border-radius:11px;
-  padding:13px 15px;font-family:"Heebo",sans-serif;font-size:14px;color:var(--text);
-  cursor:pointer;text-align:right;transition:all 0.2s;line-height:1.5;}
-html[dir="ltr"] .suggestion{text-align:left;}
-.suggestion:hover{border-color:var(--orange);background:rgba(255,159,10,0.08);transform:translateY(-2px);}
-.suggestion-icon{display:block;font-size:19px;margin-bottom:5px;}
+  padding:14px 15px;font-family:"Heebo",sans-serif;font-size:14px;color:var(--text);font-weight:700;
+  cursor:pointer;text-align:center;transition:all 0.2s;line-height:1.5;}
+html[dir="ltr"] .suggestion{text-align:center;}
+.suggestion:hover{border-color:var(--accent);background:rgba(200,168,80,0.08);transform:translateY(-2px);}
+.suggestion-icon{display:block;font-size:28px;margin-bottom:7px;}
 .premium-hints{max-width:460px;margin:0 auto;}
 .premium-title{font-size:11px;font-weight:700;color:var(--muted);text-align:center;
   margin-bottom:9px;letter-spacing:1px;}
@@ -117,7 +126,7 @@ html[dir="ltr"] .suggestion{text-align:left;}
 .message.user .msg-avatar{background:#CF6D1A;}
 .message.ai .msg-avatar{background:#2D5A42;}
 .msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:17px;line-height:1.85;}
-.message.user .msg-bubble{background:var(--accent);color:#1A2A10;border-top-left-radius:4px;}
+.message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;}
 html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;}
 .message.ai .msg-bubble{background:var(--surface);border:1.5px solid var(--border);
   color:var(--text);border-top-right-radius:4px;box-shadow:var(--shadow);}
@@ -147,7 +156,7 @@ html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
 .faq-item.open .faq-arrow{transform:rotate(90deg);}
 .faq-a{display:none;padding:0 14px 12px;font-size:13px;color:var(--muted);line-height:1.7;}
 .faq-item.open .faq-a{display:block;}
-.pro-card{max-width:460px;margin:10px auto 0;background:#5A4030;border:2px solid var(--accent);border-radius:var(--radius);padding:16px 20px;}
+.pro-card{max-width:460px;margin:10px auto 0;background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);padding:16px 20px;}
 .pro-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
 .pro-card-title{font-size:17px;font-weight:800;color:var(--text);}
 .pro-card-price{text-align:left;}
@@ -157,7 +166,7 @@ html[dir="rtl"] .pro-card-price{text-align:left;}
 .pro-card-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 16px;border-top:1px solid var(--border2);padding-top:14px;}
 .pro-card-feature{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--soft);}
 .pro-card-feature-icon{color:var(--accent);font-size:15px;}
-.pro-card-btn{width:100%;background:var(--accent);color:#1A2A10;border:none;border-radius:10px;padding:12px;font-family:"Heebo",sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.pro-card-btn{width:100%;background:var(--accent);color:white;border:none;border-radius:10px;padding:12px;font-family:"Heebo",sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;}
 .pro-card-btn:hover{background:var(--accent2);transform:translateY(-1px);}
 .pro-card-note{text-align:center;margin-top:8px;font-size:11px;color:var(--muted);}
 .speak-btn{margin-top:9px;background:transparent;border:1px solid var(--border);border-radius:6px;
@@ -174,7 +183,7 @@ html[dir="rtl"] .pro-card-price{text-align:left;}
 .status-bar{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-bottom:7px;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;}
 .status-dot.loading{background:var(--gold);animation:blink 1s infinite;}
-.input-row{display:flex;gap:8px;align-items:flex-end;background:#3A2A1A;
+.input-row{display:flex;gap:8px;align-items:flex-end;background:#FAF6EF;
   border:1.5px solid var(--border);border-radius:13px;padding:9px 11px;transition:border-color 0.2s;}
 .input-row:focus-within{border-color:var(--accent);}
 #question-input{flex:1;background:transparent;border:none;color:var(--text);
@@ -186,7 +195,7 @@ html[dir="rtl"] .pro-card-price{text-align:left;}
 .voice-btn{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);color:var(--muted);}
 .voice-btn:hover{border-color:var(--orange);color:var(--orange);}
 .voice-btn.recording{background:#DC2626;border-color:#DC2626;color:white;}
-.send-btn{background:var(--accent);color:#1A2A10;}
+.send-btn{background:var(--accent);color:white;}
 .send-btn:hover{background:var(--accent2);}
 .send-btn:disabled{opacity:0.4;cursor:not-allowed;}
 .input-hint{font-size:11px;color:#665550;text-align:center;margin-top:7px;}
@@ -234,7 +243,7 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;
   display:none;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.show{display:flex;}
-.modal-box{background:#5A4030;border:0.5px solid rgba(212,175,55,0.2);border-radius:16px;
+.modal-box{background:var(--surface);border:0.5px solid rgba(212,175,55,0.2);border-radius:16px;
   max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:32px 28px;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);}
 .modal-title{font-size:20px;font-weight:800;color:#F5F5F0;margin-bottom:6px;}
@@ -320,7 +329,7 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
       </div>
     </div>
     <div class="header-actions">
-      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">👤 Profile</button>
+      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">😊 Profile</button>
       <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑 Clear</button>
     </div>
   </div>
@@ -400,7 +409,7 @@ const T = {
            ["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],
                ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"]],
-    tagline:"השף הדיגיטלי שלך", profileBtn:"👤 פרופיל", clearBtn:"🗑 נקה",
+    tagline:"השף הדיגיטלי שלך", profileBtn:"😊 פרופיל", clearBtn:"🗑 נקה",
     panelTitle:"הפרופיל שלי", pSecPersonal:"פרטים אישיים", pLblName:"שם",
     pLblGender:"פנייה", pLblLang:"שפה", pLblLevel:"רמת מיומנות",
     pSecDiet:"תזונה", pSecAllergy:"אלרגיות", pSaveBtn:"💾 שמור שינויים",
@@ -408,7 +417,7 @@ const T = {
     linkPrivacy:"מדיניות פרטיות", linkTerms:"תנאי שימוש",
     legalText:`בלחיצה על "בואו נתחיל" את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span> שלנו.<br>אנחנו לא אוספים נתונים ללא הסכמתך.`,
     welcomeTitle:(n,g)=>`שלום${n?" "+n:""}! אני RescueChef`,
-    welcomeDesc:(g)=>g==="f"?"תארי לי כל בעיה במטבח — אאבחן, אסביר למה זה קרה, ואתן לך פתרון מיידי.":"תאר לי כל בעיה במטבח — אאבחן, אסביר למה זה קרה, ואתן לך פתרון מיידי.",
+    welcomeDesc:(g)=>g==="f"?"אני הסו-שף שלך במטבח, ספרי לי מה הבעיה ואני אתן לך את התשובה":"אני הסו-שף שלך במטבח, ספר לי מה הבעיה ואני אתן לך את התשובה",
     placeholder:(g)=>g==="f"?"תארי את הבעיה במטבח שלך...":"תאר את הבעיה במטבח שלך...",
     hint:"Enter לשליחה · Shift+Enter לשורה חדשה · 🎤 לדיבור",
     ready:"מוכן לעזור", thinking:"מחשב...", listening:"מקשיב...",
@@ -449,7 +458,7 @@ const T = {
            ["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],
                ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"]],
-    tagline:"Your digital chef", profileBtn:"👤 Profile", clearBtn:"🗑 Clear",
+    tagline:"Your digital chef", profileBtn:"😊 Profile", clearBtn:"🗑 Clear",
     panelTitle:"My Profile", pSecPersonal:"Personal Details",
     pLblName:"Name", pLblGender:"Pronoun", pLblLang:"Language", pLblLevel:"Skill Level",
     pSecDiet:"Diet", pSecAllergy:"Allergies", pSaveBtn:"💾 Save Changes",
@@ -498,7 +507,7 @@ const T = {
            ["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],
                ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"]],
-    tagline:"Tu chef digital", profileBtn:"👤 Perfil", clearBtn:"🗑 Limpiar",
+    tagline:"Tu chef digital", profileBtn:"😊 Perfil", clearBtn:"🗑 Limpiar",
     panelTitle:"Mi Perfil", pSecPersonal:"Datos Personales",
     pLblName:"Nombre", pLblGender:"Pronombre", pLblLang:"Idioma", pLblLevel:"Nivel",
     pSecDiet:"Dieta", pSecAllergy:"Alergias", pSaveBtn:"💾 Guardar",
@@ -547,7 +556,7 @@ const T = {
            ["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],
                ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"]],
-    tagline:"Votre chef digital", profileBtn:"👤 Profil", clearBtn:"🗑 Effacer",
+    tagline:"Votre chef digital", profileBtn:"😊 Profil", clearBtn:"🗑 Effacer",
     panelTitle:"Mon Profil", pSecPersonal:"Détails Personnels",
     pLblName:"Prénom", pLblGender:"Pronom", pLblLang:"Langue", pLblLevel:"Niveau",
     pSecDiet:"Régime", pSecAllergy:"Allergies", pSaveBtn:"💾 Enregistrer",
@@ -775,14 +784,18 @@ function renderWelcome() {
     </div>`).join("");
 
   w.innerHTML=`
-    <div class="welcome-icon"><svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></div>
-    <h2>${t.welcomeTitle(profile.name,profile.gender)}</h2>
-    <p>${t.welcomeDesc(profile.gender)}</p>
-    <div class="suggestion-grid">${sugsHtml}</div>
-    ${proCardHtml}
-    <div class="faq-section">
-      <div class="faq-title">${faqTitle}</div>
-      ${faqHtml}
+    <div class="welcome-left">
+      <div class="welcome-icon"><svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></div>
+      <h2>${t.welcomeTitle(profile.name,profile.gender)}</h2>
+      <p>${t.welcomeDesc(profile.gender)}</p>
+      <div class="suggestion-grid">${sugsHtml}</div>
+    </div>
+    <div class="welcome-right">
+      ${proCardHtml}
+      <div class="faq-section">
+        <div class="faq-title">${faqTitle}</div>
+        ${faqHtml}
+      </div>
     </div>`;
   msgs.appendChild(w);
 }
@@ -1092,7 +1105,7 @@ function addMessage(role,text,t,isZW) {
   const avatar=document.createElement("div");
   avatar.className="msg-avatar";
   const SVG_ICON = `<svg fill="#D4AF37" height="20px" width="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
-  avatar.innerHTML = role==="user" ? "👤" : SVG_ICON;
+  avatar.innerHTML = role==="user" ? "😊" : SVG_ICON;
   const bubble=document.createElement("div");
   bubble.className="msg-bubble";
   if(role==="ai"){
