@@ -416,8 +416,8 @@ const T={
     panelTitle:"הפרופיל שלי",pSecLang:"שפה",pSecPersonal:"פרטים אישיים",
     pLblName:"שם",pLblGender:"פנייה",pLblLevel:"רמה",pSecDiet:"תזונה",pSecAllergy:"אלרגיות",
     pSaveBtn:"💾 שמור",pDeleteBtn:"🗑 מחק נתונים",linkPrivacy:"פרטיות",linkTerms:"תנאים",
-    devModeLabel:"כל הפיצ'רים",devHintOn:"פועל 🔓",devHintOff:"כבוי",
-    proLockedTitle:"פיצ'ר Pro",proLockedDesc:"תשובות מותאמות אישית לרמה, תזונה ואלרגיות שלך",
+    devModeLabel:"כל הפיצ׳רים",devHintOn:"פועל 🔓",devHintOff:"כבוי",
+    proLockedTitle:"פיצ׳ר Pro",proLockedDesc:"תשובות מותאמות אישית לרמה, תזונה ואלרגיות שלך",
     proLockedBtn:"שדרגי ל-Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
     welcomeDesc:"ספרי לי מה השתבש במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
@@ -435,7 +435,7 @@ const T={
     faqTitle:"שאלות נפוצות",
     faqs:[["למה לא לשאול Claude/ChatGPT רגיל?","Claude לא מכיר אותך. RescueChef מותאם לפתרון בעיות קולינריות מיידיות — עם אפשרות להתאמה אישית מלאה במנוי."],
           ["מה ההבדל בין חינם למנוי?","חינם = פתרון מיידי קצר. מנוי = הסבר מדעי מלא, תחליפים, Zero Waste, ופרופיל אישי שמותאם לך."],
-          ["האם זה עובד בנייד?","כן, בכל דפדפן בנייד. אפשר גם לשמור כאפליקציה — לחצי 'שתף' ואז 'הוסף למסך הבית'."],
+          ["האם זה עובד בנייד?","כן, בכל דפדפן בנייד. אפשר גם לשמור כאפליקציה — לחצי על שתף ואז הוסף למסך הבית."],
           ["האם המידע שלי נשמר?","רק על המכשיר שלך. אנחנו לא שומרים מידע אישי בשרתים."]],
     upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"השף הדיגיטלי שלך — ברמה מקצועית",
       features:[{icon:"🔬",title:"הסבר מדעי מלא",desc:"כימיה ופיזיקה מאחורי כל בעיה"},
@@ -652,7 +652,7 @@ function renderWelcome(){
         <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
         <div class="pro-card-note">${t.proCard.note}</div>
       </div>
-    </div>
+    </div>`;
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
   window._exQ=t.exampleQ;
