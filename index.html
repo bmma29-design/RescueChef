@@ -241,7 +241,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 .status-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;}
 .status-dot.loading{background:var(--gold);animation:blink 1s infinite;}
 .input-row{display:flex;gap:8px;align-items:flex-end;background:var(--bg);
-  border:1.5px solid var(--border);border-radius:13px;padding:9px 11px;transition:border-color 0.2s;}
+  border:1.5px solid var(--border);border-radius:13px;padding:9px 11px;transition:border-color 0.2s;width:100%;}
 .input-row:focus-within{border-color:var(--accent);}
 #question-input{flex:1;background:transparent;border:none;color:var(--text);
   font-family:"Heebo",sans-serif;font-size:15px;resize:none;outline:none;
@@ -420,8 +420,8 @@ const T={
     proLockedTitle:"פיצ׳ר Pro",proLockedDesc:"תשובות מותאמות אישית לרמה, תזונה ואלרגיות שלך",
     proLockedBtn:"שדרגי ל-Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
-    welcomeDesc:"ספרי לי מה השתבש במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
-    placeholder:"מה השתבש במטבח שלך עכשיו?",
+    welcomeDesc:"ספרי לי מה קורה במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
+    placeholder:"יש בעיה במטבח? אני כאן",
     hint:"Enter לשליחה · Shift+Enter שורה חדשה · 🎤 לדיבור",
     ready:"מוכן לעזור",thinking:"מחשב...",listening:"מקשיב...",
     speak:"🔊 האזן",stop:"⏹ עצור",
@@ -596,6 +596,14 @@ function applyLang(){
   id("question-input").placeholder=t.placeholder;
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
+  // update pro profile labels
+  if(id("p-lbl-name")) id("p-lbl-name").textContent=t.pLblName;
+  if(id("p-lbl-gender")) id("p-lbl-gender").textContent=t.pLblGender;
+  if(id("p-lbl-level")) id("p-lbl-level").textContent=t.pLblLevel;
+  if(id("p-sec-diet")) id("p-sec-diet").textContent=t.pSecDiet;
+  if(id("p-sec-allergy")) id("p-sec-allergy").textContent=t.pSecAllergy;
+  if(id("p-gender-f")) id("p-gender-f").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👩 נקבה":"👩"):("👩");
+  if(id("p-gender-m")) id("p-gender-m").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👨 זכר":"👨"):("👨");
   // show/hide pro fields
   const isPro=devMode||profile.isPro;
   id("pro-profile-locked").style.display=isPro?"none":"block";
@@ -731,10 +739,11 @@ function getSystemPrompt(){
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
 
-  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line:
+  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line — base this ONLY on the actual culinary situation, regardless of how much detail you will provide:
 [URGENCY:full] — if the dish can be fully rescued
 [URGENCY:partial] — if it's critical and needs immediate action but may be partially saved
-[URGENCY:none] — if it cannot be rescued and an alternative is needed`;
+[URGENCY:none] — if it truly cannot be rescued and an alternative is needed
+IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" just because you are giving a short answer.`;
 
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
 
@@ -765,6 +774,7 @@ CORE RULES:
 - Use proper culinary terminology (hydration, tempering, emulsification, aeration) but explain terms when needed.
 - If a dish cannot be rescued, say so honestly and give the best alternative use.
 - Pan size: always calculate using Area = π × r². Larger pan = THINNER layer.
+- NEVER ask for a photo or image. Instead, ask 1-2 precise diagnostic questions to narrow down the cause. Example: instead of "send me a photo", ask "האם הקצוות עלו אבל האמצע שקע? האם הבצק היה דביק לפני האפייה?" — like a doctor diagnosing without seeing the patient.
 
 RESPONSE STRUCTURE:
 ### 🔍 מה קרה / What happened
