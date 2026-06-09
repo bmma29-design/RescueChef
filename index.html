@@ -7,69 +7,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#FAF6EF; --surface:#FFFFFF; --surface2:#F5EDD8;
+  --bg:#FAF6EF; --surface:#FFFFFF;
   --accent:#C8A850; --accent2:#B09040; --gold:#C8A850;
-  --green:#C8A850; --text:#5C3D1A; --soft:#9A7A50;
+  --text:#5C3D1A; --soft:#9A7A50;
   --muted:#B8A080; --border:rgba(200,168,80,0.25); --border2:rgba(200,168,80,0.15);
   --radius:14px; --shadow:0 2px 20px rgba(0,0,0,0.08);
-  --orange:#C8A850;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 20% 30%, rgba(200,168,80,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(200,168,80,0.05) 0%, transparent 40%), radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.03) 0%, transparent 60%), repeating-linear-gradient(125deg, transparent, transparent 15px, rgba(200,168,80,0.02) 15px, rgba(200,168,80,0.02) 16px);}
+body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 30%,rgba(200,168,80,0.08) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 70%,rgba(200,168,80,0.05) 0%,transparent 40%);}
 
-/* SETUP */
-#setup-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
-  background:radial-gradient(ellipse at 40% 40%,rgba(168,200,144,0.10) 0%,#FAF6EF 70%);}
-.setup-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;
-  padding:36px 32px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
-.setup-logo{text-align:center;font-size:48px;margin-bottom:8px;}
-.setup-title{text-align:center;font-size:28px;font-weight:900;margin-bottom:4px;}
-.setup-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
-.setup-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
-.setup-section{font-size:12px;font-weight:700;color:#D4AF37;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;}
-.setup-label{font-size:15px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;}
-.setup-input,.setup-select{width:100%;background:#FAF6EF;border:1.5px solid var(--border);
-  border-radius:10px;padding:11px 13px;font-family:"Heebo",sans-serif;font-size:14px;
-  color:var(--text);margin-bottom:12px;transition:border-color 0.2s;}
-.setup-input:focus,.setup-select:focus{outline:none;border-color:var(--accent);}
-.setup-input[type="password"]{direction:ltr;text-align:left;}
-.setup-hint{font-size:11px;color:var(--muted);margin-bottom:14px;}
-.setup-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.gender-row{display:flex;gap:10px;margin-bottom:12px;}
-.gender-btn{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:10px;
-  background:#FAF6EF;font-family:"Heebo",sans-serif;font-size:13px;cursor:pointer;
-  text-align:center;transition:all 0.2s;color:var(--text);}
-.gender-btn.active{border-color:var(--orange);background:rgba(255,159,10,0.12);color:var(--orange);font-weight:700;}
-.checkbox-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
-.checkbox-item{padding:7px 13px;border:1.5px solid var(--border);border-radius:20px;
-  font-size:13px;cursor:pointer;transition:all 0.2s;background:#FAF6EF;color:var(--soft);user-select:none;}
-.checkbox-item.active{border-color:var(--orange);background:rgba(255,159,10,0.12);color:var(--orange);font-weight:600;}
-.setup-btn{width:100%;background:var(--accent);color:white;border:none;border-radius:10px;
-  padding:13px;font-family:"Heebo",sans-serif;font-size:15px;font-weight:700;cursor:pointer;
-  transition:all 0.2s;margin-top:6px;}
-.setup-btn:hover{background:var(--accent2);transform:translateY(-1px);}
-.setup-error{color:#DC2626;font-size:13px;margin-top:8px;display:none;text-align:center;}
+/* LANG PICKER */
+#lang-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.lang-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;
+  padding:40px 36px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.12);text-align:center;}
+.lang-logo{font-size:52px;margin-bottom:16px;}
+.lang-title{font-size:28px;font-weight:900;margin-bottom:6px;letter-spacing:-0.5px;}
+.lang-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;}
+.lang-btn{padding:16px 12px;border:2px solid var(--border);border-radius:14px;background:var(--bg);
+  font-family:"Heebo",sans-serif;font-size:16px;cursor:pointer;transition:all 0.2s;
+  font-weight:600;color:var(--text);}
+.lang-btn:hover{border-color:var(--accent);background:rgba(200,168,80,0.08);transform:translateY(-2px);}
+.lang-btn.selected{border-color:var(--accent);background:rgba(200,168,80,0.12);color:var(--accent);}
+.lang-continue{width:100%;background:var(--accent);color:white;border:none;border-radius:12px;
+  padding:14px;font-family:"Heebo",sans-serif;font-size:16px;font-weight:700;cursor:pointer;
+  transition:all 0.2s;margin-top:16px;opacity:0.4;pointer-events:none;}
+.lang-continue.active{opacity:1;pointer-events:all;}
+.lang-continue.active:hover{background:var(--accent2);}
 
 /* APP */
 #app{display:none;flex-direction:column;height:100vh;}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;
-  height:60px;display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;box-shadow:var(--shadow);}
+  height:60px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:var(--shadow);}
 .header-logo{display:flex;align-items:center;gap:10px;}
-.header-emoji{font-size:24px;}
 .header-name{font-size:19px;font-weight:900;}
 .header-tagline{font-size:11px;color:var(--muted);}
 .header-actions{display:flex;gap:8px;align-items:center;}
-.hdr-btn{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);border-radius:8px;
+.hdr-btn{background:rgba(200,168,80,0.08);border:1.5px solid var(--border);border-radius:8px;
   color:var(--soft);font-family:"Heebo",sans-serif;font-size:13px;padding:6px 13px;
-  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:5px;}
-.hdr-btn:hover{border-color:var(--orange);color:var(--orange);}
+  cursor:pointer;transition:all 0.2s;}
+.hdr-btn:hover{border-color:var(--accent);color:var(--accent);}
 
 /* PROFILE PANEL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99;display:none;}
 .overlay.show{display:block;}
 .profile-panel{position:fixed;top:0;width:320px;height:100vh;background:var(--surface);
-  border:0.5px solid rgba(212,175,55,0.2);box-shadow:4px 0 24px rgba(44,26,14,0.12);z-index:100;
+  border:0.5px solid var(--border);box-shadow:4px 0 24px rgba(44,26,14,0.12);z-index:100;
   transform:translateX(-110%);transition:transform 0.3s ease;overflow-y:auto;padding:22px 18px;}
 .profile-panel.open{transform:translateX(0);}
 html[dir="rtl"] .profile-panel{left:0;right:auto;}
@@ -77,16 +62,44 @@ html[dir="ltr"] .profile-panel{right:0;left:auto;transform:translateX(110%);}
 html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .panel-title{font-size:17px;font-weight:800;}
-.panel-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);padding:4px;}
+.panel-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);}
 .panel-section{font-size:11px;font-weight:700;color:#D4AF37;letter-spacing:1px;
   text-transform:uppercase;margin-bottom:8px;margin-top:16px;}
-.panel-input,.panel-select{width:100%;background:#FAF6EF;border:1.5px solid var(--border);
+.panel-input,.panel-select{width:100%;background:var(--bg);border:1.5px solid var(--border);
   border-radius:8px;padding:9px 11px;font-family:"Heebo",sans-serif;font-size:13px;
   color:var(--text);margin-bottom:9px;}
 .panel-input:focus,.panel-select:focus{outline:none;border-color:var(--accent);}
 .panel-save{width:100%;background:var(--accent);color:white;border:none;border-radius:8px;
   padding:11px;font-family:"Heebo",sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;}
-.panel-save:hover{background:var(--accent2);}
+.gender-row{display:flex;gap:10px;margin-bottom:9px;}
+.gender-btn{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--bg);font-family:"Heebo",sans-serif;font-size:13px;cursor:pointer;text-align:center;transition:all 0.2s;color:var(--text);}
+.gender-btn.active{border-color:var(--accent);background:rgba(200,168,80,0.12);color:var(--accent);font-weight:700;}
+.checkbox-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px;}
+.checkbox-item{padding:6px 12px;border:1.5px solid var(--border);border-radius:20px;
+  font-size:12px;cursor:pointer;transition:all 0.2s;background:var(--bg);color:var(--soft);user-select:none;}
+.checkbox-item.active{border-color:var(--accent);background:rgba(200,168,80,0.12);color:var(--accent);font-weight:600;}
+.pro-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;
+  font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:6px;vertical-align:middle;}
+.delete-btn{width:100%;background:transparent;border:1px solid rgba(239,68,68,0.3);
+  border-radius:8px;padding:10px;font-family:"Heebo",sans-serif;font-size:13px;
+  color:#EF4444;cursor:pointer;margin-top:8px;}
+.legal-links{display:flex;gap:12px;justify-content:center;margin-top:12px;}
+.legal-link{font-size:11px;color:var(--muted);cursor:pointer;text-decoration:underline;}
+.dev-toggle-row{display:flex;align-items:center;justify-content:space-between;
+  background:rgba(200,168,80,0.05);border:1px solid rgba(200,168,80,0.15);border-radius:10px;
+  padding:12px 14px;margin-bottom:6px;}
+.dev-toggle-row span{font-size:13px;font-weight:600;color:var(--soft);}
+.toggle-switch{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;}
+.toggle-switch input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:24px;transition:0.3s;}
+.toggle-slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.3s;}
+input:checked+.toggle-slider{background:var(--accent);}
+input:checked+.toggle-slider:before{transform:translateX(20px);}
+.dev-hint{font-size:11px;color:var(--muted);margin-bottom:14px;}
+.dev-badge{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:white;font-size:11px;font-weight:700;
+  padding:5px 14px;border-radius:20px;z-index:200;}
 
 /* MESSAGES */
 .messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
@@ -94,70 +107,140 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
 /* WELCOME */
-.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:40px 20px 20px;animation:fadeUp 0.5s ease forwards;flex:1;min-height:60vh;}
-.welcome-icon{font-size:52px;margin-bottom:16px;}
-.welcome h2{font-size:22px;font-weight:900;margin-bottom:10px;letter-spacing:-0.3px;}
-.welcome p{font-size:15px;color:var(--soft);max-width:400px;margin:0 auto 28px;line-height:1.75;font-weight:500;}
-.welcome-input-wrap{width:100%;max-width:500px;margin:0 auto 10px;}
+.welcome{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px;}
+.welcome-icon{margin-bottom:16px;}
+.welcome h2{font-size:26px;font-weight:900;margin-bottom:10px;letter-spacing:-0.5px;}
+.welcome p{font-size:15px;color:var(--soft);max-width:440px;margin:0 auto 28px;line-height:1.75;}
+.welcome-input-wrap{width:100%;max-width:540px;margin:0 auto 10px;}
 .welcome-box{display:flex;gap:8px;align-items:flex-end;background:var(--surface);
-  border:2px solid var(--border);border-radius:16px;padding:14px 14px;
-  transition:border-color 0.2s;box-shadow:0 4px 20px rgba(200,168,80,0.15);}
+  border:2px solid var(--border);border-radius:18px;padding:16px;
+  transition:border-color 0.2s;box-shadow:0 4px 24px rgba(200,168,80,0.12);}
 .welcome-box:focus-within{border-color:var(--accent);}
 .welcome-box textarea{flex:1;background:transparent;border:none;color:var(--text);
-  font-family:"Heebo",sans-serif;font-size:15px;resize:none;outline:none;
-  line-height:1.6;max-height:120px;min-height:28px;}
+  font-family:"Heebo",sans-serif;font-size:16px;resize:none;outline:none;
+  line-height:1.6;max-height:140px;min-height:32px;}
 .welcome-box textarea::placeholder{color:var(--muted);}
-.welcome-send{width:42px;height:42px;border-radius:11px;border:none;background:var(--accent);
+.welcome-send{width:46px;height:46px;border-radius:13px;border:none;background:var(--accent);
   color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;transition:all 0.2s;}
+  font-size:20px;flex-shrink:0;transition:all 0.2s;}
 .welcome-send:hover{background:var(--accent2);transform:translateY(-1px);}
-.welcome-example{font-size:12px;color:var(--muted);margin-top:2px;}
+.welcome-example{font-size:12px;color:var(--muted);margin-top:4px;}
 .welcome-example button{background:none;border:none;color:var(--accent);font-family:"Heebo",sans-serif;
   font-size:12px;cursor:pointer;text-decoration:underline;padding:0;}
-.welcome-example button:hover{color:var(--accent2);}
 
+/* PRO CARD */
+.pro-card{max-width:540px;margin:20px auto 0;background:var(--surface);border:2px solid var(--accent);
+  border-radius:var(--radius);padding:20px 24px;width:100%;}
+.pro-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.pro-card-title{font-size:18px;font-weight:800;color:var(--text);}
+.pro-card-amount{font-size:24px;font-weight:800;color:var(--accent);}
+.pro-card-period{font-size:11px;color:var(--muted);}
+.pro-card-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 16px;
+  border-top:1px solid var(--border2);padding-top:14px;}
+.pro-card-feature{display:flex;align-items:flex-start;gap:7px;font-size:13px;color:var(--soft);}
+.pro-card-feature-icon{color:var(--accent);font-size:14px;flex-shrink:0;margin-top:1px;}
+.pro-card-btn{width:100%;background:var(--accent);color:white;border:none;border-radius:10px;
+  padding:13px;font-family:"Heebo",sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.pro-card-btn:hover{background:var(--accent2);}
+.pro-card-note{text-align:center;margin-top:8px;font-size:11px;color:var(--muted);}
+
+/* FAQ */
+.faq-section{max-width:540px;margin:16px auto 0;width:100%;}
+.faq-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
+.faq-item{border:1px solid var(--border2);border-radius:10px;margin-bottom:7px;overflow:hidden;background:rgba(255,255,255,0.6);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;cursor:pointer;font-size:13px;font-weight:600;color:var(--soft);}
+.faq-q:hover{color:var(--text);}
+.faq-arrow{font-size:18px;color:var(--muted);transition:transform 0.2s;flex-shrink:0;margin-right:8px;}
+html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
+.faq-item.open .faq-arrow{transform:rotate(90deg);}
+.faq-a{display:none;padding:0 14px 12px;font-size:13px;color:var(--muted);line-height:1.7;}
+.faq-item.open .faq-a{display:block;}
+
+/* MESSAGES */
 .message{display:flex;gap:11px;align-items:flex-start;animation:fadeUp 0.35s ease forwards;opacity:0;}
 .message.user{flex-direction:row-reverse;}
 .msg-avatar{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;
   justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;}
-.message.user .msg-avatar{background:#CF6D1A;}
+.message.user .msg-avatar{background:#CF6D1A;color:white;}
 .message.ai .msg-avatar{background:#2D5A42;}
-.msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:17px;line-height:1.85;}
+.msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:15px;line-height:1.85;}
 .message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;}
 html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;}
 .message.ai .msg-bubble{background:var(--surface);border:1.5px solid var(--border);
   color:var(--text);border-top-right-radius:4px;box-shadow:var(--shadow);}
 html[dir="ltr"] .message.ai .msg-bubble{border-top-right-radius:var(--radius);border-top-left-radius:4px;}
-.msg-bubble h3{font-size:13px;font-weight:700;color:var(--orange);margin:13px 0 5px;
+.msg-bubble h3{font-size:13px;font-weight:700;color:var(--accent);margin:13px 0 5px;
   padding-top:10px;border-top:1px solid var(--border2);}
 .msg-bubble h3:first-child{margin-top:0;padding-top:0;border-top:none;}
 .msg-bubble ul{padding-right:16px;margin:7px 0;}
 html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .msg-bubble li{margin-bottom:5px;color:var(--soft);}
 .msg-bubble strong{color:#D4AF37;font-weight:700;}
-.tip-box{background:#FAECE7;border-right:4px solid #D85A30;border-radius:0 8px 8px 0;padding:12px 16px;
-  font-size:14px;line-height:1.7;color:#4A1B0C;margin-top:6px;}
-.zw-teaser{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);border-radius:8px;padding:10px 14px;
-  margin-top:10px;font-size:13px;color:#D4AF37;}
-.upgrade-btn{display:inline-block;margin-top:8px;background:var(--gold);color:white;border:none;
-  border-radius:6px;padding:7px 14px;font-family:"Heebo",sans-serif;font-size:12px;
-  font-weight:700;cursor:pointer;}
+
+/* URGENCY METER */
+.urgency-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 14px;
+  border-radius:10px;background:rgba(200,168,80,0.06);border:1px solid var(--border2);}
+.urgency-label{font-size:12px;font-weight:700;color:var(--soft);}
+.urgency-track{flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
+.urgency-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
+.urgency-fill.green{background:#2ECC71;}
+.urgency-fill.orange{background:#E67E22;}
+.urgency-fill.red{background:#E74C3C;}
+.urgency-text{font-size:11px;font-weight:700;white-space:nowrap;}
+.urgency-text.green{color:#2ECC71;}
+.urgency-text.orange{color:#E67E22;}
+.urgency-text.red{color:#E74C3C;}
+
+/* TIMER */
+.timer-btn{display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  background:rgba(200,168,80,0.1);border:1.5px solid var(--border);border-radius:8px;
+  color:var(--accent);font-family:"Heebo",sans-serif;font-size:13px;font-weight:700;
+  padding:8px 14px;cursor:pointer;transition:all 0.2s;}
+.timer-btn:hover{background:rgba(200,168,80,0.2);}
+.timer-btn.running{background:rgba(231,76,60,0.1);border-color:#E74C3C;color:#E74C3C;}
+.timer-display{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums;}
+
+/* BLUR PAYWALL */
+.blur-section{position:relative;margin-top:12px;}
+.blur-content{filter:blur(5px);user-select:none;pointer-events:none;}
+.blur-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:rgba(250,246,239,0.6);backdrop-filter:blur(1px);
+  border-radius:10px;padding:16px;text-align:center;}
+.blur-lock{font-size:28px;margin-bottom:6px;}
+.blur-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.4;}
+.blur-price{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.blur-btn{background:var(--accent);color:white;border:none;border-radius:8px;padding:8px 16px;
+  font-family:"Heebo",sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* TIP BOX */
+.tip-box{background:#FAECE7;border-right:4px solid #D85A30;border-radius:0 8px 8px 0;
+  padding:12px 16px;font-size:14px;line-height:1.7;color:#4A1B0C;margin-top:6px;}
+html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-radius:8px 0 0 8px;}
+
+/* SPEAK BTN */
 .speak-btn{margin-top:9px;background:transparent;border:1px solid var(--border);border-radius:6px;
   color:var(--muted);font-family:"Heebo",sans-serif;font-size:12px;padding:5px 10px;
-  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:4px;}
-.speak-btn:hover{border-color:var(--orange);color:var(--orange);}
-.typing{display:flex;gap:5px;padding:4px 0;align-items:center;}
-.typing span{width:7px;height:7px;background:#665550;border-radius:50%;animation:bounce 1.2s infinite;}
-.typing span:nth-child(2){animation-delay:0.2s;}
-.typing span:nth-child(3){animation-delay:0.4s;}
+  cursor:pointer;display:flex;align-items:center;gap:4px;}
+.speak-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-/* INPUT */
+/* LOCKED CARD */
+.locked-card{background:linear-gradient(135deg,rgba(200,168,80,0.08),rgba(200,168,80,0.04));
+  border:1.5px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:4px;}
+.locked-card-icon{font-size:32px;margin-bottom:10px;display:block;}
+.locked-card-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.locked-card-desc{font-size:13px;color:var(--soft);line-height:1.65;margin-bottom:14px;}
+.locked-card-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.locked-card-feature{background:rgba(200,168,80,0.08);border:1px solid var(--border);
+  border-radius:20px;font-size:11px;padding:4px 10px;color:var(--soft);}
+.locked-upgrade-btn{background:var(--accent);color:white;border:none;border-radius:8px;
+  padding:10px 20px;font-family:"Heebo",sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+
+/* INPUT AREA */
 .input-area{background:var(--surface);border-top:1px solid var(--border);padding:13px 18px;flex-shrink:0;}
 .status-bar{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-bottom:7px;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;}
 .status-dot.loading{background:var(--gold);animation:blink 1s infinite;}
-.input-row{display:flex;gap:8px;align-items:flex-end;background:#FAF6EF;
+.input-row{display:flex;gap:8px;align-items:flex-end;background:var(--bg);
   border:1.5px solid var(--border);border-radius:13px;padding:9px 11px;transition:border-color 0.2s;}
 .input-row:focus-within{border-color:var(--accent);}
 #question-input{flex:1;background:transparent;border:none;color:var(--text);
@@ -165,123 +248,72 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
   line-height:1.6;max-height:120px;min-height:24px;}
 #question-input::placeholder{color:var(--muted);}
 .input-btn{width:38px;height:38px;border-radius:9px;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;transition:all 0.2s;}
-.voice-btn{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);color:var(--muted);}
-.voice-btn:hover{border-color:var(--orange);color:var(--orange);}
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.voice-btn{background:rgba(200,168,80,0.08);border:1.5px solid var(--border);color:var(--muted);}
+.voice-btn:hover{border-color:var(--accent);color:var(--accent);}
 .voice-btn.recording{background:#DC2626;border-color:#DC2626;color:white;}
 .send-btn{background:var(--accent);color:white;}
 .send-btn:hover{background:var(--accent2);}
 .send-btn:disabled{opacity:0.4;cursor:not-allowed;}
-.input-hint{font-size:11px;color:#665550;text-align:center;margin-top:7px;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-7px);opacity:1;}}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-@media(max-width:600px){
-  .msg-bubble{max-width:88%;}
-  .setup-row{grid-template-columns:1fr;}
-  .profile-panel{width:100%;}
-  .welcome-input-wrap{max-width:100%;}
-}
+.input-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:7px;}
 
-.dev-toggle-row{display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,159,10,0.05);border:1px solid rgba(255,159,10,0.15);border-radius:10px;
-  padding:12px 14px;margin-bottom:6px;}
-.dev-toggle-row span{font-size:13px;font-weight:600;color:var(--soft);}
-.toggle-switch{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;}
-.toggle-switch input{opacity:0;width:0;height:0;}
-.toggle-slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:24px;transition:0.3s;}
-.toggle-slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;
-  background:white;border-radius:50%;transition:0.3s;}
-input:checked+.toggle-slider{background:var(--orange);}
-input:checked+.toggle-slider:before{transform:translateX(20px);}
-.dev-hint{font-size:11px;color:var(--muted);margin-bottom:14px;padding:0 4px;}
-.dev-badge{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
-  background:var(--orange);color:#1A1514;font-size:11px;font-weight:700;
-  padding:5px 14px;border-radius:20px;z-index:200;letter-spacing:0.5px;
-  box-shadow:0 2px 10px rgba(196,98,45,0.4);}
-
-.locked-card{background:linear-gradient(135deg,rgba(230,126,34,0.08),rgba(212,175,55,0.06));border:1.5px solid rgba(212,175,55,0.2);
-  border-radius:14px;padding:20px 22px;margin-top:4px;}
-.locked-card-icon{font-size:32px;margin-bottom:10px;display:block;}
-.locked-card-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px;}
-.locked-card-desc{font-size:13px;color:var(--soft);line-height:1.65;margin-bottom:14px;}
-.locked-card-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-.locked-card-feature{background:rgba(200,168,80,0.08);border:1px solid rgba(200,168,80,0.2);border-radius:20px;
-  font-size:11px;padding:4px 10px;color:var(--soft);}
-.locked-upgrade-btn{display:inline-block;background:var(--accent);color:white;border:none;
-  border-radius:8px;padding:10px 20px;font-family:"Heebo",sans-serif;font-size:14px;
-  font-weight:700;cursor:pointer;transition:all 0.2s;}
-.locked-upgrade-btn:hover{background:var(--accent2);transform:translateY(-1px);}
+/* TYPING */
+.typing{display:flex;gap:5px;padding:4px 0;align-items:center;}
+.typing span{width:7px;height:7px;background:#9A7A50;border-radius:50%;animation:bounce 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
 
 /* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;
   display:none;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.show{display:flex;}
-.modal-box{background:var(--surface);border:0.5px solid rgba(212,175,55,0.2);border-radius:16px;
-  max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:32px 28px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);}
+.modal-box{background:var(--surface);border:0.5px solid var(--border);border-radius:16px;
+  max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:32px 28px;}
 .modal-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:6px;}
-.modal-date{font-size:11px;color:#8B7355;margin-bottom:20px;}
-.modal-section{font-size:13px;font-weight:700;color:#D4AF37;margin:16px 0 6px;letter-spacing:0.5px;}
+.modal-date{font-size:11px;color:var(--muted);margin-bottom:20px;}
+.modal-section{font-size:13px;font-weight:700;color:#D4AF37;margin:16px 0 6px;}
 .modal-text{font-size:13px;color:var(--soft);line-height:1.75;margin-bottom:8px;}
 .modal-close{width:100%;background:rgba(200,168,80,0.08);border:1px solid var(--border);
   border-radius:8px;padding:10px;font-family:"Heebo",sans-serif;font-size:14px;
   color:var(--text);cursor:pointer;margin-top:20px;}
-.modal-close:hover{background:rgba(200,168,80,0.15);}
-.legal-links{display:flex;gap:12px;justify-content:center;margin-top:8px;}
-.legal-link{font-size:11px;color:#8B7355;cursor:pointer;text-decoration:underline;}
-.legal-link:hover{color:#D4AF37;}
-.delete-btn{width:100%;background:transparent;border:1px solid rgba(239,68,68,0.3);
-  border-radius:8px;padding:10px;font-family:"Heebo",sans-serif;font-size:13px;
-  color:#EF4444;cursor:pointer;margin-top:8px;transition:all 0.2s;}
-.delete-btn:hover{background:rgba(239,68,68,0.1);}
+
+/* UPGRADE MODAL */
+.upgrade-modal-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+.upgrade-feature{background:rgba(200,168,80,0.06);border:1px solid var(--border2);
+  border-radius:10px;padding:12px;font-size:13px;color:var(--soft);}
+.upgrade-feature-icon{font-size:20px;margin-bottom:6px;display:block;}
+.upgrade-feature-title{font-weight:700;color:var(--text);margin-bottom:3px;}
+.upgrade-cta{width:100%;background:var(--accent);color:white;border:none;border-radius:10px;
+  padding:14px;font-family:"Heebo",sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:16px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-7px);opacity:1;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@media(max-width:600px){
+  .msg-bubble{max-width:88%;}
+  .profile-panel{width:100%;}
+  .pro-card-features{grid-template-columns:1fr;}
+  .upgrade-modal-features{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- SETUP -->
-<div id="setup-screen">
-<div class="setup-box">
-  <div class="setup-logo"><svg fill="#D4AF37" height="48px" width="48px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></div>
-  <div class="setup-title" id="s-title">RescueChef</div>
-  <div class="setup-sub" id="s-sub">ברוכים הבאים! מלאו את הפרטים כדי להתאים את החוויה אישית.</div>
-  <hr class="setup-divider">
-  <div class="setup-section" id="s-personal-sec">הגדרות אישיות</div>
-  <div class="setup-row">
-    <div>
-      <label class="setup-label" id="s-lang-lbl">שפה</label>
-      <select id="setup-lang" class="setup-select" onchange="onSetupLangChange(this.value)">
-        <option value="he">🇮🇱 עברית</option>
-        <option value="en" selected>🇺🇸 English</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-      </select>
-    </div>
-    <div>
-      <label class="setup-label" id="s-level-lbl">רמת מיומנות</label>
-      <select id="setup-level" class="setup-select">
-        <option value="beginner" id="s-lvl-b">🏠 בשלן ביתי</option>
-        <option value="intermediate" id="s-lvl-i" selected>👨‍🍳 טבח מתפתח</option>
-        <option value="professional" id="s-lvl-p">⭐ שף מקצועי</option>
-      </select>
-    </div>
+<!-- LANG SCREEN -->
+<div id="lang-screen">
+<div class="lang-box">
+  <div class="lang-logo">
+    <svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>
   </div>
-  <label class="setup-label" id="s-gender-lbl" style="display:none;">פנייה מועדפת</label>
-  <div class="gender-row" style="display:none;">
-    <button class="gender-btn active" id="gender-f" onclick="setGender('f')">👩 נקבה</button>
-    <button class="gender-btn" id="gender-m" onclick="setGender('m')">👨 זכר</button>
+  <div class="lang-title">RescueChef</div>
+  <div class="lang-sub" id="lang-sub">Choose your language / בחרי שפה</div>
+  <div class="lang-grid">
+    <button class="lang-btn" onclick="selectLang('he')">🇮🇱 עברית</button>
+    <button class="lang-btn" onclick="selectLang('en')">🇺🇸 English</button>
+    <button class="lang-btn" onclick="selectLang('es')">🇪🇸 Español</button>
+    <button class="lang-btn" onclick="selectLang('fr')">🇫🇷 Français</button>
   </div>
-  <label class="setup-label" id="s-name-lbl">שם (אופציונלי)</label>
-  <input type="text" id="setup-name" class="setup-input" placeholder="איך קוראים לך?"/>
-  <hr class="setup-divider">
-  <div class="setup-section" id="s-diet-sec">תזונה ואלרגיות</div>
-  <label class="setup-label" id="s-diet-lbl">סוג תזונה</label>
-  <div class="checkbox-grid" id="diet-options"></div>
-  <label class="setup-label" id="s-allergy-lbl" style="margin-top:8px;">אלרגיות</label>
-  <div class="checkbox-grid" id="allergy-options"></div>
-  <button class="setup-btn" id="s-start-btn" onclick="startApp()">Let's start! 🚀</button>
-  <div id="setup-error" class="setup-error"></div>
-  <div id="s-legal-text" style="text-align:center;margin-top:14px;font-size:11px;color:#665550;line-height:1.7;"></div>
+  <button class="lang-continue" id="lang-continue" onclick="startWithLang()">המשך →</button>
 </div>
 </div>
 
@@ -289,342 +321,260 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
 <div id="app">
   <div class="header">
     <div class="header-logo">
-      <span class="header-emoji"><svg fill="#D4AF37" height="28px" width="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg></span>
+      <svg fill="#D4AF37" height="26px" width="26px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>
       <div>
         <div class="header-name">RescueChef</div>
-        <div class="header-tagline" id="header-tagline">Your personal sous-chef</div>
+        <div class="header-tagline" id="header-tagline"></div>
       </div>
     </div>
     <div class="header-actions">
-      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">😊 Profile</button>
-      <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑 Clear</button>
+      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">😊</button>
+      <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑</button>
     </div>
   </div>
+
   <div class="overlay" id="overlay" onclick="closeProfile()"></div>
   <div class="profile-panel" id="profile-panel">
     <div class="panel-header">
-      <div class="panel-title" id="p-panel-title">My Profile</div>
+      <div class="panel-title" id="p-panel-title">Profile</div>
       <button class="panel-close" onclick="closeProfile()">✕</button>
     </div>
-    <div class="panel-section" id="p-sec-personal">Personal Details</div>
-    <label class="setup-label" id="p-lbl-name">Name</label>
-    <input type="text" id="p-name" class="panel-input"/>
-    <label class="setup-label" id="p-lbl-gender" style="display:none;">Address</label>
-    <div class="gender-row" style="display:none;">
-      <button class="gender-btn active" id="p-gender-f" onclick="setPGender('f')">👩 Female</button>
-      <button class="gender-btn" id="p-gender-m" onclick="setPGender('m')">👨 Male</button>
-    </div>
-    <label class="setup-label" id="p-lbl-lang">Language</label>
-    <select id="p-lang" class="panel-select">
+    <div class="panel-section" id="p-sec-lang">Language</div>
+    <select id="p-lang" class="panel-select" onchange="onProfileLangChange(this.value)">
       <option value="he">🇮🇱 עברית</option>
       <option value="en">🇺🇸 English</option>
       <option value="es">🇪🇸 Español</option>
       <option value="fr">🇫🇷 Français</option>
     </select>
-    <label class="setup-label" id="p-lbl-level">Skill Level</label>
-    <select id="p-level" class="panel-select"></select>
-    <div class="panel-section" id="p-sec-diet">Diet</div>
-    <select id="p-diet" class="panel-select"></select>
-    <div class="panel-section" id="p-sec-allergy">Allergies</div>
-    <div class="checkbox-grid" id="p-allergy-options"></div>
-    <div class="panel-section">🔧 Developer Mode</div>
+
+    <div id="pro-profile-section">
+      <div class="panel-section">
+        <span class="pro-badge">PRO</span><span id="p-sec-personal">Personal</span>
+      </div>
+      <div id="pro-profile-locked" style="background:rgba(200,168,80,0.06);border:1px dashed var(--border);border-radius:10px;padding:14px;text-align:center;margin-bottom:12px;">
+        <div style="font-size:22px;margin-bottom:6px;">🔒</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;" id="pro-locked-title">Pro feature</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;" id="pro-locked-desc">Personalized answers based on your profile</div>
+        <button class="locked-upgrade-btn" onclick="openUpgradeModal()" style="font-size:12px;padding:7px 14px;" id="pro-locked-btn">Upgrade to Pro</button>
+      </div>
+      <div id="pro-profile-fields" style="display:none;">
+        <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-name">Name</label>
+        <input type="text" id="p-name" class="panel-input" placeholder="..."/>
+        <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-gender">Gender</label>
+        <div class="gender-row">
+          <button class="gender-btn active" id="p-gender-f" onclick="setPGender('f')">👩</button>
+          <button class="gender-btn" id="p-gender-m" onclick="setPGender('m')">👨</button>
+        </div>
+        <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-level">Level</label>
+        <select id="p-level" class="panel-select"></select>
+        <div class="panel-section" id="p-sec-diet">Diet</div>
+        <select id="p-diet" class="panel-select"></select>
+        <div class="panel-section" id="p-sec-allergy">Allergies</div>
+        <div class="checkbox-grid" id="p-allergy-options"></div>
+      </div>
+    </div>
+
+    <div class="panel-section">🔧 Dev Mode</div>
     <div class="dev-toggle-row">
-      <span id="dev-mode-label">All features unlocked</span>
+      <span id="dev-mode-label">All features</span>
       <label class="toggle-switch">
         <input type="checkbox" id="dev-mode-toggle" onchange="toggleDevMode(this.checked)">
         <span class="toggle-slider"></span>
       </label>
     </div>
-    <div class="dev-hint" id="dev-hint">כבוי — המשתמש רואה גרסה חינמית רגילה</div>
-    <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 Save Changes</button>
-    <button class="delete-btn" onclick="openModal('delete-modal')">🗑 Delete all my data</button>
-    <div class="legal-links" style="margin-top:16px;">
-      <span class="legal-link" onclick="openModal('privacy-modal')" id="link-privacy">Privacy Policy</span>
-      <span style="color:#665550;font-size:11px;">·</span>
-      <span class="legal-link" onclick="openModal('terms-modal')" id="link-terms">Terms of Use</span>
+    <div class="dev-hint" id="dev-hint">Off</div>
+    <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 Save</button>
+    <button class="delete-btn" onclick="openModal('delete-modal')" id="p-delete-btn">🗑 Delete data</button>
+    <div class="legal-links" style="margin-top:12px;">
+      <span class="legal-link" onclick="openModal('privacy-modal')" id="link-privacy">Privacy</span>
+      <span style="color:var(--muted);font-size:11px;">·</span>
+      <span class="legal-link" onclick="openModal('terms-modal')" id="link-terms">Terms</span>
     </div>
   </div>
+
   <div class="messages" id="messages"></div>
-  <div class="input-area" id="input-area-wrap">
+
+  <div class="input-area" id="input-area-wrap" style="display:none;">
     <div class="status-bar">
       <div class="status-dot" id="status-dot"></div>
-      <span id="status-text">Ready to help</span>
+      <span id="status-text">Ready</span>
     </div>
     <div class="input-row">
       <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
-      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" placeholder="Describe your kitchen problem..."></textarea>
+      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()">➤</button>
     </div>
-    <div class="input-hint" id="input-hint">Enter to send · Shift+Enter new line · 🎤 to speak</div>
+    <div class="input-hint" id="input-hint">Enter · Shift+Enter · 🎤</div>
   </div>
 </div>
 
 <script>
-const T = {
-  he:{
-    dir:"rtl",
-    setupSub:"ברוכים הבאים! מלאו את הפרטים כדי להתאים את החוויה אישית.",
-    personalSec:"הגדרות אישיות", langLbl:"שפה", levelLbl:"רמת מיומנות",
-    genderLbl:"פנייה מועדפת", nameLbl:"שם (אופציונלי)", namePh:"איך קוראים לך?",
-    genderF:"👩 נקבה", genderM:"👨 זכר",
-    dietSec:"תזונה ואלרגיות", dietLbl:"סוג תזונה", allergyLbl:"אלרגיות",
-    startBtn:"בואו נתחיל! 🚀",
+const SVG_ICON=`<svg fill="#D4AF37" height="20px" width="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
+
+const T={
+  he:{dir:"rtl",tagline:"הסו-שף הפרטי שלך",profileBtn:"😊 פרופיל",clearBtn:"🗑 נקה",
+    panelTitle:"הפרופיל שלי",pSecLang:"שפה",pSecPersonal:"פרטים אישיים",
+    pLblName:"שם",pLblGender:"פנייה",pLblLevel:"רמה",pSecDiet:"תזונה",pSecAllergy:"אלרגיות",
+    pSaveBtn:"💾 שמור",pDeleteBtn:"🗑 מחק נתונים",linkPrivacy:"פרטיות",linkTerms:"תנאים",
+    devModeLabel:"כל הפיצ'רים",devHintOn:"פועל 🔓",devHintOff:"כבוי",
+    proLockedTitle:"פיצ'ר Pro",proLockedDesc:"תשובות מותאמות אישית לרמה, תזונה ואלרגיות שלך",
+    proLockedBtn:"שדרגי ל-Pro",
+    welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
+    welcomeDesc:"ספרי לי מה השתבש במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
+    placeholder:"מה השתבש במטבח שלך עכשיו?",
+    hint:"Enter לשליחה · Shift+Enter שורה חדשה · 🎤 לדיבור",
+    ready:"מוכן לעזור",thinking:"מחשב...",listening:"מקשיב...",
+    speak:"🔊 האזן",stop:"⏹ עצור",
+    exampleLabel:"לדוגמה:",exampleText:"המיונז שלי נשבר",exampleQ:"המיונז שלי נשבר ונהיה נוזלי, מה עושים?",
     levels:[["beginner","🏠 בשלן ביתי"],["intermediate","👨‍🍳 טבח מתפתח"],["professional","⭐ שף מקצועי"]],
-    diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],
-           ["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],
-           ["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
-    allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],
-               ["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],
-               ["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
-    tagline:"הסו-שף הפרטי שלך", profileBtn:"😊 פרופיל", clearBtn:"🗑 נקה",
-    panelTitle:"הפרופיל שלי", pSecPersonal:"פרטים אישיים", pLblName:"שם",
-    pLblGender:"פנייה", pLblLang:"שפה", pLblLevel:"רמת מיומנות",
-    pSecDiet:"תזונה", pSecAllergy:"אלרגיות", pSaveBtn:"💾 שמור שינויים",
-    devModeLabel:"כל הפיצ'רים פתוחים", devHintOn:"פועל — רואה את כל הפיצ'רים", devHintOff:"כבוי — גרסה חינמית רגילה",
-    linkPrivacy:"מדיניות פרטיות", linkTerms:"תנאי שימוש",
-    legalText:`בלחיצה על "בואו נתחיל" את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span> שלנו.<br>אנחנו לא אוספים נתונים ללא הסכמתך.`,
-    welcomeTitle:(n,g)=>`${n?n+" — ":""}אני RescueChef`,
-    welcomeDesc:(g)=>g==="f"?"אני הסו-שף שלך במטבח, ספרי לי מה הבעיה ואני אתן לך את התשובה":"אני הסו-שף שלך במטבח, ספר לי מה הבעיה ואני אתן לך את התשובה",
-    placeholder:(g)=>g==="f"?"תארי את הבעיה במטבח שלך...":"תאר את הבעיה במטבח שלך...",
-    hint:"Enter לשליחה · Shift+Enter לשורה חדשה · 🎤 לדיבור",
-    ready:"מוכן לעזור", thinking:"מחשב...", listening:"מקשיב...",
-    speak:"🔊 האזן לתשובה", stop:"⏹ עצור",
-    exampleLabel:"לדוגמה:",
-    sugs:[["🥚","המיונז שלי נשבר","המיונז שלי נשבר ונהיה נוזלי, מה עושים?"],
-          ["🎂","העוגה שקעה באמצע","העוגה שקעה באמצע האפייה, למה ומה עושים?"],
-          ["🥩","הבשר יצא יבש מדי","הבשר שלי יצא יבש מדי, איך מצילים?"],
-          ["🥐","הבצק דביק מדי","הבצק שלי דביק מדי לעבוד איתו, מה עושים?"]],
-    zwTeaser:"\n\n🔒 Zero Waste Mode — רוצה לקבל את כל האפשרויות מה לעשות עם שאריות? פיצ׳ר זה זמין במנוי.",
-    upgradeBtn:"⭐ שדרגי למנוי",
-    locked:{
-      zw:{icon:"♻️",title:"Zero Waste Mode",
-        desc:"קבלי רשימה מלאה של כל מה שאפשר לעשות עם מה שנשאר — מתכונים, שימושים יצירתיים, ואחסון נכון.",
-        features:["רעיונות למנות חדשות","שימושים יצירתיים","טיפי אחסון"]},
-      sub:{icon:"🔄",title:"החלפת מרכיבים חכמה",
-        desc:"קבלי תחליף מדויק עם כמויות מדויקות, הסבר איך זה ישפיע על התוצאה, ומה הכי קרוב למקור.",
-        features:["כמויות מדויקות","השפעה על הטעם","השפעה על המרקם"]},
-      prev:{icon:"🎯",title:"מצב מניעה",
-        desc:"לפני שמתחילים — קבלי את כל הנקודות הקריטיות שיגרמו למנה לצאת מושלמת בפעם הראשונה.",
-        features:["נקודות כישלון נפוצות","טיפי הצלחה","טמפרטורות קריטיות"]},
-      upgradeBtn:"⭐ שדרגי למנוי",
-      hint:"פיצ'ר זה זמין למנויים בלבד"
-    },
+    diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
+    allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
+    urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעל מהר",none:"לא ניתן להצלה"},
+    timerBtn:"⏱ התחל טיימר",timerStop:"⏹ עצור",
+    proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"שדרגי עכשיו — $3.99/חודש",note:"ביטול בכל עת · ללא התחייבות"},
+    faqTitle:"שאלות נפוצות",
+    faqs:[["למה לא לשאול Claude/ChatGPT רגיל?","Claude לא מכיר אותך. RescueChef מותאם לפתרון בעיות קולינריות מיידיות — עם אפשרות להתאמה אישית מלאה במנוי."],
+          ["מה ההבדל בין חינם למנוי?","חינם = פתרון מיידי קצר. מנוי = הסבר מדעי מלא, תחליפים, Zero Waste, ופרופיל אישי שמותאם לך."],
+          ["האם זה עובד בנייד?","כן, בכל דפדפן בנייד. אפשר גם לשמור כאפליקציה — לחצי 'שתף' ואז 'הוסף למסך הבית'."],
+          ["האם המידע שלי נשמר?","רק על המכשיר שלך. אנחנו לא שומרים מידע אישי בשרתים."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"השף הדיגיטלי שלך — ברמה מקצועית",
+      features:[{icon:"🔬",title:"הסבר מדעי מלא",desc:"כימיה ופיזיקה מאחורי כל בעיה"},
+                {icon:"👤",title:"פרופיל אישי",desc:"תשובות מותאמות לרמה, תזונה ואלרגיות"},
+                {icon:"🔄",title:"תחליפי מרכיבים",desc:"כמויות מדויקות והשפעה על התוצאה"},
+                {icon:"♻️",title:"Zero Waste",desc:"מה לעשות עם כל מה שנשאר"}],
+      cta:"שדרגי עכשיו — $3.99 בלבד לחודש",note:"ביטול בכל עת"},
+    legalText:`בשימוש בכלי את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span>.`,
   },
-  en:{
-    dir:"ltr",
-    setupSub:"Welcome! Fill in your details to personalize your experience.",
-    personalSec:"Personal Settings", langLbl:"Language", levelLbl:"Skill Level",
-    genderLbl:"Preferred Address", nameLbl:"Name (optional)", namePh:"What's your name?",
-    genderF:"👩 She/Her", genderM:"👨 He/Him",
-    dietSec:"Diet & Allergies", dietLbl:"Diet Type", allergyLbl:"Allergies",
-    startBtn:"Let's start! 🚀",
-    levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
-    diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],
-           ["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],
-           ["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
-    allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],
-               ["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],
-               ["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
-    tagline:"Your personal sous-chef", profileBtn:"😊 Profile", clearBtn:"🗑 Clear",
-    panelTitle:"My Profile", pSecPersonal:"Personal Details",
-    pLblName:"Name", pLblGender:"Pronoun", pLblLang:"Language", pLblLevel:"Skill Level",
-    pSecDiet:"Diet", pSecAllergy:"Allergies", pSaveBtn:"💾 Save Changes",
-    devModeLabel:"All features unlocked", devHintOn:"On — user sees all features", devHintOff:"Off — free version",
-    linkPrivacy:"Privacy Policy", linkTerms:"Terms of Use",
-    legalText:`By clicking "Let's start" you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms of Use</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.<br>We do not collect data without your consent.`,
+  en:{dir:"ltr",tagline:"Your personal sous-chef",profileBtn:"😊 Profile",clearBtn:"🗑 Clear",
+    panelTitle:"My Profile",pSecLang:"Language",pSecPersonal:"Personal",
+    pLblName:"Name",pLblGender:"Gender",pLblLevel:"Level",pSecDiet:"Diet",pSecAllergy:"Allergies",
+    pSaveBtn:"💾 Save",pDeleteBtn:"🗑 Delete data",linkPrivacy:"Privacy",linkTerms:"Terms",
+    devModeLabel:"All features",devHintOn:"On 🔓",devHintOff:"Off",
+    proLockedTitle:"Pro feature",proLockedDesc:"Personalized answers based on your level, diet & allergies",
+    proLockedBtn:"Upgrade to Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}I'm RescueChef`,
-    welcomeDesc:()=>"Describe any kitchen problem — I'll diagnose it, explain why it happened, and give you an immediate solution.",
-    placeholder:()=>"Describe your kitchen problem...",
-    hint:"Enter to send · Shift+Enter for new line · 🎤 to speak",
-    ready:"Ready to help", thinking:"Thinking...", listening:"Listening...",
-    speak:"🔊 Listen", stop:"⏹ Stop",
-    exampleLabel:"e.g.",
-    sugs:[["🥚","My mayo broke","My mayonnaise broke and became runny, what do I do?"],
-          ["🎂","Cake sank in the middle","My cake sank in the middle while baking, why and what do I do?"],
-          ["🥩","Meat came out too dry","My meat came out dry and crumbly, how do I rescue it?"],
-          ["🥐","Dough too sticky","My dough is too sticky to work with, what do I do?"]],
-    zwTeaser:"\n\n🔒 Zero Waste Mode — Want all the options for using leftovers? This feature is available with a subscription.",
-    upgradeBtn:"⭐ Upgrade",
-    locked:{
-      zw:{icon:"♻️",title:"Zero Waste Mode",
-        desc:"Get a complete list of everything you can do with leftover ingredients — new recipes, creative uses, and proper storage.",
-        features:["New dish ideas","Creative uses","Storage tips"]},
-      sub:{icon:"🔄",title:"Smart Substitutions",
-        desc:"Get an exact substitute with precise amounts, how it will affect the result, and what's closest to the original.",
-        features:["Exact amounts","Flavor impact","Texture impact"]},
-      prev:{icon:"🎯",title:"Prevention Mode",
-        desc:"Before you start — get all the critical points that will make your dish come out perfect the first time.",
-        features:["Common failure points","Success tips","Critical temperatures"]},
-      upgradeBtn:"⭐ Upgrade to Pro",
-      hint:"This feature is available for subscribers only"
-    },
+    welcomeDesc:"Describe what went wrong in your kitchen — I'll diagnose it, explain why, and give you an immediate solution.",
+    placeholder:"What went wrong in your kitchen right now?",
+    hint:"Enter to send · Shift+Enter new line · 🎤 speak",
+    ready:"Ready to help",thinking:"Thinking...",listening:"Listening...",
+    speak:"🔊 Listen",stop:"⏹ Stop",
+    exampleLabel:"e.g.",exampleText:"My mayo broke",exampleQ:"My mayonnaise broke and became runny, what do I do?",
+    levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
+    diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
+    allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
+    urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued"},
+    timerBtn:"⏱ Start timer",timerStop:"⏹ Stop",
+    proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"Upgrade now — $3.99/month",note:"Cancel anytime · No commitment"},
+    faqTitle:"FAQ",
+    faqs:[["Why not just use Claude/ChatGPT?","Claude doesn't know you. RescueChef is built for immediate kitchen problem-solving, with full personalization available in Pro."],
+          ["Free vs Pro?","Free = short immediate fix. Pro = full scientific explanation, substitutions, Zero Waste, and a personal profile."],
+          ["Does it work on mobile?","Yes, on any mobile browser. You can also save it as an app — tap Share then Add to Home Screen."],
+          ["Is my data stored?","Only on your device. We don't store personal data on servers."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Your digital chef — at professional level",
+      features:[{icon:"🔬",title:"Full scientific explanation",desc:"Chemistry & physics behind every problem"},
+                {icon:"👤",title:"Personal profile",desc:"Answers tailored to your level, diet & allergies"},
+                {icon:"🔄",title:"Smart substitutions",desc:"Exact amounts and impact on results"},
+                {icon:"♻️",title:"Zero Waste",desc:"What to do with everything that's left"}],
+      cta:"Upgrade now — just $3.99/month",note:"Cancel anytime"},
+    legalText:`By using this tool you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.`,
   },
-  es:{
-    dir:"ltr",
-    setupSub:"¡Bienvenido! Complete sus datos para personalizar su experiencia.",
-    personalSec:"Configuración Personal", langLbl:"Idioma", levelLbl:"Nivel de Habilidad",
-    genderLbl:"Pronombre Preferido", nameLbl:"Nombre (opcional)", namePh:"¿Cómo te llamas?",
-    genderF:"👩 Ella", genderM:"👨 Él",
-    dietSec:"Dieta y Alergias", dietLbl:"Tipo de Dieta", allergyLbl:"Alergias",
-    startBtn:"¡Empecemos! 🚀",
-    levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
-    diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],
-           ["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],
-           ["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
-    allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],
-               ["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],
-               ["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
-    tagline:"Tu sous-chef personal", profileBtn:"😊 Perfil", clearBtn:"🗑 Limpiar",
-    panelTitle:"Mi Perfil", pSecPersonal:"Datos Personales",
-    pLblName:"Nombre", pLblGender:"Pronombre", pLblLang:"Idioma", pLblLevel:"Nivel",
-    pSecDiet:"Dieta", pSecAllergy:"Alergias", pSaveBtn:"💾 Guardar",
-    devModeLabel:"Todas las funciones desbloqueadas", devHintOn:"Activado", devHintOff:"Desactivado",
-    linkPrivacy:"Política de Privacidad", linkTerms:"Términos de Uso",
-    legalText:`Al hacer clic en "¡Empecemos!" aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos de Uso</span> y nuestra <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.<br>No recopilamos datos sin tu consentimiento.`,
+  es:{dir:"ltr",tagline:"Tu sous-chef personal",profileBtn:"😊 Perfil",clearBtn:"🗑 Limpiar",
+    panelTitle:"Mi Perfil",pSecLang:"Idioma",pSecPersonal:"Personal",
+    pLblName:"Nombre",pLblGender:"Género",pLblLevel:"Nivel",pSecDiet:"Dieta",pSecAllergy:"Alergias",
+    pSaveBtn:"💾 Guardar",pDeleteBtn:"🗑 Borrar datos",linkPrivacy:"Privacidad",linkTerms:"Términos",
+    devModeLabel:"Todas las funciones",devHintOn:"Activado 🔓",devHintOff:"Desactivado",
+    proLockedTitle:"Función Pro",proLockedDesc:"Respuestas personalizadas según tu nivel, dieta y alergias",
+    proLockedBtn:"Mejorar a Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}Soy RescueChef`,
-    welcomeDesc:()=>"Descríbeme cualquier problema en la cocina — diagnosticaré, explicaré por qué pasó y te daré una solución inmediata.",
-    placeholder:()=>"Describe tu problema en la cocina...",
+    welcomeDesc:"Descríbeme qué salió mal en tu cocina — diagnosticaré, explicaré por qué y te daré una solución inmediata.",
+    placeholder:"¿Qué salió mal en tu cocina ahora mismo?",
     hint:"Enter para enviar · Shift+Enter nueva línea · 🎤 hablar",
-    ready:"Listo para ayudar", thinking:"Pensando...", listening:"Escuchando...",
-    speak:"🔊 Escuchar", stop:"⏹ Parar",
-    exampleLabel:"p.ej.",
-    sugs:[["🥚","Mi mayonesa se cortó","Mi mayonesa se cortó y quedó líquida, ¿qué hago?"],
-          ["🎂","El pastel se hundió","Mi pastel se hundió en el centro al hornear, ¿por qué?"],
-          ["🥩","La carne quedó seca","La carne quedó seca y se deshace, ¿cómo la rescato?"],
-          ["🥐","La masa muy pegajosa","Mi masa está muy pegajosa para trabajar, ¿qué hago?"]],
-    zwTeaser:"\n\n🔒 Modo Zero Waste — ¿Quieres todas las opciones para usar los sobrantes? Disponible con suscripción.",
-    upgradeBtn:"⭐ Actualizar",
-    locked:{
-      zw:{icon:"♻️",title:"Modo Zero Waste",desc:"Obtén una lista completa de todo lo que puedes hacer con los ingredientes sobrantes.",features:["Ideas de nuevos platos","Usos creativos","Consejos de almacenamiento"]},
-      sub:{icon:"🔄",title:"Sustituciones Inteligentes",desc:"Obtén un sustituto exacto con cantidades precisas.",features:["Cantidades exactas","Impacto en sabor","Impacto en textura"]},
-      prev:{icon:"🎯",title:"Modo Prevención",desc:"Antes de empezar — obtén todos los puntos críticos.",features:["Puntos de fallo comunes","Consejos de éxito","Temperaturas críticas"]},
-      upgradeBtn:"⭐ Suscribirse", hint:"Esta función está disponible solo para suscriptores"
-    },
+    ready:"Listo",thinking:"Pensando...",listening:"Escuchando...",
+    speak:"🔊 Escuchar",stop:"⏹ Parar",
+    exampleLabel:"p.ej.",exampleText:"Mi mayonesa se cortó",exampleQ:"Mi mayonesa se cortó y quedó líquida, ¿qué hago?",
+    levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
+    diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
+    allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
+    urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar"},
+    timerBtn:"⏱ Iniciar temporizador",timerStop:"⏹ Parar",
+    proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Mejorar ahora — $3.99/mes",note:"Cancela cuando quieras"},
+    faqTitle:"Preguntas Frecuentes",
+    faqs:[["¿Por qué no usar Claude/ChatGPT?","Claude no te conoce. RescueChef está diseñado para resolver problemas de cocina al instante, con personalización completa en Pro."],
+          ["¿Gratis vs Pro?","Gratis = solución corta. Pro = explicación científica, sustituciones, Zero Waste y perfil personal."],
+          ["¿Funciona en móvil?","Sí. También puedes guardarlo como app — toca Compartir y luego Añadir a pantalla de inicio."],
+          ["¿Se guardan mis datos?","Solo en tu dispositivo."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Tu chef digital — a nivel profesional",
+      features:[{icon:"🔬",title:"Explicación científica",desc:"Química y física detrás de cada problema"},
+                {icon:"👤",title:"Perfil personal",desc:"Respuestas adaptadas a ti"},
+                {icon:"🔄",title:"Sustituciones",desc:"Cantidades exactas e impacto"},
+                {icon:"♻️",title:"Zero Waste",desc:"Qué hacer con lo que sobra"}],
+      cta:"Mejorar ahora — solo $3.99/mes",note:"Cancela cuando quieras"},
+    legalText:`Al usar esta herramienta aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos</span> y <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.`,
   },
-  fr:{
-    dir:"ltr",
-    setupSub:"Bienvenue! Remplissez vos informations pour personnaliser votre expérience.",
-    personalSec:"Paramètres Personnels", langLbl:"Langue", levelLbl:"Niveau de Compétence",
-    genderLbl:"Pronom Préféré", nameLbl:"Prénom (optionnel)", namePh:"Quel est votre prénom?",
-    genderF:"👩 Elle", genderM:"👨 Il",
-    dietSec:"Régime et Allergies", dietLbl:"Type de Régime", allergyLbl:"Allergies",
-    startBtn:"Commençons! 🚀",
-    levels:[["beginner","🏠 Cuisinier Amateur"],["intermediate","👨‍🍳 Chef en Développement"],["professional","⭐ Chef Professionnel"]],
-    diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],
-           ["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],
-           ["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
-    allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],
-               ["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],
-               ["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
-    tagline:"Votre sous-chef personnel", profileBtn:"😊 Profil", clearBtn:"🗑 Effacer",
-    panelTitle:"Mon Profil", pSecPersonal:"Détails Personnels",
-    pLblName:"Prénom", pLblGender:"Pronom", pLblLang:"Langue", pLblLevel:"Niveau",
-    pSecDiet:"Régime", pSecAllergy:"Allergies", pSaveBtn:"💾 Enregistrer",
-    devModeLabel:"Toutes les fonctions déverrouillées", devHintOn:"Activé", devHintOff:"Désactivé",
-    linkPrivacy:"Politique de Confidentialité", linkTerms:"Conditions d'Utilisation",
-    legalText:`En cliquant sur "Commençons!" vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions d'Utilisation</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.<br>Nous ne collectons pas de données sans votre consentement.`,
+  fr:{dir:"ltr",tagline:"Votre sous-chef personnel",profileBtn:"😊 Profil",clearBtn:"🗑 Effacer",
+    panelTitle:"Mon Profil",pSecLang:"Langue",pSecPersonal:"Personnel",
+    pLblName:"Prénom",pLblGender:"Genre",pLblLevel:"Niveau",pSecDiet:"Régime",pSecAllergy:"Allergies",
+    pSaveBtn:"💾 Enregistrer",pDeleteBtn:"🗑 Supprimer",linkPrivacy:"Confidentialité",linkTerms:"Conditions",
+    devModeLabel:"Toutes les fonctions",devHintOn:"Activé 🔓",devHintOff:"Désactivé",
+    proLockedTitle:"Fonction Pro",proLockedDesc:"Réponses personnalisées selon votre niveau, régime et allergies",
+    proLockedBtn:"Passer à Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}Je suis RescueChef`,
-    welcomeDesc:()=>"Décrivez-moi tout problème en cuisine — je diagnostiquerai, expliquerai pourquoi c'est arrivé et vous donnerai une solution immédiate.",
-    placeholder:()=>"Décrivez votre problème en cuisine...",
+    welcomeDesc:"Décrivez ce qui a mal tourné dans votre cuisine — je diagnostiquerai, expliquerai pourquoi et vous donnerai une solution immédiate.",
+    placeholder:"Qu'est-ce qui a mal tourné dans votre cuisine?",
     hint:"Entrée pour envoyer · Shift+Entrée nouvelle ligne · 🎤 parler",
-    ready:"Prêt à aider", thinking:"Réflexion...", listening:"Écoute...",
-    speak:"🔊 Écouter", stop:"⏹ Arrêter",
-    exampleLabel:"ex.",
-    sugs:[["🥚","Ma mayo a tranché","Ma mayonnaise a tranché et est devenue liquide, que faire?"],
-          ["🎂","Le gâteau s'est affaissé","Mon gâteau s'est affaissé au milieu, pourquoi et que faire?"],
-          ["🥩","La viande est trop sèche","Ma viande est sortie sèche et s'effrite, comment la sauver?"],
-          ["🥐","La pâte trop collante","Ma pâte est trop collante pour travailler, que faire?"]],
-    zwTeaser:"\n\n🔒 Mode Zéro Déchet — Vous voulez toutes les options pour utiliser vos restes? Disponible avec abonnement.",
-    upgradeBtn:"⭐ Mettre à niveau",
-    locked:{
-      zw:{icon:"♻️",title:"Mode Zéro Déchet",desc:"Obtenez une liste complète de tout ce que vous pouvez faire avec les ingrédients restants.",features:["Idées de nouveaux plats","Usages créatifs","Conseils de conservation"]},
-      sub:{icon:"🔄",title:"Substitutions Intelligentes",desc:"Obtenez un substitut exact avec des quantités précises.",features:["Quantités exactes","Impact sur la saveur","Impact sur la texture"]},
-      prev:{icon:"🎯",title:"Mode Prévention",desc:"Avant de commencer — obtenez tous les points critiques.",features:["Points d'échec courants","Conseils de réussite","Températures critiques"]},
-      upgradeBtn:"⭐ S'abonner", hint:"Cette fonctionnalité est réservée aux abonnés"
-    },
+    ready:"Prêt",thinking:"Réflexion...",listening:"Écoute...",
+    speak:"🔊 Écouter",stop:"⏹ Arrêter",
+    exampleLabel:"ex.",exampleText:"Ma mayo a tranché",exampleQ:"Ma mayonnaise a tranché et est devenue liquide, que faire?",
+    levels:[["beginner","🏠 Amateur"],["intermediate","👨‍🍳 En Développement"],["professional","⭐ Professionnel"]],
+    diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
+    allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
+    urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable"},
+    timerBtn:"⏱ Démarrer minuteur",timerStop:"⏹ Arrêter",
+    proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Améliorer — 3,99$/mois",note:"Annulez à tout moment"},
+    faqTitle:"FAQ",
+    faqs:[["Pourquoi pas Claude/ChatGPT?","Claude ne vous connaît pas. RescueChef est conçu pour résoudre les problèmes culinaires instantanément."],
+          ["Gratuit vs Pro?","Gratuit = solution courte. Pro = explication scientifique, substitutions, Zéro Déchet et profil personnel."],
+          ["Fonctionne sur mobile?","Oui. Vous pouvez aussi l'enregistrer comme app — appuyez sur Partager puis Sur l'écran d'accueil."],
+          ["Mes données sont stockées?","Uniquement sur votre appareil."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Votre chef digital — au niveau professionnel",
+      features:[{icon:"🔬",title:"Explication scientifique",desc:"Chimie et physique derrière chaque problème"},
+                {icon:"👤",title:"Profil personnel",desc:"Réponses adaptées à vous"},
+                {icon:"🔄",title:"Substitutions",desc:"Quantités exactes et impact"},
+                {icon:"♻️",title:"Zéro Déchet",desc:"Que faire avec les restes"}],
+      cta:"Améliorer — seulement 3,99$/mois",note:"Annulez à tout moment"},
+    legalText:`En utilisant cet outil vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.`,
   }
 };
 
-let profile = {name:"",gender:"f",lang:"en",level:"intermediate",diet:["regular"],allergies:[],devMode:false};
-let devMode = false;
-let chatHistory=[], isLoading=false, recognition=null, isRecording=false, currentUtterance=null;
-let selectedGender="f", selectedDiet=["regular"], selectedAllergies=[];
+let profile={lang:"he",gender:"f",name:"",level:"intermediate",diet:["regular"],allergies:[],devMode:false,isPro:false};
+let devMode=false;
+let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtterance=null;
+let selectedLang=null;
+let activeTimers={};
 
-function renderSetup(lang) {
-  const t = T[lang]||T.en;
-  document.documentElement.dir = t.dir;
-  document.documentElement.lang = lang;
-  const el = i => document.getElementById(i);
-  const setText = (i, txt) => { if(el(i)) el(i).textContent = txt; };
-  setText("s-sub", t.setupSub);
-  setText("s-personal-sec", t.personalSec);
-  setText("s-lang-lbl", t.langLbl);
-  setText("s-level-lbl", t.levelLbl);
-  setText("s-gender-lbl", t.genderLbl);
-  if(el("gender-f")) el("gender-f").textContent = t.genderF;
-  if(el("gender-m")) el("gender-m").textContent = t.genderM;
-  setText("s-name-lbl", t.nameLbl);
-  if(el("setup-name")) el("setup-name").placeholder = t.namePh;
-  setText("s-diet-sec", t.dietSec);
-  setText("s-diet-lbl", t.dietLbl);
-  setText("s-allergy-lbl", t.allergyLbl);
-  if(el("s-start-btn")) el("s-start-btn").textContent = t.startBtn;
-  const lvlSel = el("setup-level");
-  if(lvlSel) lvlSel.innerHTML = t.levels.map(([v,l])=>`<option value="${v}"${v==="intermediate"?" selected":""}>${l}</option>`).join("");
-  if(el("diet-options")) el("diet-options").innerHTML = t.diets.map(([v,l])=>`<div class="checkbox-item${selectedDiet.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,'diet')">${l}</div>`).join("");
-  if(el("allergy-options")) el("allergy-options").innerHTML = t.allergies.map(([v,l])=>`<div class="checkbox-item${selectedAllergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,'allergy')">${l}</div>`).join("");
-  if(el("s-legal-text")) el("s-legal-text").innerHTML = t.legalText||"";
+// ── LANG SCREEN ──────────────────────────────────────────────────────────────
+function selectLang(lang){
+  selectedLang=lang;
+  document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("selected"));
+  event.target.classList.add("selected");
+  const btn=id("lang-continue");
+  btn.classList.add("active");
+  const labels={he:"המשך →",en:"Continue →",es:"Continuar →",fr:"Continuer →"};
+  btn.textContent=labels[lang]||"Continue →";
 }
 
-function onSetupLangChange(lang) {
-  renderSetup(lang);
-  const genderRow = document.querySelector(".gender-row");
-  const genderLbl = document.getElementById("s-gender-lbl");
-  const showGender = ["he","es","fr"].includes(lang);
-  if(genderRow) genderRow.style.display = showGender ? "flex" : "none";
-  if(genderLbl) genderLbl.style.display = showGender ? "block" : "none";
-}
-
-function setGender(g) {
-  selectedGender=g;
-  document.getElementById("gender-f").classList.toggle("active",g==="f");
-  document.getElementById("gender-m").classList.toggle("active",g==="m");
-}
-
-function toggleCheck(el,type) {
-  el.classList.toggle("active");
-  const val=el.dataset.val;
-  if(type==="diet"){
-    if(el.classList.contains("active"))selectedDiet.push(val);
-    else selectedDiet=selectedDiet.filter(v=>v!==val);
-  }else if(type==="allergy"){
-    if(el.classList.contains("active"))selectedAllergies.push(val);
-    else selectedAllergies=selectedAllergies.filter(v=>v!==val);
-  }else if(type==="pallergy"){
-    if(el.classList.contains("active"))profile.allergies.push(val);
-    else profile.allergies=profile.allergies.filter(v=>v!==val);
-  }
-}
-
-function startApp() {
-  profile.name=document.getElementById("setup-name").value.trim();
-  profile.gender=selectedGender;
-  profile.lang=document.getElementById("setup-lang").value;
-  profile.level=document.getElementById("setup-level").value;
-  profile.diet=selectedDiet.length?selectedDiet:["regular"];
-  profile.allergies=selectedAllergies;
+function startWithLang(){
+  if(!selectedLang)return;
+  profile.lang=selectedLang;
   localStorage.setItem("rc_profile",JSON.stringify(profile));
-  initApp();
-}
-
-function initApp() {
-  document.getElementById("setup-screen").style.display="none";
-  document.getElementById("app").style.display="flex";
+  id("lang-screen").style.display="none";
+  id("app").style.display="flex";
   applyLang();
   renderWelcome();
 }
 
-function applyLang() {
+// ── APPLY LANG ───────────────────────────────────────────────────────────────
+function applyLang(){
   const t=T[profile.lang]||T.he;
   document.documentElement.dir=t.dir;
   document.documentElement.lang=profile.lang;
@@ -632,61 +582,79 @@ function applyLang() {
   id("profile-btn").textContent=t.profileBtn;
   id("clear-btn").textContent=t.clearBtn;
   id("p-panel-title").textContent=t.panelTitle;
+  id("p-sec-lang").textContent=t.pSecLang;
   id("p-sec-personal").textContent=t.pSecPersonal;
-  id("p-lbl-name").textContent=t.pLblName;
-  id("p-lbl-gender").textContent=t.pLblGender;
-  id("p-gender-f").textContent=t.genderF;
-  id("p-gender-m").textContent=t.genderM;
-  id("p-lbl-lang").textContent=t.pLblLang;
-  id("p-lbl-level").textContent=t.pLblLevel;
-  id("p-sec-diet").textContent=t.pSecDiet;
-  id("p-sec-allergy").textContent=t.pSecAllergy;
   id("p-save-btn").textContent=t.pSaveBtn;
-  if(id("dev-mode-label")) id("dev-mode-label").textContent = t.devModeLabel||"All features unlocked";
-  if(id("dev-hint")) id("dev-hint").textContent = devMode ? (t.devHintOn||"On") : (t.devHintOff||"Off");
-  if(id("link-privacy")) id("link-privacy").textContent = t.linkPrivacy||"Privacy Policy";
-  if(id("link-terms")) id("link-terms").textContent = t.linkTerms||"Terms of Use";
-  const showGender = ["he","es","fr"].includes(profile.lang);
-  const pgRow = document.querySelector("#profile-panel .gender-row");
-  const pgLbl = document.getElementById("p-lbl-gender");
-  if(pgRow) pgRow.style.display = showGender ? "flex" : "none";
-  if(pgLbl) pgLbl.style.display = showGender ? "block" : "none";
-  id("question-input").placeholder=t.placeholder(profile.gender);
+  id("p-delete-btn").textContent=t.pDeleteBtn;
+  id("link-privacy").textContent=t.linkPrivacy;
+  id("link-terms").textContent=t.linkTerms;
+  id("dev-mode-label").textContent=t.devModeLabel;
+  id("dev-hint").textContent=devMode?t.devHintOn:t.devHintOff;
+  id("pro-locked-title").textContent=t.proLockedTitle;
+  id("pro-locked-desc").textContent=t.proLockedDesc;
+  id("pro-locked-btn").textContent=t.proLockedBtn;
+  id("question-input").placeholder=t.placeholder;
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
-  id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
-  id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
-  id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleCheck(this,'pallergy')">${l}</div>`).join("");
+  // show/hide pro fields
+  const isPro=devMode||profile.isPro;
+  id("pro-profile-locked").style.display=isPro?"none":"block";
+  id("pro-profile-fields").style.display=isPro?"block":"none";
+  if(isPro){
+    id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+    id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+    id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleAllergy(this)">${l}</div>`).join("");
+  }
 }
 
-function renderWelcome() {
+function onProfileLangChange(lang){
+  profile.lang=lang;
+  applyLang();
+}
+
+// ── WELCOME ───────────────────────────────────────────────────────────────────
+function renderWelcome(){
   const t=T[profile.lang]||T.he;
   const msgs=id("messages");
   msgs.innerHTML="";
   id("input-area-wrap").style.display="none";
   const w=document.createElement("div");
   w.className="welcome"; w.id="welcome";
-  const exQ = t.sugs[0][2];
-  const exLabel = t.sugs[0][1];
-  const SVG_LOGO = `<svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
+  const SVG_BIG=`<svg fill="#D4AF37" height="56px" width="56px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
+  const proFeaturesHtml=t.proCard.features.map(f=>`<div class="pro-card-feature"><span class="pro-card-feature-icon">✓</span>${f}</div>`).join("");
+  const faqHtml=t.faqs.map(([q,a])=>`<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>${q}</span><span class="faq-arrow">›</span></div><div class="faq-a">${a}</div></div>`).join("");
   w.innerHTML=`
-    <div class="welcome-icon">${SVG_LOGO}</div>
-    <h2>${t.welcomeTitle(profile.name,profile.gender)}</h2>
-    <p>${t.welcomeDesc(profile.gender)}</p>
+    <div class="welcome-icon">${SVG_BIG}</div>
+    <h2>${t.welcomeTitle(profile.name)}</h2>
+    <p>${t.welcomeDesc}</p>
     <div class="welcome-input-wrap">
       <div class="welcome-box">
-        <textarea id="welcome-ta" rows="1" placeholder="${t.placeholder(profile.gender)}"
+        <textarea id="welcome-ta" rows="1" placeholder="${t.placeholder}"
           oninput="autoResize(this)" onkeydown="handleWelcomeKey(event)"></textarea>
         <button class="welcome-send" onclick="sendFromWelcome()">➤</button>
       </div>
     </div>
-    <div class="welcome-example">${t.exampleLabel} <button onclick="useExample('${exQ.replace(/'/g,"&#39;")}')">${exLabel}</button></div>`;
+    <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
+    <div class="pro-card" style="margin-top:28px;">
+      <div class="pro-card-header">
+        <div class="pro-card-title">${t.proCard.title}</div>
+        <div><div class="pro-card-amount">$3.99</div><div class="pro-card-period">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"par mois":profile.lang==="es"?"por mes":"/month"}</div></div>
+      </div>
+      <div class="pro-card-features">${proFeaturesHtml}</div>
+      <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
+      <div class="pro-card-note">${t.proCard.note}</div>
+    </div>
+    <div class="faq-section">
+      <div class="faq-title">${t.faqTitle}</div>
+      ${faqHtml}
+    </div>`;
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
+  window._exQ=t.exampleQ;
 }
 
 function handleWelcomeKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendFromWelcome();}}
-function useExample(q){const el=id("welcome-ta");if(el){el.value=q;autoResize(el);el.focus();}}
+function useExample(){const el=id("welcome-ta");if(el){el.value=window._exQ||"";autoResize(el);el.focus();}}
 function sendFromWelcome(){
   const el=id("welcome-ta");
   if(!el)return;
@@ -696,98 +664,131 @@ function sendFromWelcome(){
   sendQuestion();
 }
 
-function openProfile() {
-  const toggle = id("dev-mode-toggle");
-  if(toggle) { toggle.checked = devMode; toggleDevMode(devMode); }
-  id("p-name").value=profile.name;
+// ── PROFILE PANEL ─────────────────────────────────────────────────────────────
+function openProfile(){
+  const toggle=id("dev-mode-toggle");
+  if(toggle){toggle.checked=devMode;}
   id("p-lang").value=profile.lang;
-  id("p-level").value=profile.level;
-  id("p-diet").value=profile.diet[0]||"regular";
-  id("p-gender-f").classList.toggle("active",profile.gender==="f");
-  id("p-gender-m").classList.toggle("active",profile.gender==="m");
-  document.querySelectorAll("#p-allergy-options .checkbox-item").forEach(el=>{
-    el.classList.toggle("active",profile.allergies.includes(el.dataset.val));
-  });
+  if(devMode||profile.isPro){
+    id("p-level").value=profile.level;
+    id("p-diet").value=profile.diet[0]||"regular";
+    id("p-gender-f").classList.toggle("active",profile.gender==="f");
+    id("p-gender-m").classList.toggle("active",profile.gender==="m");
+  }
   id("profile-panel").classList.add("open");
   id("overlay").classList.add("show");
 }
 
-function closeProfile() {
+function closeProfile(){
   id("profile-panel").classList.remove("open");
   id("overlay").classList.remove("show");
 }
 
-function setPGender(g) {
+function setPGender(g){
   profile.gender=g;
   id("p-gender-f").classList.toggle("active",g==="f");
   id("p-gender-m").classList.toggle("active",g==="m");
 }
 
-function saveProfile() {
-  profile.name=id("p-name").value.trim();
+function toggleAllergy(el){
+  el.classList.toggle("active");
+  const val=el.dataset.val;
+  if(el.classList.contains("active"))profile.allergies.push(val);
+  else profile.allergies=profile.allergies.filter(v=>v!==val);
+}
+
+function saveProfile(){
   profile.lang=id("p-lang").value;
-  profile.level=id("p-level").value;
-  profile.diet=[id("p-diet").value];
+  if(devMode||profile.isPro){
+    if(id("p-name"))profile.name=id("p-name").value.trim();
+    if(id("p-level"))profile.level=id("p-level").value;
+    if(id("p-diet"))profile.diet=[id("p-diet").value];
+  }
   localStorage.setItem("rc_profile",JSON.stringify(profile));
   closeProfile();
   applyLang();
-  if(chatHistory.length===0) renderWelcome();
+  if(chatHistory.length===0)renderWelcome();
 }
 
-function getFeatureType(text) {
-  const zw=[/נשאר/,/שאריות/,/נותר/,/מה לעשות עם/,/leftover/i,/left over/i,/what.*do with/i,/i have.*left/i,/sobr[oó]/i,/il me reste/i,/que faire avec/i];
-  const sub=[/במה אפשר להחליף/,/מה מחליף/,/אין לי.*במה/,/נגמר לי/,/substitute/i,/replacement for/i,/instead of/i,/out of/i,/no.*can i use/i,/sustituir/i,/remplacer/i,/à la place/i];
-  const prev=[/לפני שאני מכין/,/לפני שאכין/,/טיפים לפני/,/מה כדאי לדעת לפני/,/before i make/i,/tips for making/i,/how to avoid/i,/prevent/i,/first time/i,/antes de hacer/i,/conseils pour/i,/avant de faire/i];
-  if(zw.some(p=>p.test(text))) return 'zw';
-  if(sub.some(p=>p.test(text))) return 'sub';
-  if(prev.some(p=>p.test(text))) return 'prev';
-  return null;
-}
-
-function getSystemPrompt(featureType) {
-  const levelMap={
-    beginner:{he:"בשלן ביתי מתחיל — השתמש בשפה פשוטה ויומיומית, הסבר כל מונח",en:"home cook beginner — use simple everyday language",es:"cocinero casero principiante — usa lenguaje simple",fr:"cuisinier amateur débutant — utilise un langage simple"},
-    intermediate:{he:"טבח מתפתח — אפשר להשתמש במונחים מקצועיים עם הסבר קצר",en:"developing cook — can use professional terms with brief explanation",es:"chef en desarrollo — puede usar términos profesionales",fr:"chef en développement — peut utiliser des termes professionnels"},
-    professional:{he:"שף מקצועי ברמה גבוהה — השתמש בטרמינולוגיה מקצועית מלאה",en:"professional chef — use full professional terminology",es:"chef profesional — usa terminología profesional completa",fr:"chef professionnel — utilise la terminologie professionnelle complète"}
-  };
-  const level=levelMap[profile.level]||levelMap.intermediate;
-  const levelText=level[profile.lang]||level.en;
+// ── SYSTEM PROMPT ─────────────────────────────────────────────────────────────
+function getSystemPrompt(){
   const langNames={he:"עברית",en:"English",es:"Español",fr:"Français"};
   const langName=langNames[profile.lang]||"English";
-  const genderNote=profile.lang==="he"?(profile.gender==="f"?"פנה למשתמש בלשון נקבה בכל התשובות ללא יוצא מן הכלל. לדוגמה: ערבבי, הוסיפי, בדקי, עבדי — לא ערבב, הוסף, בדוק.":"פנה למשתמש בלשון זכר בכל התשובות ללא יוצא מן הכלל. לדוגמה: ערבב, הוסף, בדוק, עבוד — לא ערבבי, הוסיפי."):"";
-  const grammarNote=profile.lang==="he"?"שפה עברית: השתמש תמיד בפועל המדובר והיומיומי הנפוץ. הימנע מצורות ארכאיות או בלתי נפוצות. לדוגמה: לעבוד את הבצק (לא ללוש, לא לישי), לערבב (לא לבחוש), לפתוח (לא להרדיד). ":"";
-  const dietNote=profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`המשתמש מקפיד על תזונה: ${profile.diet.join(", ")}.`:`User follows: ${profile.diet.join(", ")} diet.`):"";
-  const allergyNote=profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות חשובות: ${profile.allergies.join(", ")} — לעולם אל תציע מרכיבים אלה.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
-  const panSizeNote=profile.lang==="he"?"חישוב גדלי תבניות: תמיד חשב לפי הנוסחה שטח = π × r². תבנית גדולה יותר = שטח גדול יותר = שכבה דקה יותר (לא עבה יותר). ציין זאת במפורש.":"Pan size conversion: always calculate using Area = π × r². Larger pan = more area = THINNER layer (not thicker). State this explicitly.";
-  const structureHe=`כשמשתמש מתאר בעיה, ענה תמיד במבנה הזה:\n\n### 🔍 מה קרה\n[הסבר מדויק למה זה קרה — הכימיה או הפיזיקה]\n\n### 🚨 איך מצילים עכשיו\n[צעדים ברורים ומיידיים]\n\n### 💡 טיפ למניעה\n[איך למנוע בפעם הבאה]`;
-  const structureEn=`When user describes a problem, always respond:\n\n### 🔍 What happened\n[Precise explanation of WHY]\n\n### 🚨 How to rescue now\n[Clear immediate steps]\n\n### 💡 Prevention tip\n[How to prevent next time]`;
-  let featureNote="";
-  if(featureType==='zw') featureNote=profile.lang==="he"?"\n\nזוהי שאלת Zero Waste: תן רשימה מלאה ומפורטת של כל השימושים האפשריים — מתכונים, שימושים יצירתיים, דרכי אחסון, ורעיונות.":"\n\nThis is a Zero Waste question: Give a complete list of all possible uses — recipes, creative uses, storage methods, and ideas.";
-  else if(featureType==='sub') featureNote=profile.lang==="he"?"\n\nזוהי שאלת תחליפים: ציין (1) מה מחליף (2) כמה בדיוק — יחס מדויק (3) איך זה משפיע על הטעם (4) איך זה משפיע על המרקם (5) מה הכי קרוב למקור.":"\n\nThis is a substitution question: State (1) what substitutes (2) exact amount ratio (3) flavor impact (4) texture impact (5) closest to original.";
-  else if(featureType==='prev') featureNote=profile.lang==="he"?"\n\nזוהי שאלת מניעה: תן רשימה של כל הנקודות הקריטיות לפני הכנת המנה — נקודות כישלון, טמפרטורות, תזמון, וטיפים לתוצאה מושלמת.":"\n\nThis is a prevention question: List all critical points before making this dish — failure points, temperatures, timing, and tips for perfect results.";
-  const depthNote=devMode?(profile.lang==="he"?"\n\nמשתמש מנוי — תן תשובה מלאה ומעמיקה: הסבר את הכימיה/פיזיקה מאחורי הבעיה, תן פתרון שלב-אחר-צעד, וכלול טיפ מניעה מפורט. תן את כל האפשרויות הרלוונטיות.":"\n\nSubscribed user — give a FULL deep answer: explain the chemistry/physics behind the problem, provide step-by-step rescue, give ALL relevant alternatives with differences, and include a detailed prevention tip."):(profile.lang==="he"?"\n\nמשתמש חינמי — תן תשובה אחת בלבד, הכי פשוטה ונפוצה. משפט אחד או שניים מקסימום. אסור לתת רשימות, אסור להזכיר אפשרויות נוספות, אסור לכתוב \"גם אפשר\" או \"לחלופין\". תשובה אחת, ישירה, וזהו. בסוף הוסף בשורה נפרדת: \"🔒 לתשובה מלאה עם כל האפשרויות, הסברים, הבדלים וטיפים למניעה — שדרגי למנוי.\"":"\n\nFree user — give ONE answer only, the simplest and most common solution. One or two sentences maximum. NEVER give lists, NEVER mention other options, NEVER write \"you can also\" or \"alternatively\". One direct answer, nothing more. End on a new line with: \"🔒 For the full answer with all options, explanations, differences and prevention tips — upgrade to Pro.\"");
-  const levelNote=profile.level==="beginner"?"\n\nIMPORTANT: This user is a home cook. NEVER use professional culinary terms like emulsion, reduction, caramelization, maillard reaction, deglaze, blanch, temper, etc. Always explain using simple everyday kitchen language.":"";
-  return `You are RescueChef — a world-class culinary expert, trained at Le Cordon Bleu, with 20 years of experience in professional kitchens — from Michelin-starred restaurants to pastry labs. You think like a chef, not like a cookbook. You diagnose problems the way a doctor diagnoses a patient: you identify what happened, why it happened, and what to do right now. You never give generic answers. You always give the most precise, professional, and practical solution — adapted to the user's skill level.\nRespond ONLY in ${langName}.\nUser level: ${levelText}.\n${genderNote}\n${grammarNote}\n${dietNote}\n${allergyNote}\n${panSizeNote}\n\n${profile.lang==="he"?structureHe:structureEn}\n\nRules:\n- Be direct and practical\n- If dish cannot be rescued, say so honestly and suggest alternative\n- Adapt depth to user level\n- Always respect dietary restrictions and allergies\n${levelNote}\n${depthNote}\n${featureNote}`;
+  const isPro=devMode||profile.isPro;
+  const levelMap={
+    beginner:{he:"בשלן ביתי מתחיל — שפה פשוטה לחלוטין, ללא מונחים מקצועיים",en:"home cook beginner — simple everyday language only",es:"principiante — lenguaje simple",fr:"débutant — langage simple"},
+    intermediate:{he:"טבח מתפתח — מונחים מקצועיים עם הסבר קצר",en:"developing cook — professional terms with brief explanation",es:"en desarrollo — términos profesionales con explicación",fr:"en développement — termes professionnels avec explication"},
+    professional:{he:"שף מקצועי — טרמינולוגיה מקצועית מלאה",en:"professional chef — full professional terminology",es:"chef profesional — terminología completa",fr:"chef professionnel — terminologie complète"}
+  };
+  const level=levelMap[profile.level]||levelMap.intermediate;
+  const levelText=isPro?(level[profile.lang]||level.en):"general home cook";
+  const genderNote=isPro&&profile.lang==="he"?(profile.gender==="f"?"פנה תמיד בלשון נקבה: ערבבי, הוסיפי, בדקי.":"פנה תמיד בלשון זכר: ערבב, הוסף, בדוק."):"";
+  const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
+  const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
+
+  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line:
+[URGENCY:full] — if the dish can be fully rescued
+[URGENCY:partial] — if it's critical and needs immediate action but may be partially saved
+[URGENCY:none] — if it cannot be rescued and an alternative is needed`;
+
+  const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
+
+  const proContent=isPro?`
+After your immediate rescue steps, add these sections — keep each one SHORT and sharp (2-3 sentences max per section):
+### 🔬 המדע מאחורי הבעיה (The Science)
+Explain the molecular/chemical reason in 2-3 precise sentences. Mention specific mechanisms: emulsification breakdown, gluten relaxation, protein denaturation, starch gelatinization, fat crystallization etc. Be specific, not generic.
+
+### 💡 טיפ מניעה (Prevention)
+One precise, professional tip to prevent this next time. Maximum 2 sentences.`:`
+Keep your answer SHORT — maximum 2-3 sentences for the rescue. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי, טיפ מניעה ועוד — שדרגי ל-Pro.":"For the full solution with scientific explanation and prevention tip — upgrade to Pro."}"`;
+
+  return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics. You think like a Michelin-starred chef and a food scientist combined.
+
+Respond ONLY in ${langName}.
+User level: ${levelText}.
+${genderNote}
+${dietNote}
+${allergyNote}
+
+${urgencyInstruction}
+
+${timerInstruction}
+
+CORE RULES:
+- NEVER give generic advice like "add flour to sticky dough" or "add water". Always analyze through professional variables: hydration percentage, gluten relaxation, ambient temperature, emulsion breakdown, fat percentage, starch types.
+- Diagnose the ROOT CAUSE first, then give the precise fix.
+- Use proper culinary terminology (hydration, tempering, emulsification, aeration) but explain terms when needed.
+- If a dish cannot be rescued, say so honestly and give the best alternative use.
+- Pan size: always calculate using Area = π × r². Larger pan = THINNER layer.
+
+RESPONSE STRUCTURE:
+### 🔍 מה קרה / What happened
+[Root cause — be specific and scientific]
+
+### 🚨 איך מצילים עכשיו / How to rescue now
+[Clear numbered steps. Include [TIMER:X:label] before any timed step]
+${proContent}`;
 }
 
-async function sendQuestion() {
+// ── SEND ─────────────────────────────────────────────────────────────────────
+async function sendQuestion(){
   const input=id("question-input");
   const question=input.value.trim();
   if(!question||isLoading)return;
-  if(!devMode) {
+  if(!devMode){
     const today=new Date().toDateString();
     const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
     const count=stored.date===today?(stored.count||0):0;
     const FREE_LIMIT=3;
-    if(count>=FREE_LIMIT) {
+    if(count>=FREE_LIMIT){
       const t=T[profile.lang]||T.en;
-      const msgs={he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום. שדרגי למנוי Pro להמשך שימוש ללא הגבלה.`,en:`🔒 You've reached your ${FREE_LIMIT} free questions for today. Upgrade to Pro for unlimited access.`,es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy. Mejora a Pro para acceso ilimitado.`,fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui. Passez à Pro pour un accès illimité.`};
+      const limitMsgs={he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום.`,en:`🔒 You've reached your ${FREE_LIMIT} free questions for today.`,es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy.`,fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui.`};
       const welcome=id("welcome");
       if(welcome)welcome.style.display="none";
       id("input-area-wrap").style.display="flex";
       addMessage("user",question);
-      input.value=""; autoResize(input);
-      addMessage("assistant",msgs[profile.lang]||msgs.en);
+      input.value="";autoResize(input);
+      addMessage("ai",limitMsgs[profile.lang]||limitMsgs.en);
       return;
     }
     localStorage.setItem("rc_daily",JSON.stringify({date:today,count:count+1}));
@@ -796,121 +797,231 @@ async function sendQuestion() {
   if(welcome)welcome.style.display="none";
   id("input-area-wrap").style.display="flex";
   addMessage("user",question);
-  input.value=""; autoResize(input);
+  input.value="";autoResize(input);
   chatHistory.push({role:"user",content:question});
   const t=T[profile.lang]||T.he;
-  const featureType=getFeatureType(question);
-  if(featureType&&!devMode){showLockedCard(featureType,t);return;}
   setLoading(true,t.thinking);
   const typingEl=addTyping();
-  try {
-    const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:devMode?2500:600,system:getSystemPrompt(featureType),messages:chatHistory})});
+  try{
+    const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:devMode?1500:600,
+        system:getSystemPrompt(),messages:chatHistory})});
     if(!res.ok){const err=await res.json();throw new Error(err.error?.message||"Server error");}
     const data=await res.json();
     let answer=data.content[0].text;
     chatHistory.push({role:"assistant",content:answer});
     typingEl.remove();
-    addMessage("ai",answer,t,false);
-  } catch(err) {
+    addAIMessage(answer,t);
+  }catch(err){
     typingEl.remove();
-    addMessage("ai",getFriendlyError(err.message,profile.lang),t,false);
-  } finally {
-    setLoading(false,t.ready);
+    addMessage("ai",getFriendlyError(err.message,profile.lang));
+  }finally{
+    setLoading(false,T[profile.lang]?.ready||"Ready");
   }
 }
 
-function showLockedCard(featureType,t) {
+// ── ADD AI MESSAGE with urgency + timers + blur ────────────────────────────────
+function addAIMessage(rawText,t){
   const container=id("messages");
-  const locked=t.locked[featureType];
-  if(!locked)return;
   const msg=document.createElement("div");
   msg.className="message ai";
-  msg.style.animation="fadeUp 0.35s ease forwards";
-  msg.style.opacity="0";
   const avatar=document.createElement("div");
   avatar.className="msg-avatar";
-  avatar.textContent="🍳";
+  avatar.innerHTML=SVG_ICON;
   const bubble=document.createElement("div");
   bubble.className="msg-bubble";
-  const featuresHtml=locked.features.map(f=>`<span class="locked-card-feature">✓ ${f}</span>`).join("");
-  bubble.innerHTML=`<div class="locked-card"><span class="locked-card-icon">${locked.icon}</span><div class="locked-card-title">🔒 ${locked.title}</div><div class="locked-card-desc">${locked.desc}</div><div class="locked-card-features">${featuresHtml}</div><button class="locked-upgrade-btn" onclick="alert('${profile.lang==="he"?"בקרוב! 🚀":"Coming soon! 🚀"}')">${locked.upgradeBtn}</button><div style="font-size:11px;color:var(--muted);margin-top:8px;">${locked.hint}</div></div>`;
+
+  // Parse urgency tag
+  let urgencyLevel="full";
+  let text=rawText.replace(/^\[URGENCY:(full|partial|none)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
+
+  // Build urgency bar
+  const urgencyData={
+    full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
+    partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
+    none:{fill:10,cls:"red",label:t.urgency?.none||"Cannot rescue"}
+  };
+  const ud=urgencyData[urgencyLevel];
+  const urgencyHTML=`<div class="urgency-bar">
+    <div class="urgency-label">📊</div>
+    <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
+    <div class="urgency-text ${ud.cls}">${ud.label}</div>
+  </div>`;
+
+  // Parse timers and replace with buttons
+  const isPro=devMode||profile.isPro;
+  const timerBtns=[];
+  text=text.replace(/\[TIMER:(\d+):([^\]]+)\]/g,(m,secs,label)=>{
+    const tid="timer_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    timerBtns.push({tid,secs:parseInt(secs),label});
+    return `<span id="tw_${tid}"></span>`;
+  });
+
+  // Format text
+  let formatted=formatAI(text,isPro);
+
+  bubble.innerHTML=urgencyHTML+formatted;
+
+  // Insert timer buttons
+  timerBtns.forEach(({tid,secs,label})=>{
+    const wrap=bubble.querySelector(`#tw_${tid}`);
+    if(!wrap)return;
+    const btn=document.createElement("button");
+    btn.className="timer-btn";
+    btn.id="tbtn_"+tid;
+    btn.innerHTML=`${t.timerBtn||"⏱ Timer"}: ${label} (${formatTime(secs)})`;
+    btn.onclick=()=>handleTimer(tid,secs,label,btn,t);
+    wrap.replaceWith(btn);
+  });
+
+  // Speak button
+  const speakBtn=document.createElement("button");
+  speakBtn.className="speak-btn";
+  speakBtn.innerHTML=t.speak;
+  speakBtn.onclick=()=>speakText(rawText,speakBtn,t);
+  bubble.appendChild(speakBtn);
+
   msg.appendChild(avatar);
   msg.appendChild(bubble);
   container.appendChild(msg);
   container.scrollTop=container.scrollHeight;
 }
 
-function addMessage(role,text,t,isZW) {
+function formatAI(text,isPro){
+  // Split on prevention tip section for blur
+  let parts=text.split(/(###\s*💡[^\n]*\n)/);
+  let html="";
+  for(let i=0;i<parts.length;i++){
+    const part=parts[i];
+    if(part.match(/###\s*💡/)){
+      // This is the prevention section header + content
+      const content=(parts[i]||"")+(parts[i+1]||"");
+      if(isPro){
+        html+=formatSection(content);
+      } else {
+        html+=`<div class="blur-section">
+          <div class="blur-content">${formatSection(content+(parts[i+1]||""))}</div>
+          <div class="blur-overlay">
+            <div class="blur-lock">🔒</div>
+            <div class="blur-title">${profile.lang==="he"?"הטיפ שימנע מזה לקרות שוב":"The tip that prevents this next time"}</div>
+            <div class="blur-price">${profile.lang==="he"?"זמין למנויי Pro — $3.99/חודש":"Available for Pro subscribers — $3.99/month"}</div>
+            <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
+          </div>
+        </div>`;
+        i++;
+      }
+      i++;
+    } else {
+      html+=formatSection(part);
+    }
+  }
+
+  // Also blur the science section for free users
+  if(!isPro){
+    html=html.replace(/(<h3>[^<]*🔬[^<]*<\/h3>)([\s\S]*?)(?=<h3>|$)/g,(m,h3,content)=>{
+      return `<div class="blur-section">
+        <div class="blur-content">${h3}${content}</div>
+        <div class="blur-overlay">
+          <div class="blur-lock">🔒</div>
+          <div class="blur-title">${profile.lang==="he"?"ההסבר המדעי המלא":"Full scientific explanation"}</div>
+          <div class="blur-price">${profile.lang==="he"?"זמין למנויי Pro — $3.99/חודש":"Available for Pro — $3.99/month"}</div>
+          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
+        </div>
+      </div>`;
+    });
+  }
+  return html;
+}
+
+function formatSection(text){
+  return text
+    .replace(/###\s*(.+)/g,"<h3>$1</h3>")
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+    .replace(/^(\d+)\.\s(.+)/gm,"<div style='display:flex;gap:8px;margin:5px 0;'><span style='color:var(--accent);font-weight:700;min-width:20px;'>$1.</span><span>$2</span></div>")
+    .replace(/^-\s(.+)/gm,"<li>$1</li>")
+    .replace(/(?:\s*<li>[\s\S]*?<\/li>)+/g, m => `<ul>${m}</ul>`)
+    .replace(/\n\n/g,"<br>")
+    .replace(/\n/g,"<br>");
+}
+
+// ── TIMER ─────────────────────────────────────────────────────────────────────
+function formatTime(secs){
+  const m=Math.floor(secs/60),s=secs%60;
+  return `${m}:${s.toString().padStart(2,"0")}`;
+}
+
+function handleTimer(tid,totalSecs,label,btn,t){
+  if(activeTimers[tid]){
+    clearInterval(activeTimers[tid]);
+    delete activeTimers[tid];
+    btn.classList.remove("running");
+    btn.innerHTML=`${t.timerBtn||"⏱ Timer"}: ${label} (${formatTime(totalSecs)})`;
+    return;
+  }
+  let remaining=totalSecs;
+  btn.classList.add("running");
+  activeTimers[tid]=setInterval(()=>{
+    remaining--;
+    btn.innerHTML=`${t.timerStop||"⏹"} ${label} — <span class="timer-display">${formatTime(remaining)}</span>`;
+    if(remaining<=0){
+      clearInterval(activeTimers[tid]);
+      delete activeTimers[tid];
+      btn.classList.remove("running");
+      btn.innerHTML=`✅ ${label} — ${profile.lang==="he"?"הזמן הסתיים!":"Done!"}`;
+    }
+  },1000);
+}
+
+// ── ADD MESSAGE (user / simple ai) ────────────────────────────────────────────
+function addMessage(role,text){
   const container=id("messages");
   const msg=document.createElement("div");
   msg.className=`message ${role}`;
   const avatar=document.createElement("div");
   avatar.className="msg-avatar";
-  const SVG_ICON=`<svg fill="#D4AF37" height="20px" width="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
   avatar.innerHTML=role==="user"?"😊":SVG_ICON;
   const bubble=document.createElement("div");
   bubble.className="msg-bubble";
-  if(role==="ai"){
-    bubble.innerHTML=formatAI(text);
-    if(isZW&&t){
-      const teaser=document.createElement("div");
-      teaser.className="zw-teaser";
-      teaser.textContent=t.zwTeaser.replace("\n\n","");
-      const btn=document.createElement("button");
-      btn.className="upgrade-btn";
-      btn.textContent=t.upgradeBtn;
-      btn.onclick=()=>alert(profile.lang==="he"?"פיצ׳ר זה יהיה זמין בקרוב במנוי! 🚀":"This feature will be available soon with a subscription! 🚀");
-      teaser.appendChild(document.createElement("br"));
-      teaser.appendChild(btn);
-      bubble.appendChild(teaser);
-    }
-    if(t){
-      const btn=document.createElement("button");
-      btn.className="speak-btn";
-      btn.innerHTML=t.speak;
-      btn.onclick=()=>speakText(text,btn,t);
-      bubble.appendChild(btn);
-    }
-  }else{
-    bubble.textContent=text;
-  }
+  bubble.textContent=text;
   msg.appendChild(avatar);
   msg.appendChild(bubble);
   container.appendChild(msg);
   container.scrollTop=container.scrollHeight;
 }
 
-function formatAI(text) {
-  return text
-    .replace(/### (.+)/g,"<h3>$1</h3>")
-    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
-    .replace(/^- (.+)/gm,"<li>$1</li>")
-    .replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`)
-    .replace(/\n\n/g,"<br><br>")
-    .replace(/\n/g,"<br>")
-    .replace(/<h3>💡[^<]*<\/h3>(<br>)?(.*?)(?=<h3>|$)/gs,
-      (_,br,content)=>devMode?`<h3>💡 ${profile.lang==="he"?"טיפ למניעה":"Prevention tip"}</h3><div class="tip-box">${content}</div>`:"");
-}
-
-function addTyping() {
+function addTyping(){
   const c=id("messages");
   const m=document.createElement("div");
   m.className="message ai";
-  const SVG_SMALL=`<svg fill="#D4AF37" height="20px" width="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
-  m.innerHTML=`<div class="msg-avatar">${SVG_SMALL}</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  m.innerHTML=`<div class="msg-avatar">${SVG_ICON}</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
   c.appendChild(m);
   c.scrollTop=c.scrollHeight;
   return m;
 }
 
-function toggleVoice() {
-  if(!("webkitSpeechRecognition"in window)&&!("SpeechRecognition"in window)){alert("Try Chrome for voice input.");return;}
+// ── UPGRADE MODAL ─────────────────────────────────────────────────────────────
+function openUpgradeModal(){
+  const t=T[profile.lang]||T.en;
+  const um=t.upgradeModal;
+  const featuresHtml=um.features.map(f=>`<div class="upgrade-feature"><span class="upgrade-feature-icon">${f.icon}</span><div class="upgrade-feature-title">${f.title}</div><div style="font-size:12px;color:var(--muted)">${f.desc}</div></div>`).join("");
+  const modal=id("upgrade-modal");
+  modal.querySelector(".modal-title").textContent=um.title;
+  modal.querySelector("#upgrade-subtitle").textContent=um.subtitle;
+  modal.querySelector(".upgrade-modal-features").innerHTML=featuresHtml;
+  modal.querySelector(".upgrade-cta").textContent=um.cta;
+  modal.querySelector("#upgrade-note").textContent=um.note;
+  modal.classList.add("show");
+}
+
+// ── VOICE ─────────────────────────────────────────────────────────────────────
+function toggleVoice(){
+  if(!("webkitSpeechRecognition"in window)&&!("SpeechRecognition"in window)){alert("Use Chrome for voice.");return;}
   if(isRecording){recognition.stop();return;}
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   recognition=new SR();
   const lm={he:"he-IL",en:"en-US",es:"es-ES",fr:"fr-FR"};
-  recognition.lang=lm[profile.lang]||"he-IL";
-  const t=T[profile.lang]||T.he;
+  recognition.lang=lm[profile.lang]||"en-US";
+  const t=T[profile.lang]||T.en;
   recognition.onstart=()=>{isRecording=true;id("voice-btn").classList.add("recording");id("voice-btn").textContent="⏹";setStatus(t.listening);};
   recognition.onresult=e=>{id("question-input").value=e.results[0][0].transcript;autoResize(id("question-input"));};
   recognition.onend=()=>{isRecording=false;id("voice-btn").classList.remove("recording");id("voice-btn").textContent="🎤";setStatus(t.ready);};
@@ -918,129 +1029,118 @@ function toggleVoice() {
   recognition.start();
 }
 
-function speakText(text,btn,t) {
+function speakText(text,btn,t){
   if(currentUtterance){speechSynthesis.cancel();currentUtterance=null;btn.innerHTML=t.speak;return;}
-  const clean=text.replace(/###.+/g,"").replace(/\*\*/g,"").replace(/^- /gm,"").replace(/\n+/g,". ").trim();
+  const clean=text.replace(/###.+/g,"").replace(/\*\*/g,"").replace(/^-\s/gm,"").replace(/\[URGENCY:[^\]]+\]/g,"").replace(/\[TIMER:[^\]]+\]/g,"").replace(/\n+/g,". ").trim();
   const u=new SpeechSynthesisUtterance(clean);
   const lm={he:"he-IL",en:"en-US",es:"es-ES",fr:"fr-FR"};
-  u.lang=lm[profile.lang]||"he-IL"; u.rate=0.95;
+  u.lang=lm[profile.lang]||"en-US";u.rate=0.95;
   u.onend=()=>{currentUtterance=null;btn.innerHTML=t.speak;};
-  currentUtterance=u; btn.innerHTML=t.stop;
+  currentUtterance=u;btn.innerHTML=t.stop;
   speechSynthesis.speak(u);
 }
 
-function toggleDevMode(val) {
-  devMode=val;
-  profile.devMode=val;
+// ── DEV MODE ──────────────────────────────────────────────────────────────────
+function toggleDevMode(val){
+  devMode=val;profile.devMode=val;
   localStorage.setItem("rc_profile",JSON.stringify(profile));
-  const hint=id("dev-hint");
+  const t=T[profile.lang]||T.en;
+  id("dev-hint").textContent=val?t.devHintOn:t.devHintOff;
+  applyLang();
   if(val){
-    if(hint) hint.textContent="מופעל — כל הפיצ'רים פתוחים 🔓";
-    if(!id("dev-badge")){
-      const b=document.createElement("div");
-      b.id="dev-badge"; b.className="dev-badge";
-      b.textContent="🔧 מצב מפתח — כל הפיצ'רים פתוחים";
-      document.body.appendChild(b);
-    }
-  } else {
-    if(hint) hint.textContent="כבוי — המשתמש רואה גרסה חינמית רגילה";
-    const badge=id("dev-badge");
-    if(badge) badge.remove();
-  }
+    if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}
+  }else{const b=id("dev-badge");if(b)b.remove();}
 }
 
-function openModal(modalId){document.getElementById(modalId).classList.add('show');}
-function closeModal(modalId){document.getElementById(modalId).classList.remove('show');}
-function deleteAccount(){localStorage.removeItem('rc_profile');closeModal('delete-modal');closeProfile();location.reload();}
+// ── MODALS ────────────────────────────────────────────────────────────────────
+function openModal(modalId){document.getElementById(modalId).classList.add("show");}
+function closeModal(modalId){document.getElementById(modalId).classList.remove("show");}
+function deleteAccount(){localStorage.removeItem("rc_profile");closeModal("delete-modal");location.reload();}
 
-function getFriendlyError(msg,lang) {
-  const isHe=lang==='he';
-  if(msg.includes('401')||msg.includes('invalid_api_key')||msg.includes('authentication')) return isHe?'🔑 המפתח שהכנסת לא תקין. כנסי לפרופיל ועדכני אותו.':'🔑 Invalid API key. Go to Profile to update it.';
-  if(msg.includes('429')||msg.includes('rate_limit')) return isHe?'⏱ יותר מדי בקשות בו-זמנית. המתיני שנייה ונסי שוב.':'⏱ Too many requests. Wait a moment and try again.';
-  if(msg.includes('500')||msg.includes('overloaded')) return isHe?'🔧 השרת עמוס כרגע. נסי שוב בעוד כמה שניות.':'🔧 Server is busy right now. Try again in a few seconds.';
-  if(msg.includes('network')||msg.includes('fetch')||msg.includes('Failed')) return isHe?'📶 בעיית חיבור לאינטרנט. בדקי את הרשת ונסי שוב.':'📶 Connection error. Check your internet and try again.';
-  return isHe?`❌ משהו השתבש. נסי שוב בעוד רגע. (${msg})`:`❌ Something went wrong. Try again in a moment. (${msg})`;
+// ── ERRORS ────────────────────────────────────────────────────────────────────
+function getFriendlyError(msg,lang){
+  const isHe=lang==="he";
+  if(msg.includes("401")||msg.includes("invalid_api_key"))return isHe?"🔑 מפתח API לא תקין.":"🔑 Invalid API key.";
+  if(msg.includes("429")||msg.includes("rate_limit"))return isHe?"⏱ יותר מדי בקשות. נסי שוב.":"⏱ Too many requests. Try again.";
+  if(msg.includes("500")||msg.includes("overloaded"))return isHe?"🔧 השרת עמוס. נסי שוב.":"🔧 Server busy. Try again.";
+  return isHe?`❌ שגיאה. נסי שוב. (${msg})`:`❌ Error. Try again. (${msg})`;
 }
 
+// ── HELPERS ───────────────────────────────────────────────────────────────────
 function id(x){return document.getElementById(x);}
-function useSuggestion(q){id("question-input").value=q;sendQuestion();}
-function clearChat(){chatHistory=[];renderWelcome();}
+function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];renderWelcome();}
 function handleKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendQuestion();}}
-function autoResize(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,120)+"px";}
-function setLoading(val,txt){isLoading=val;id("send-btn").disabled=val;setStatus(txt||(val?"...":"✓"));id("status-dot").className="status-dot"+(val?" loading":"");}
+function autoResize(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,140)+"px";}
+function setLoading(val,txt){isLoading=val;id("send-btn").disabled=val;setStatus(txt);id("status-dot").className="status-dot"+(val?" loading":"");}
 function setStatus(text){id("status-text").textContent=text;}
 
+// ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
-  renderSetup("en");
-  const langSel=document.getElementById("setup-lang");
-  if(langSel) langSel.value="en";
   const saved=localStorage.getItem("rc_profile");
   if(saved){
     try{
       const p=JSON.parse(saved);
-      if(p.name!==undefined){
-        devMode=p.devMode||false;
+      if(p.lang){
         profile={...profile,...p};
-        renderSetup(profile.lang||"en");
-        if(langSel) langSel.value=profile.lang||"en";
-        const showGender=["he","es","fr"].includes(profile.lang);
-        const gr=document.querySelector(".gender-row");
-        const gl=document.getElementById("s-gender-lbl");
-        if(gr) gr.style.display=showGender?"flex":"none";
-        if(gl) gl.style.display=showGender?"block":"none";
-        initApp(); return;
+        devMode=profile.devMode||false;
+        id("lang-screen").style.display="none";
+        id("app").style.display="flex";
+        applyLang();
+        renderWelcome();
+        return;
       }
     }catch(e){}
   }
 });
 </script>
 
-<!-- PRIVACY POLICY MODAL -->
+<!-- UPGRADE MODAL -->
+<div class="modal-overlay" id="upgrade-modal">
+  <div class="modal-box">
+    <div class="modal-title"></div>
+    <div id="upgrade-subtitle" style="font-size:14px;color:var(--muted);margin-bottom:16px;"></div>
+    <div class="upgrade-modal-features"></div>
+    <button class="upgrade-cta" onclick="alert('Coming soon! 🚀');closeModal('upgrade-modal')"></button>
+    <div id="upgrade-note" style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px;"></div>
+    <button class="modal-close" onclick="closeModal('upgrade-modal')" id="upgrade-close">סגור / Close</button>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
 <div class="modal-overlay" id="privacy-modal">
   <div class="modal-box" dir="rtl">
     <div class="modal-title">🔒 מדיניות פרטיות</div>
-    <div class="modal-date">עודכן לאחרונה: 2025</div>
+    <div class="modal-date">2025</div>
     <div class="modal-section">מה אנחנו אוספים</div>
-    <div class="modal-text">RescueChef אוסף את המידע הבא: שם (אופציונלי), העדפות תזונה ואלרגיות, רמת מיומנות, שפה מועדפת, והיסטוריית שיחות עם הכלי. מפתח ה-API נשמר אצלך במכשיר בלבד.</div>
+    <div class="modal-text">שם (אופציונלי), העדפות תזונה ואלרגיות, רמת מיומנות, שפה. המידע נשמר על המכשיר שלך בלבד.</div>
     <div class="modal-section">מה אנחנו לא אוספים</div>
-    <div class="modal-text">אנחנו לא אוספים מידע פיננסי, לא שומרים סיסמאות, ולא מוכרים נתונים לצדדים שלישיים לעולם. תוכן השיחות עובר ישירות ל-Anthropic API ולא נשמר בשרתינו.</div>
-    <div class="modal-section">שימוש במידע</div>
-    <div class="modal-text">המידע משמש אך ורק להתאמת התשובות לפרופיל שלך. איננו משתמשים בנתונים לפרסום ממוקד.</div>
-    <div class="modal-section">שמירה ומחיקה</div>
-    <div class="modal-text">המידע נשמר בדפדפן שלך (LocalStorage). ניתן למחוק את כל המידע בכל עת דרך הגדרות הפרופיל. בקשות למחיקה מלאה: privacy@rescuechef.app</div>
+    <div class="modal-text">לא אוספים מידע פיננסי, לא שומרים סיסמאות, לא מוכרים נתונים. השיחות עוברות ישירות ל-Anthropic API.</div>
     <div class="modal-section">GDPR</div>
-    <div class="modal-text">משתמשים מאיחוד האירופי זכאים לזכויות מלאות לפי תקנות GDPR — כולל גישה, תיקון ומחיקה של נתונים.</div>
+    <div class="modal-text">משתמשים מה-EU זכאים לגישה, תיקון ומחיקה של נתונים. privacy@rescuechef.app</div>
     <button class="modal-close" onclick="closeModal('privacy-modal')">סגור</button>
   </div>
 </div>
 
-<!-- TERMS OF SERVICE MODAL -->
+<!-- TERMS MODAL -->
 <div class="modal-overlay" id="terms-modal">
   <div class="modal-box" dir="rtl">
     <div class="modal-title">📋 תנאי שימוש</div>
-    <div class="modal-date">עודכן לאחרונה: 2025</div>
-    <div class="modal-section">קבלת התנאים</div>
-    <div class="modal-text">השימוש ב-RescueChef מהווה הסכמה לתנאים אלה. אם אינך מסכים — אנא הפסק את השימוש.</div>
+    <div class="modal-date">2025</div>
     <div class="modal-section">השירות</div>
-    <div class="modal-text">RescueChef הוא כלי עזר קולינרי המבוסס על בינה מלאכותית. התשובות ניתנות לצורך הכוונה בלבד ואינן מהוות ייעוץ מקצועי מחייב. תמיד יש להפעיל שיקול דעת בטיחותי במטבח.</div>
-    <div class="modal-section">אחריות</div>
-    <div class="modal-text">RescueChef אינו אחראי לנזק שייגרם כתוצאה משימוש בהמלצות הכלי. האחריות על החלטות בישול נמצאת אצל המשתמש.</div>
+    <div class="modal-text">RescueChef הוא כלי עזר קולינרי מבוסס AI. התשובות לצורך הכוונה בלבד. תמיד יש להפעיל שיקול דעת בטיחותי במטבח.</div>
     <div class="modal-section">תשלומים</div>
-    <div class="modal-text">מנויים מחויבים חודשית. ניתן לבטל בכל עת. ביטול לא מזכה בהחזר עבור תקופה ששולמה כבר. מדיניות החזר של 7 ימים לחשבונות חדשים.</div>
-    <div class="modal-section">שינויים בשירות</div>
-    <div class="modal-text">RescueChef שומרת לעצמה את הזכות לשנות, לעדכן או להפסיק חלקים מהשירות עם הודעה מראש של 14 יום.</div>
+    <div class="modal-text">מנויים מחויבים חודשית. ביטול בכל עת. מדיניות החזר של 7 ימים לחשבונות חדשים.</div>
     <div class="modal-section">יצירת קשר</div>
-    <div class="modal-text">לכל שאלה: support@rescuechef.app</div>
+    <div class="modal-text">support@rescuechef.app</div>
     <button class="modal-close" onclick="closeModal('terms-modal')">סגור</button>
   </div>
 </div>
 
-<!-- DELETE ACCOUNT CONFIRM MODAL -->
+<!-- DELETE MODAL -->
 <div class="modal-overlay" id="delete-modal">
   <div class="modal-box" dir="rtl" style="max-width:400px;">
     <div class="modal-title" style="color:#EF4444;">🗑 מחיקת חשבון</div>
-    <div class="modal-text" style="margin-top:12px;">פעולה זו תמחק לצמיתות את כל המידע שלך — פרופיל, העדפות, היסטוריית שיחות. לא ניתן לשחזר.</div>
-    <div class="modal-text" style="margin-top:8px;">האם את בטוחה?</div>
+    <div class="modal-text" style="margin-top:12px;">פעולה זו תמחק לצמיתות את כל המידע שלך. לא ניתן לשחזר.</div>
     <div style="display:flex;gap:10px;margin-top:20px;">
       <button class="modal-close" style="flex:1;margin-top:0;" onclick="closeModal('delete-modal')">ביטול</button>
       <button style="flex:1;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);border-radius:8px;padding:10px;font-family:'Heebo',sans-serif;font-size:14px;color:#EF4444;cursor:pointer;font-weight:700;" onclick="deleteAccount()">כן, מחק הכל</button>
