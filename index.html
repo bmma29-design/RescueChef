@@ -212,6 +212,29 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .blur-btn{background:var(--accent);color:white;border:none;border-radius:8px;padding:8px 16px;
   font-family:"Heebo",sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
 
+/* FEATURE CARDS */
+.feature-cards{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.feature-card{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);}
+.feature-card-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;cursor:pointer;transition:background 0.2s;user-select:none;}
+.feature-card-header:hover{background:rgba(200,168,80,0.06);}
+.feature-card-left{display:flex;align-items:center;gap:10px;}
+.feature-card-icon{font-size:18px;}
+.feature-card-title{font-size:14px;font-weight:700;color:var(--text);}
+.feature-card-arrow{font-size:16px;color:var(--muted);transition:transform 0.25s;}
+.feature-card.open .feature-card-arrow{transform:rotate(90deg);}
+.feature-card-body{display:none;padding:0 16px 14px;font-size:14px;color:var(--soft);line-height:1.75;}
+.feature-card.open .feature-card-body{display:block;}
+.feature-card-invite{font-size:13px;color:var(--muted);font-style:italic;}
+.feature-invite-input{width:100%;margin-top:10px;background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:10px 13px;font-family:"Heebo",sans-serif;font-size:14px;
+  color:var(--text);resize:none;outline:none;min-height:60px;}
+.feature-invite-input:focus{border-color:var(--accent);}
+.feature-invite-btn{margin-top:8px;background:var(--accent);color:white;border:none;
+  border-radius:8px;padding:8px 16px;font-family:"Heebo",sans-serif;font-size:13px;
+  font-weight:700;cursor:pointer;width:100%;}
+.feature-invite-btn:hover{background:var(--accent2);}
+
 /* TIP BOX */
 .tip-box{background:#FAECE7;border-right:4px solid #D85A30;border-radius:0 8px 8px 0;
   padding:12px 16px;font-size:14px;line-height:1.7;color:#4A1B0C;margin-top:6px;}
@@ -429,8 +452,20 @@ const T={
     levels:[["beginner","🏠 בשלן ביתי"],["intermediate","👨‍🍳 טבח מתפתח"],["professional","⭐ שף מקצועי"]],
     diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
-    urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעל מהר",none:"לא ניתן להצלה"},
+    urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעלי מהר",none:"לא ניתן להצלה",advice:"ייעוץ מקצועי"},
     timerBtn:"⏱ התחל טיימר",timerStop:"⏹ עצור",
+    featureCards:{
+      science:{title:"🔬 המדע מאחורי הבעיה",invite:null},
+      prevention:{title:"💡 טיפ למניעה",invite:null},
+      zeroWaste:{title:"♻️ Zero Waste — מה עושים עם השאריות?",
+        invite:"נשארו לך שאריות מהתהליך? ספרי לי מה יש — ואציע לך מה אפשר לעשות איתם.",
+        placeholder:"למשל: נשארו לי חלמונים, שמנת חמוצה וקצת קמח...",
+        btn:"שלחי ואקבל רעיונות"},
+      substitution:{title:"🔄 צריכה תחליף למרכיב?",
+        invite:"אין לך משהו ברשימה? ספרי לי מה חסר — ואמצא לך פתרון מדויק עם כמויות.",
+        placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
+        btn:"שלחי ואקבל תחליף"}
+    },
     proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"שדרגי עכשיו — $3.99/חודש",note:"ביטול בכל עת · ללא התחייבות"},
     faqTitle:"שאלות נפוצות",
     faqs:[["למה לא לשאול Claude/ChatGPT רגיל?","Claude לא מכיר אותך. RescueChef מותאם לפתרון בעיות קולינריות מיידיות — עם אפשרות להתאמה אישית מלאה במנוי."],
@@ -462,8 +497,20 @@ const T={
     levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
-    urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued"},
+    urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued",advice:"Professional advice"},
     timerBtn:"⏱ Start timer",timerStop:"⏹ Stop",
+    featureCards:{
+      science:{title:"🔬 The Science Behind It",invite:null},
+      prevention:{title:"💡 Prevention Tip",invite:null},
+      zeroWaste:{title:"♻️ Zero Waste — What to do with leftovers?",
+        invite:"Got leftovers from the process? Tell me what you have — I'll suggest what you can make with them.",
+        placeholder:"e.g. I have leftover egg yolks, cream and some flour...",
+        btn:"Send and get ideas"},
+      substitution:{title:"🔄 Need a substitution?",
+        invite:"Missing an ingredient? Tell me what's missing — I'll find you an exact replacement with quantities.",
+        placeholder:"e.g. I don't have butter, what can I substitute and how much?",
+        btn:"Send and get a substitute"}
+    },
     proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"Upgrade now — $3.99/month",note:"Cancel anytime · No commitment"},
     faqTitle:"FAQ",
     faqs:[["Why not just use Claude/ChatGPT?","Claude doesn't know you. RescueChef is built for immediate kitchen problem-solving, with full personalization available in Pro."],
@@ -495,8 +542,20 @@ const T={
     levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
-    urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar"},
+    urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar",advice:"Consejo profesional"},
     timerBtn:"⏱ Iniciar temporizador",timerStop:"⏹ Parar",
+    featureCards:{
+      science:{title:"🔬 La Ciencia Detrás",invite:null},
+      prevention:{title:"💡 Consejo de Prevención",invite:null},
+      zeroWaste:{title:"♻️ Zero Waste — ¿Qué hacer con los restos?",
+        invite:"¿Te sobraron ingredientes? Dime qué tienes — te sugiero qué puedes hacer con ellos.",
+        placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",
+        btn:"Enviar y obtener ideas"},
+      substitution:{title:"🔄 ¿Necesitas una sustitución?",
+        invite:"¿Falta algún ingrediente? Dime qué falta — te encuentro un reemplazo exacto con cantidades.",
+        placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",
+        btn:"Enviar y obtener sustituto"}
+    },
     proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Mejorar ahora — $3.99/mes",note:"Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
     faqs:[["¿Por qué no usar Claude/ChatGPT?","Claude no te conoce. RescueChef está diseñado para resolver problemas de cocina al instante, con personalización completa en Pro."],
@@ -528,8 +587,20 @@ const T={
     levels:[["beginner","🏠 Amateur"],["intermediate","👨‍🍳 En Développement"],["professional","⭐ Professionnel"]],
     diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
-    urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable"},
+    urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable",advice:"Conseil professionnel"},
     timerBtn:"⏱ Démarrer minuteur",timerStop:"⏹ Arrêter",
+    featureCards:{
+      science:{title:"🔬 La Science Derrière",invite:null},
+      prevention:{title:"💡 Conseil de Prévention",invite:null},
+      zeroWaste:{title:"♻️ Zéro Déchet — Que faire avec les restes?",
+        invite:"Il vous reste des ingrédients? Dites-moi ce que vous avez — je suggère quoi en faire.",
+        placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème et un peu de farine...",
+        btn:"Envoyer et obtenir des idées"},
+      substitution:{title:"🔄 Besoin d'une substitution?",
+        invite:"Il manque un ingrédient? Dites-moi lequel — je trouve un remplacement exact avec les quantités.",
+        placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer et en quelle quantité?",
+        btn:"Envoyer et obtenir une substitution"}
+    },
     proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Améliorer — 3,99$/mois",note:"Annulez à tout moment"},
     faqTitle:"FAQ",
     faqs:[["Pourquoi pas Claude/ChatGPT?","Claude ne vous connaît pas. RescueChef est conçu pour résoudre les problèmes culinaires instantanément."],
@@ -739,20 +810,21 @@ function getSystemPrompt(){
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
 
-  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line — base this ONLY on the actual culinary situation, regardless of how much detail you will provide:
+  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line — base this ONLY on the actual culinary situation:
 [URGENCY:full] — if the dish can be fully rescued
 [URGENCY:partial] — if it's critical and needs immediate action but may be partially saved
 [URGENCY:none] — if it truly cannot be rescued and an alternative is needed
+[URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)
 IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" just because you are giving a short answer.`;
 
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
 
   const proContent=isPro?`
-After your immediate rescue steps, add these sections — keep each one SHORT and sharp (2-3 sentences max per section):
-### 🔬 המדע מאחורי הבעיה (The Science)
-Explain the molecular/chemical reason in 2-3 precise sentences. Mention specific mechanisms: emulsification breakdown, gluten relaxation, protein denaturation, starch gelatinization, fat crystallization etc. Be specific, not generic.
+ALWAYS add these two sections at the end, even if brief — they will appear in collapsible cards:
+### 🔬 The Science
+Explain the molecular/chemical reason in 2-3 precise sentences. Be specific: emulsification breakdown, gluten relaxation, protein denaturation, starch gelatinization, fat crystallization etc.
 
-### 💡 טיפ מניעה (Prevention)
+### 💡 Prevention
 One precise, professional tip to prevent this next time. Maximum 2 sentences.`:`
 Keep your answer SHORT — maximum 2-3 sentences for the rescue. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי, טיפ מניעה ועוד — שדרגי ל-Pro.":"For the full solution with scientific explanation and prevention tip — upgrade to Pro."}"`;
 
@@ -848,23 +920,29 @@ function addAIMessage(rawText,t){
 
   // Parse urgency tag
   let urgencyLevel="full";
-  let text=rawText.replace(/^\[URGENCY:(full|partial|none)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
+  let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
 
   // Build urgency bar
+  const isPro=devMode||profile.isPro;
   const urgencyData={
     full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
     partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
-    none:{fill:10,cls:"red",label:t.urgency?.none||"Cannot rescue"}
+    none:{fill:10,cls:"red",label:t.urgency?.none||"Cannot rescue"},
+    advice:{fill:0,cls:"green",label:t.urgency?.advice||"Professional advice",isAdvice:true}
   };
-  const ud=urgencyData[urgencyLevel];
-  const urgencyHTML=`<div class="urgency-bar">
-    <div class="urgency-label">📊</div>
-    <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
-    <div class="urgency-text ${ud.cls}">${ud.label}</div>
-  </div>`;
+  const ud=urgencyData[urgencyLevel]||urgencyData.full;
+  const urgencyHTML= ud.isAdvice
+    ? `<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);">
+        <div class="urgency-label">💡</div>
+        <div class="urgency-text green" style="flex:1;font-size:13px;">${ud.label}</div>
+      </div>`
+    : `<div class="urgency-bar">
+        <div class="urgency-label">📊</div>
+        <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
+        <div class="urgency-text ${ud.cls}">${ud.label}</div>
+      </div>`;
 
-  // Parse timers and replace with buttons
-  const isPro=devMode||profile.isPro;
+  // Parse timers
   const timerBtns=[];
   text=text.replace(/\[TIMER:(\d+):([^\]]+)\]/g,(m,secs,label)=>{
     const tid="timer_"+Date.now()+"_"+Math.random().toString(36).slice(2);
@@ -872,9 +950,24 @@ function addAIMessage(rawText,t){
     return `<span id="tw_${tid}"></span>`;
   });
 
-  // Format text
-  let formatted=formatAI(text,isPro);
+  // Extract science and prevention from text, keep main body
+  let scienceContent="";
+  let preventionContent="";
+  let mainText=text;
 
+  // Extract science section
+  mainText=mainText.replace(/(###\s*[🔬][^\n]*\n)([\s\S]*?)(?=###\s*[💡🚨🔍]|$)/g,(m,h,content)=>{
+    scienceContent=content.trim();
+    return "";
+  });
+  // Extract prevention section
+  mainText=mainText.replace(/(###\s*[💡][^\n]*\n)([\s\S]*?)(?=###|$)/g,(m,h,content)=>{
+    preventionContent=content.trim();
+    return "";
+  });
+
+  // Format main content
+  let formatted=formatSection(mainText);
   bubble.innerHTML=urgencyHTML+formatted;
 
   // Insert timer buttons
@@ -889,6 +982,62 @@ function addAIMessage(rawText,t){
     wrap.replaceWith(btn);
   });
 
+  // Build feature cards
+  const fc=t.featureCards||{};
+  const cards=[
+    {key:"science",content:scienceContent,hasContent:!!scienceContent},
+    {key:"prevention",content:preventionContent,hasContent:!!preventionContent},
+    {key:"zeroWaste",content:null,hasContent:false},
+    {key:"substitution",content:null,hasContent:false}
+  ];
+
+  const cardsDiv=document.createElement("div");
+  cardsDiv.className="feature-cards";
+
+  cards.forEach(({key,content,hasContent})=>{
+    const cardT=fc[key];
+    if(!cardT)return;
+    const card=document.createElement("div");
+    card.className="feature-card";
+
+    const header=document.createElement("div");
+    header.className="feature-card-header";
+    header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
+    header.onclick=()=>card.classList.toggle("open");
+
+    const body=document.createElement("div");
+    body.className="feature-card-body";
+
+    if(hasContent && content){
+      // Science or Prevention — show content with blur for free
+      if(isPro){
+        body.innerHTML=formatSection(content);
+      } else {
+        body.innerHTML=`<div class="blur-section">
+          <div class="blur-content">${formatSection(content)}</div>
+          <div class="blur-overlay">
+            <div class="blur-lock">🔒</div>
+            <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro":"Available for Pro subscribers"}</div>
+            <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
+            <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
+          </div>
+        </div>`;
+      }
+    } else if(cardT.invite){
+      // Zero Waste or Substitution — show invite input
+      const uid="fi_"+key+"_"+Date.now();
+      body.innerHTML=`<div class="feature-card-invite">${cardT.invite}</div>
+        <textarea class="feature-invite-input" id="${uid}" placeholder="${cardT.placeholder||""}"></textarea>
+        <button class="feature-invite-btn" onclick="sendFeatureQuestion('${uid}')">${cardT.btn}</button>`;
+    }
+
+    card.appendChild(header);
+    card.appendChild(body);
+    cardsDiv.appendChild(card);
+  });
+
+  bubble.appendChild(cardsDiv);
+
   // Speak button
   const speakBtn=document.createElement("button");
   speakBtn.className="speak-btn";
@@ -900,52 +1049,6 @@ function addAIMessage(rawText,t){
   msg.appendChild(bubble);
   container.appendChild(msg);
   container.scrollTop=container.scrollHeight;
-}
-
-function formatAI(text,isPro){
-  // Split on prevention tip section for blur
-  let parts=text.split(/(###\s*💡[^\n]*\n)/);
-  let html="";
-  for(let i=0;i<parts.length;i++){
-    const part=parts[i];
-    if(part.match(/###\s*💡/)){
-      // This is the prevention section header + content
-      const content=(parts[i]||"")+(parts[i+1]||"");
-      if(isPro){
-        html+=formatSection(content);
-      } else {
-        html+=`<div class="blur-section">
-          <div class="blur-content">${formatSection(content+(parts[i+1]||""))}</div>
-          <div class="blur-overlay">
-            <div class="blur-lock">🔒</div>
-            <div class="blur-title">${profile.lang==="he"?"הטיפ שימנע מזה לקרות שוב":"The tip that prevents this next time"}</div>
-            <div class="blur-price">${profile.lang==="he"?"זמין למנויי Pro — $3.99/חודש":"Available for Pro subscribers — $3.99/month"}</div>
-            <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
-          </div>
-        </div>`;
-        i++;
-      }
-      i++;
-    } else {
-      html+=formatSection(part);
-    }
-  }
-
-  // Also blur the science section for free users
-  if(!isPro){
-    html=html.replace(/(<h3>[^<]*🔬[^<]*<\/h3>)([\s\S]*?)(?=<h3>|$)/g,(m,h3,content)=>{
-      return `<div class="blur-section">
-        <div class="blur-content">${h3}${content}</div>
-        <div class="blur-overlay">
-          <div class="blur-lock">🔒</div>
-          <div class="blur-title">${profile.lang==="he"?"ההסבר המדעי המלא":"Full scientific explanation"}</div>
-          <div class="blur-price">${profile.lang==="he"?"זמין למנויי Pro — $3.99/חודש":"Available for Pro — $3.99/month"}</div>
-          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
-        </div>
-      </div>`;
-    });
-  }
-  return html;
 }
 
 function formatSection(text){
@@ -987,7 +1090,16 @@ function handleTimer(tid,totalSecs,label,btn,t){
   },1000);
 }
 
-// ── ADD MESSAGE (user / simple ai) ────────────────────────────────────────────
+function sendFeatureQuestion(inputId){
+  const el=document.getElementById(inputId);
+  if(!el)return;
+  const val=el.value.trim();
+  if(!val)return;
+  id("question-input").value=val;
+  sendQuestion();
+}
+
+
 function addMessage(role,text){
   const container=id("messages");
   const msg=document.createElement("div");
