@@ -820,13 +820,13 @@ IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" jus
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
 
   const proContent=isPro?`
-ALWAYS add these two sections at the end, even if brief — they will appear in collapsible cards:
+ALWAYS add these two sections at the end — they appear in collapsible cards for the user:
 ### 🔬 The Science
-Explain the molecular/chemical reason in 2-3 precise sentences. Be specific: emulsification breakdown, gluten relaxation, protein denaturation, starch gelatinization, fat crystallization etc.
+Explain the molecular/chemical reason in 2-3 precise sentences. For advice questions, explain the food science behind why the ingredient/technique works the way it does. Be specific.
 
 ### 💡 Prevention
-One precise, professional tip to prevent this next time. Maximum 2 sentences.`:`
-Keep your answer SHORT — maximum 2-3 sentences for the rescue. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי, טיפ מניעה ועוד — שדרגי ל-Pro.":"For the full solution with scientific explanation and prevention tip — upgrade to Pro."}"`;
+One precise tip: for emergency questions — how to prevent this next time. For advice questions — the most important professional tip for success with this dish/technique.`:`
+Keep your answer SHORT — maximum 2-3 sentences. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
 
   return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics. You think like a Michelin-starred chef and a food scientist combined.
 
@@ -841,16 +841,17 @@ ${urgencyInstruction}
 ${timerInstruction}
 
 CORE RULES:
-- NEVER give generic advice like "add flour to sticky dough" or "add water". Always analyze through professional variables: hydration percentage, gluten relaxation, ambient temperature, emulsion breakdown, fat percentage, starch types.
+- NEVER give generic advice. Always analyze through professional variables: hydration, gluten relaxation, temperature, emulsification, fat percentage, starch types.
 - Diagnose the ROOT CAUSE first, then give the precise fix.
-- Use proper culinary terminology (hydration, tempering, emulsification, aeration) but explain terms when needed.
-- If a dish cannot be rescued, say so honestly and give the best alternative use.
+- Use proper culinary terminology but explain terms when needed.
+- If a dish cannot be rescued, say so honestly and give the best alternative.
 - Pan size: always calculate using Area = π × r². Larger pan = THINNER layer.
-- NEVER ask for a photo or image. Instead, ask 1-2 precise diagnostic questions to narrow down the cause. Example: instead of "send me a photo", ask "האם הקצוות עלו אבל האמצע שקע? האם הבצק היה דביק לפני האפייה?" — like a doctor diagnosing without seeing the patient.
+- NEVER ask for a photo. Ask 1-2 precise diagnostic questions instead.
+- ALWAYS end your response with both ### 🔬 and ### 💡 sections, even for advice questions.
 
 RESPONSE STRUCTURE:
 ### 🔍 מה קרה / What happened
-[Root cause — be specific and scientific]
+[Root cause — specific and scientific]
 
 ### 🚨 איך מצילים עכשיו / How to rescue now
 [Clear numbered steps. Include [TIMER:X:label] before any timed step]
@@ -907,7 +908,7 @@ async function sendQuestion(){
   }
 }
 
-// ── ADD AI MESSAGE with urgency + timers + blur ────────────────────────────────
+// ── ADD AI MESSAGE with urgency + timers + feature cards ─────────────────────
 function addAIMessage(rawText,t){
   const container=id("messages");
   const msg=document.createElement("div");
@@ -922,8 +923,9 @@ function addAIMessage(rawText,t){
   let urgencyLevel="full";
   let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
 
-  // Build urgency bar
   const isPro=devMode||profile.isPro;
+
+  // Build urgency bar
   const urgencyData={
     full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
     partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
@@ -931,12 +933,12 @@ function addAIMessage(rawText,t){
     advice:{fill:0,cls:"green",label:t.urgency?.advice||"Professional advice",isAdvice:true}
   };
   const ud=urgencyData[urgencyLevel]||urgencyData.full;
-  const urgencyHTML= ud.isAdvice
-    ? `<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);">
+  const urgencyHTML=ud.isAdvice
+    ?`<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);">
         <div class="urgency-label">💡</div>
         <div class="urgency-text green" style="flex:1;font-size:13px;">${ud.label}</div>
       </div>`
-    : `<div class="urgency-bar">
+    :`<div class="urgency-bar">
         <div class="urgency-label">📊</div>
         <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
         <div class="urgency-text ${ud.cls}">${ud.label}</div>
@@ -950,24 +952,56 @@ function addAIMessage(rawText,t){
     return `<span id="tw_${tid}"></span>`;
   });
 
-  // Extract science and prevention from text, keep main body
+  // Split text into sections using ### markers
+  const sectionRegex=/^(###\s*.+)$/gm;
+  const sections=[];
+  let lastIndex=0;
+  let match;
+  const matches=[];
+  const re2=new RegExp(sectionRegex.source,"gm");
+  while((match=re2.exec(text))!==null) matches.push({index:match.index,title:match[0],end:match.index+match[0].length});
+
+  // Build sections map
+  let mainBody=text;
   let scienceContent="";
   let preventionContent="";
-  let mainText=text;
 
-  // Extract science section
-  mainText=mainText.replace(/(###\s*[🔬][^\n]*\n)([\s\S]*?)(?=###\s*[💡🚨🔍]|$)/g,(m,h,content)=>{
-    scienceContent=content.trim();
-    return "";
-  });
-  // Extract prevention section
-  mainText=mainText.replace(/(###\s*[💡][^\n]*\n)([\s\S]*?)(?=###|$)/g,(m,h,content)=>{
-    preventionContent=content.trim();
-    return "";
-  });
+  if(matches.length>0){
+    // Find science and prevention sections
+    for(let i=0;i<matches.length;i++){
+      const m=matches[i];
+      const nextIdx=i+1<matches.length?matches[i+1].index:text.length;
+      const sectionContent=text.slice(m.end,nextIdx).trim();
+      const titleText=m.title;
+      if(titleText.includes("🔬")){
+        scienceContent=sectionContent;
+      } else if(titleText.includes("💡")){
+        preventionContent=sectionContent;
+      }
+    }
+    // Main body = everything before first ### that's science or prevention
+    // Keep 🔍 and 🚨 sections in main body
+    let mainParts=[];
+    for(let i=0;i<matches.length;i++){
+      const m=matches[i];
+      const nextIdx=i+1<matches.length?matches[i+1].index:text.length;
+      const titleText=m.title;
+      if(!titleText.includes("🔬")&&!titleText.includes("💡")){
+        // Keep in main body
+        if(mainParts.length===0){
+          // Add everything before first section
+          mainParts.push(text.slice(0,m.index));
+        }
+        mainParts.push(text.slice(m.index,nextIdx));
+      } else if(mainParts.length===0){
+        mainParts.push(text.slice(0,m.index));
+      }
+    }
+    mainBody=mainParts.join("\n").trim();
+  }
 
-  // Format main content
-  let formatted=formatSection(mainText);
+  // Format and render main body
+  let formatted=formatSection(mainBody);
   bubble.innerHTML=urgencyHTML+formatted;
 
   // Insert timer buttons
@@ -984,57 +1018,17 @@ function addAIMessage(rawText,t){
 
   // Build feature cards
   const fc=t.featureCards||{};
-  const cards=[
-    {key:"science",content:scienceContent,hasContent:!!scienceContent},
-    {key:"prevention",content:preventionContent,hasContent:!!preventionContent},
-    {key:"zeroWaste",content:null,hasContent:false},
-    {key:"substitution",content:null,hasContent:false}
-  ];
-
   const cardsDiv=document.createElement("div");
   cardsDiv.className="feature-cards";
 
-  cards.forEach(({key,content,hasContent})=>{
-    const cardT=fc[key];
-    if(!cardT)return;
-    const card=document.createElement("div");
-    card.className="feature-card";
-
-    const header=document.createElement("div");
-    header.className="feature-card-header";
-    header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
-    header.onclick=()=>card.classList.toggle("open");
-
-    const body=document.createElement("div");
-    body.className="feature-card-body";
-
-    if(hasContent && content){
-      // Science or Prevention — show content with blur for free
-      if(isPro){
-        body.innerHTML=formatSection(content);
-      } else {
-        body.innerHTML=`<div class="blur-section">
-          <div class="blur-content">${formatSection(content)}</div>
-          <div class="blur-overlay">
-            <div class="blur-lock">🔒</div>
-            <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro":"Available for Pro subscribers"}</div>
-            <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
-            <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
-          </div>
-        </div>`;
-      }
-    } else if(cardT.invite){
-      // Zero Waste or Substitution — show invite input
-      const uid="fi_"+key+"_"+Date.now();
-      body.innerHTML=`<div class="feature-card-invite">${cardT.invite}</div>
-        <textarea class="feature-invite-input" id="${uid}" placeholder="${cardT.placeholder||""}"></textarea>
-        <button class="feature-invite-btn" onclick="sendFeatureQuestion('${uid}')">${cardT.btn}</button>`;
-    }
-
-    card.appendChild(header);
-    card.appendChild(body);
-    cardsDiv.appendChild(card);
-  });
+  // Science card
+  buildContentCard(cardsDiv,fc.science,scienceContent,isPro,"science");
+  // Prevention card
+  buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro,"prevention");
+  // Zero Waste card
+  buildInviteCard(cardsDiv,fc.zeroWaste,t);
+  // Substitution card
+  buildInviteCard(cardsDiv,fc.substitution,t);
 
   bubble.appendChild(cardsDiv);
 
@@ -1050,6 +1044,75 @@ function addAIMessage(rawText,t){
   container.appendChild(msg);
   container.scrollTop=container.scrollHeight;
 }
+
+function buildContentCard(container,cardT,content,isPro,key){
+  if(!cardT)return;
+  const card=document.createElement("div");
+  card.className="feature-card";
+  const header=document.createElement("div");
+  header.className="feature-card-header";
+  header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
+  header.onclick=()=>card.classList.toggle("open");
+  const body=document.createElement("div");
+  body.className="feature-card-body";
+  if(content){
+    if(isPro){
+      body.innerHTML=formatSection(content);
+    } else {
+      // Show blur for free users
+      body.innerHTML=`<div class="blur-section">
+        <div class="blur-content" style="min-height:60px;">${formatSection(content)}</div>
+        <div class="blur-overlay">
+          <div class="blur-lock">🔒</div>
+          <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
+          <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
+          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
+        </div>
+      </div>`;
+    }
+  } else {
+    // No content yet — show locked for free, placeholder for pro
+    if(isPro){
+      body.innerHTML=`<div style="font-size:13px;color:var(--muted);font-style:italic;">${profile.lang==="he"?"המידע יופיע בשאלה הבאה":"Will appear with the next response"}</div>`;
+    } else {
+      body.innerHTML=`<div class="blur-section">
+        <div class="blur-content" style="min-height:60px;"><p>████ ████████ ████ ███████ ████████ ███.</p></div>
+        <div class="blur-overlay">
+          <div class="blur-lock">🔒</div>
+          <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
+          <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
+          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
+        </div>
+      </div>`;
+    }
+  }
+  card.appendChild(header);
+  card.appendChild(body);
+  container.appendChild(card);
+}
+
+function buildInviteCard(container,cardT,t){
+  if(!cardT)return;
+  const card=document.createElement("div");
+  card.className="feature-card";
+  const header=document.createElement("div");
+  header.className="feature-card-header";
+  header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
+  header.onclick=()=>card.classList.toggle("open");
+  const body=document.createElement("div");
+  body.className="feature-card-body";
+  const uid="fi_"+Math.random().toString(36).slice(2);
+  const resultId="fr_"+Math.random().toString(36).slice(2);
+  body.innerHTML=`
+    <div class="feature-card-invite">${cardT.invite}</div>
+    <textarea class="feature-invite-input" id="${uid}" placeholder="${cardT.placeholder||""}"></textarea>
+    <button class="feature-invite-btn" id="fbtn_${uid}" onclick="sendInlineQuestion('${uid}','${resultId}',this,arguments[0])">${cardT.btn}</button>
+    <div id="${resultId}" style="margin-top:10px;font-size:14px;color:var(--text);line-height:1.75;display:none;"></div>`;
+  card.appendChild(header);
+  card.appendChild(body);
+  container.appendChild(card);
+}
+
 
 function formatSection(text){
   return text
@@ -1088,6 +1151,38 @@ function handleTimer(tid,totalSecs,label,btn,t){
       btn.innerHTML=`✅ ${label} — ${profile.lang==="he"?"הזמן הסתיים!":"Done!"}`;
     }
   },1000);
+}
+
+async function sendInlineQuestion(inputId,resultId,btn,e){
+  if(e)e.stopPropagation();
+  const input=document.getElementById(inputId);
+  const result=document.getElementById(resultId);
+  if(!input||!result)return;
+  const val=input.value.trim();
+  if(!val)return;
+  const t=T[profile.lang]||T.he;
+  const origText=btn.textContent;
+  btn.textContent=t.thinking||"...";
+  btn.disabled=true;
+  result.style.display="block";
+  result.innerHTML=`<div class="typing"><span></span><span></span><span></span></div>`;
+  try{
+    const msgs=[...chatHistory,{role:"user",content:val}];
+    const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:800,
+        system:getSystemPrompt(),messages:msgs})});
+    if(!res.ok)throw new Error("Server error");
+    const data=await res.json();
+    const answer=data.content[0].text.replace(/^\[URGENCY:[^\]]+\]\n?/m,"");
+    result.innerHTML=formatSection(answer);
+    input.value="";
+    input.style.display="none";
+    btn.style.display="none";
+  }catch(err){
+    result.innerHTML=`<span style="color:#E74C3C;">❌ ${profile.lang==="he"?"שגיאה, נסי שוב":"Error, try again"}</span>`;
+    btn.textContent=origText;
+    btn.disabled=false;
+  }
 }
 
 function sendFeatureQuestion(inputId){
