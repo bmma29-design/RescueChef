@@ -306,14 +306,14 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     <svg fill="#D4AF37" height="52px" width="52px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>
   </div>
   <div class="lang-title">RescueChef</div>
-  <div class="lang-sub" id="lang-sub">Choose your language / בחרי שפה</div>
-  <div class="lang-grid">
-    <button class="lang-btn" onclick="selectLang('he')">🇮🇱 עברית</button>
+  <div class="lang-sub">Choose your language</div>
+  <div class="lang-grid" id="lang-grid">
     <button class="lang-btn" onclick="selectLang('en')">🇺🇸 English</button>
     <button class="lang-btn" onclick="selectLang('es')">🇪🇸 Español</button>
     <button class="lang-btn" onclick="selectLang('fr')">🇫🇷 Français</button>
+    <button class="lang-btn" id="lang-he-btn" onclick="selectLang('he')" style="display:none;">🇮🇱 עברית</button>
   </div>
-  <button class="lang-continue" id="lang-continue" onclick="startWithLang()">המשך →</button>
+  <button class="lang-continue" id="lang-continue" onclick="startWithLang()">Continue →</button>
 </div>
 </div>
 
@@ -636,18 +636,23 @@ function renderWelcome(){
     </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
     <div class="pro-card" style="margin-top:28px;">
-      <div class="pro-card-header">
-        <div class="pro-card-title">${t.proCard.title}</div>
-        <div><div class="pro-card-amount">$3.99</div><div class="pro-card-period">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"par mois":profile.lang==="es"?"por mes":"/month"}</div></div>
+      <div class="pro-card-header" style="justify-content:center;">
+        <div class="pro-card-title" style="text-align:center;font-size:20px;">${t.proCard.title}</div>
       </div>
       <div class="pro-card-features">${proFeaturesHtml}</div>
-      <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
-      <div class="pro-card-note">${t.proCard.note}</div>
+      <div class="faq-section" style="margin-top:14px;max-width:100%;">
+        <div class="faq-title">${t.faqTitle}</div>
+        ${faqHtml}
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border2);text-align:center;">
+        <div style="margin-bottom:12px;">
+          <span style="font-size:28px;font-weight:900;color:var(--accent);">$3.99</span>
+          <span style="font-size:13px;color:var(--muted);margin-right:4px;">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"/ mois":profile.lang==="es"?"/ mes":"/ month"}</span>
+        </div>
+        <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
+        <div class="pro-card-note">${t.proCard.note}</div>
+      </div>
     </div>
-    <div class="faq-section">
-      <div class="faq-title">${t.faqTitle}</div>
-      ${faqHtml}
-    </div>`;
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
   window._exQ=t.exampleQ;
@@ -1076,6 +1081,28 @@ function setStatus(text){id("status-text").textContent=text;}
 
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
+  // Detect country via server IP detection
+  fetch("/api/country")
+    .then(r=>r.json())
+    .then(data=>{
+      const isIsrael = data.country === "IL";
+      const heBtn=id("lang-he-btn");
+      const grid=id("lang-grid");
+      if(isIsrael){
+        if(heBtn)heBtn.style.display="block";
+        if(grid)grid.style.gridTemplateColumns="1fr 1fr";
+      } else {
+        if(heBtn)heBtn.style.display="none";
+        if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";
+      }
+    })
+    .catch(()=>{
+      // If detection fails, show all languages
+      const heBtn=id("lang-he-btn");
+      const grid=id("lang-grid");
+      if(heBtn)heBtn.style.display="block";
+      if(grid)grid.style.gridTemplateColumns="1fr 1fr";
+    });
   const saved=localStorage.getItem("rc_profile");
   if(saved){
     try{
