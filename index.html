@@ -163,12 +163,12 @@ html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
   justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;}
 .message.user .msg-avatar{background:#CF6D1A;color:white;}
 .message.ai .msg-avatar{background:#2D5A42;}
-.msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:15px;line-height:1.85;}
-.message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;}
-html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;}
+.msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:15px;line-height:1.85;unicode-bidi:plaintext;}
+.message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;direction:rtl;}
+html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;direction:ltr;}
 .message.ai .msg-bubble{background:var(--surface);border:1.5px solid var(--border);
-  color:var(--text);border-top-right-radius:4px;box-shadow:var(--shadow);}
-html[dir="ltr"] .message.ai .msg-bubble{border-top-right-radius:var(--radius);border-top-left-radius:4px;}
+  color:var(--text);border-top-right-radius:4px;box-shadow:var(--shadow);direction:rtl;}
+html[dir="ltr"] .message.ai .msg-bubble{border-top-right-radius:var(--radius);border-top-left-radius:4px;direction:ltr;}
 .msg-bubble h3{font-size:13px;font-weight:700;color:var(--accent);margin:13px 0 5px;
   padding-top:10px;border-top:1px solid var(--border2);}
 .msg-bubble h3:first-child{margin-top:0;padding-top:0;border-top:none;}
@@ -458,13 +458,13 @@ const T={
       science:{title:"🔬 המדע מאחורי הבעיה",invite:null},
       prevention:{title:"💡 טיפ למניעה",invite:null},
       zeroWaste:{title:"♻️ Zero Waste — מה עושים עם השאריות?",
-        invite:"נשארו לך שאריות מהתהליך? ספרי לי מה יש — ואציע לך מה אפשר לעשות איתם.",
+        invite:"יש שאריות? אל תזרקי — ספרי לי מה יש ואחשוב איתך מה אפשר לעשות.",
         placeholder:"למשל: נשארו לי חלמונים, שמנת חמוצה וקצת קמח...",
-        btn:"שלחי ואקבל רעיונות"},
+        btn:"קבלי רעיונות"},
       substitution:{title:"🔄 צריכה תחליף למרכיב?",
-        invite:"אין לך משהו ברשימה? ספרי לי מה חסר — ואמצא לך פתרון מדויק עם כמויות.",
+        invite:"חסר מרכיב? ספרי לי מה — ואמצא לך תחליף מדויק עם כמויות.",
         placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
-        btn:"שלחי ואקבל תחליף"}
+        btn:"קבלי תחליף"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"שדרגי עכשיו — $3.99/חודש",note:"ביטול בכל עת · ללא התחייבות"},
     faqTitle:"שאלות נפוצות",
@@ -503,13 +503,13 @@ const T={
       science:{title:"🔬 The Science Behind It",invite:null},
       prevention:{title:"💡 Prevention Tip",invite:null},
       zeroWaste:{title:"♻️ Zero Waste — What to do with leftovers?",
-        invite:"Got leftovers from the process? Tell me what you have — I'll suggest what you can make with them.",
+        invite:"Got leftovers? Don't toss them — tell me what you have and I'll think with you.",
         placeholder:"e.g. I have leftover egg yolks, cream and some flour...",
-        btn:"Send and get ideas"},
+        btn:"Get ideas"},
       substitution:{title:"🔄 Need a substitution?",
-        invite:"Missing an ingredient? Tell me what's missing — I'll find you an exact replacement with quantities.",
+        invite:"Missing an ingredient? Tell me what — and I'll find you an exact replacement.",
         placeholder:"e.g. I don't have butter, what can I substitute and how much?",
-        btn:"Send and get a substitute"}
+        btn:"Get a substitute"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"Upgrade now — $3.99/month",note:"Cancel anytime · No commitment"},
     faqTitle:"FAQ",
@@ -548,13 +548,13 @@ const T={
       science:{title:"🔬 La Ciencia Detrás",invite:null},
       prevention:{title:"💡 Consejo de Prevención",invite:null},
       zeroWaste:{title:"♻️ Zero Waste — ¿Qué hacer con los restos?",
-        invite:"¿Te sobraron ingredientes? Dime qué tienes — te sugiero qué puedes hacer con ellos.",
+        invite:"¿Sobró algo? No lo tires — dime qué tienes y pensamos juntos.",
         placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",
-        btn:"Enviar y obtener ideas"},
+        btn:"Obtener ideas"},
       substitution:{title:"🔄 ¿Necesitas una sustitución?",
-        invite:"¿Falta algún ingrediente? Dime qué falta — te encuentro un reemplazo exacto con cantidades.",
+        invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",
         placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",
-        btn:"Enviar y obtener sustituto"}
+        btn:"Obtener sustituto"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Mejorar ahora — $3.99/mes",note:"Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
@@ -593,13 +593,13 @@ const T={
       science:{title:"🔬 La Science Derrière",invite:null},
       prevention:{title:"💡 Conseil de Prévention",invite:null},
       zeroWaste:{title:"♻️ Zéro Déchet — Que faire avec les restes?",
-        invite:"Il vous reste des ingrédients? Dites-moi ce que vous avez — je suggère quoi en faire.",
+        invite:"Des restes? Ne jetez pas — dites-moi ce que vous avez et on réfléchit ensemble.",
         placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème et un peu de farine...",
-        btn:"Envoyer et obtenir des idées"},
+        btn:"Obtenir des idées"},
       substitution:{title:"🔄 Besoin d'une substitution?",
-        invite:"Il manque un ingrédient? Dites-moi lequel — je trouve un remplacement exact avec les quantités.",
+        invite:"Il manque un ingrédient? Dites-moi lequel — je trouve le remplacement exact.",
         placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer et en quelle quantité?",
-        btn:"Envoyer et obtenir une substitution"}
+        btn:"Obtenir une substitution"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Améliorer — 3,99$/mois",note:"Annulez à tout moment"},
     faqTitle:"FAQ",
@@ -805,7 +805,7 @@ function getSystemPrompt(){
     professional:{he:"שף מקצועי — טרמינולוגיה מקצועית מלאה",en:"professional chef — full professional terminology",es:"chef profesional — terminología completa",fr:"chef professionnel — terminologie complète"}
   };
   const level=levelMap[profile.level]||levelMap.intermediate;
-  const levelText=isPro?(level[profile.lang]||level.en):"general home cook";
+  const levelText=isPro?(level[profile.lang]||level.en):"home cook beginner — use very simple everyday language, avoid ALL professional culinary terms";
   const genderNote=isPro&&profile.lang==="he"?(profile.gender==="f"?"פנה תמיד בלשון נקבה: ערבבי, הוסיפי, בדקי.":"פנה תמיד בלשון זכר: ערבב, הוסף, בדוק."):"";
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
@@ -820,15 +820,15 @@ IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" jus
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
 
   const proContent=isPro?`
-ALWAYS add these two sections at the end — they appear in collapsible cards for the user:
+ALWAYS end with these two sections — keep them VERY SHORT:
 ### 🔬 The Science
-Explain the molecular/chemical reason in 2-3 precise sentences. For advice questions, explain the food science behind why the ingredient/technique works the way it does. Be specific.
+Maximum 2 sentences. The core molecular/chemical reason. Be specific but brief.
 
 ### 💡 Prevention
-One precise tip: for emergency questions — how to prevent this next time. For advice questions — the most important professional tip for success with this dish/technique.`:`
-Keep your answer SHORT — maximum 2-3 sentences. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
+ONE sentence only. The single most important tip to prevent this next time.`:`
+ONE answer only, 2-3 sentences max. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
 
-  return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics. You think like a Michelin-starred chef and a food scientist combined.
+  return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics.
 
 Respond ONLY in ${langName}.
 User level: ${levelText}.
@@ -841,20 +841,20 @@ ${urgencyInstruction}
 ${timerInstruction}
 
 CORE RULES:
-- NEVER give generic advice. Always analyze through professional variables: hydration, gluten relaxation, temperature, emulsification, fat percentage, starch types.
-- Diagnose the ROOT CAUSE first, then give the precise fix.
-- Use proper culinary terminology but explain terms when needed.
-- If a dish cannot be rescued, say so honestly and give the best alternative.
-- Pan size: always calculate using Area = π × r². Larger pan = THINNER layer.
+- NEVER give generic advice. Analyze through: hydration, gluten relaxation, temperature, emulsification, fat percentage, starch types.
+- Diagnose ROOT CAUSE first, then give precise fix.
+- Use culinary terminology but explain terms when needed.
+- If dish cannot be rescued, say so and give best alternative.
+- Pan size: Area = π × r². Larger pan = THINNER layer.
 - NEVER ask for a photo. Ask 1-2 precise diagnostic questions instead.
-- ALWAYS end your response with both ### 🔬 and ### 💡 sections, even for advice questions.
+- BE CONCISE. Every section must be SHORT and focused.
 
-RESPONSE STRUCTURE:
+RESPONSE STRUCTURE — keep each section brief:
 ### 🔍 מה קרה / What happened
-[Root cause — specific and scientific]
+[1-2 sentences: root cause]
 
 ### 🚨 איך מצילים עכשיו / How to rescue now
-[Clear numbered steps. Include [TIMER:X:label] before any timed step]
+[Numbered steps, max 4-5 steps. Include [TIMER:X:label] before timed steps]
 ${proContent}`;
 }
 
@@ -952,53 +952,32 @@ function addAIMessage(rawText,t){
     return `<span id="tw_${tid}"></span>`;
   });
 
-  // Split text into sections using ### markers
-  const sectionRegex=/^(###\s*.+)$/gm;
-  const sections=[];
-  let lastIndex=0;
-  let match;
-  const matches=[];
-  const re2=new RegExp(sectionRegex.source,"gm");
-  while((match=re2.exec(text))!==null) matches.push({index:match.index,title:match[0],end:match.index+match[0].length});
-
-  // Build sections map
+  // Extract science and prevention sections robustly
   let mainBody=text;
   let scienceContent="";
   let preventionContent="";
 
-  if(matches.length>0){
-    // Find science and prevention sections
-    for(let i=0;i<matches.length;i++){
-      const m=matches[i];
-      const nextIdx=i+1<matches.length?matches[i+1].index:text.length;
-      const sectionContent=text.slice(m.end,nextIdx).trim();
-      const titleText=m.title;
-      if(titleText.includes("🔬")){
-        scienceContent=sectionContent;
-      } else if(titleText.includes("💡")){
-        preventionContent=sectionContent;
-      }
+  // Split on ### headers
+  const parts=text.split(/(?=^###\s)/m);
+  const mainParts=[];
+
+  parts.forEach(part=>{
+    if(!part.trim())return;
+    // Check if this is a science or prevention section
+    const firstLine=part.split("\n")[0];
+    const isScience=firstLine.includes("🔬")||/science|מדע|ciencia|science/i.test(firstLine);
+    const isPrevention=firstLine.includes("💡")||/prevention|מניע|prevenci|prévention/i.test(firstLine);
+    if(isScience){
+      // Remove the header line, keep content
+      scienceContent=part.replace(/^###[^\n]*\n/,"").trim();
+    } else if(isPrevention){
+      preventionContent=part.replace(/^###[^\n]*\n/,"").trim();
+    } else {
+      mainParts.push(part);
     }
-    // Main body = everything before first ### that's science or prevention
-    // Keep 🔍 and 🚨 sections in main body
-    let mainParts=[];
-    for(let i=0;i<matches.length;i++){
-      const m=matches[i];
-      const nextIdx=i+1<matches.length?matches[i+1].index:text.length;
-      const titleText=m.title;
-      if(!titleText.includes("🔬")&&!titleText.includes("💡")){
-        // Keep in main body
-        if(mainParts.length===0){
-          // Add everything before first section
-          mainParts.push(text.slice(0,m.index));
-        }
-        mainParts.push(text.slice(m.index,nextIdx));
-      } else if(mainParts.length===0){
-        mainParts.push(text.slice(0,m.index));
-      }
-    }
-    mainBody=mainParts.join("\n").trim();
-  }
+  });
+
+  mainBody=mainParts.join("").trim();
 
   // Format and render main body
   let formatted=formatSection(mainBody);
