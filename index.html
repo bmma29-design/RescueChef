@@ -372,7 +372,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 
     <div id="pro-profile-section">
       <div class="panel-section">
-        <span class="pro-badge">PRO</span><span id="p-sec-personal">Personal</span>
+        <span id="p-sec-personal">Personal</span>
       </div>
       <div id="pro-profile-locked" style="background:rgba(200,168,80,0.06);border:1px dashed var(--border);border-radius:10px;padding:14px;text-align:center;margin-bottom:12px;">
         <div style="font-size:22px;margin-bottom:6px;">🔒</div>
@@ -466,7 +466,7 @@ const T={
         placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
         btn:"קבלי תחליף"}
     },
-    proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"שדרגי עכשיו — $3.99/חודש",note:"ביטול בכל עת · ללא התחייבות"},
+    proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"בחרי תכנית",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
     faqTitle:"שאלות נפוצות",
     faqs:[["למה לא לשאול Claude/ChatGPT רגיל?","Claude לא מכיר אותך. RescueChef מותאם לפתרון בעיות קולינריות מיידיות — עם אפשרות להתאמה אישית מלאה במנוי."],
           ["מה ההבדל בין חינם למנוי?","חינם = פתרון מיידי קצר. מנוי = הסבר מדעי מלא, תחליפים, Zero Waste, ופרופיל אישי שמותאם לך."],
@@ -477,7 +477,7 @@ const T={
                 {icon:"👤",title:"פרופיל אישי",desc:"תשובות מותאמות לרמה, תזונה ואלרגיות"},
                 {icon:"🔄",title:"תחליפי מרכיבים",desc:"כמויות מדויקות והשפעה על התוצאה"},
                 {icon:"♻️",title:"Zero Waste",desc:"מה לעשות עם כל מה שנשאר"}],
-      cta:"שדרגי עכשיו — $3.99 בלבד לחודש",note:"ביטול בכל עת"},
+      cta:"שדרגי ל-Pro",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
     legalText:`בשימוש בכלי את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span>.`,
   },
   en:{dir:"ltr",tagline:"Your personal sous-chef",profileBtn:"😊 Profile",clearBtn:"🗑 Clear",
@@ -511,7 +511,7 @@ const T={
         placeholder:"e.g. I don't have butter, what can I substitute and how much?",
         btn:"Get a substitute"}
     },
-    proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"Upgrade now — $3.99/month",note:"Cancel anytime · No commitment"},
+    proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"View Plans",note:"$4.99/mo · $39.99/yr (Save 33%) · Cancel anytime"},
     faqTitle:"FAQ",
     faqs:[["Why not just use Claude/ChatGPT?","Claude doesn't know you. RescueChef is built for immediate kitchen problem-solving, with full personalization available in Pro."],
           ["Free vs Pro?","Free = short immediate fix. Pro = full scientific explanation, substitutions, Zero Waste, and a personal profile."],
@@ -522,7 +522,7 @@ const T={
                 {icon:"👤",title:"Personal profile",desc:"Answers tailored to your level, diet & allergies"},
                 {icon:"🔄",title:"Smart substitutions",desc:"Exact amounts and impact on results"},
                 {icon:"♻️",title:"Zero Waste",desc:"What to do with everything that's left"}],
-      cta:"Upgrade now — just $3.99/month",note:"Cancel anytime"},
+      cta:"Upgrade to Pro",note:"$4.99/mo · $39.99/yr (Save 33%) · Cancel anytime"},
     legalText:`By using this tool you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.`,
   },
   es:{dir:"ltr",tagline:"Tu sous-chef personal",profileBtn:"😊 Perfil",clearBtn:"🗑 Limpiar",
@@ -556,7 +556,7 @@ const T={
         placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",
         btn:"Obtener sustituto"}
     },
-    proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Mejorar ahora — $3.99/mes",note:"Cancela cuando quieras"},
+    proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Ver planes",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
     faqs:[["¿Por qué no usar Claude/ChatGPT?","Claude no te conoce. RescueChef está diseñado para resolver problemas de cocina al instante, con personalización completa en Pro."],
           ["¿Gratis vs Pro?","Gratis = solución corta. Pro = explicación científica, sustituciones, Zero Waste y perfil personal."],
@@ -567,7 +567,7 @@ const T={
                 {icon:"👤",title:"Perfil personal",desc:"Respuestas adaptadas a ti"},
                 {icon:"🔄",title:"Sustituciones",desc:"Cantidades exactas e impacto"},
                 {icon:"♻️",title:"Zero Waste",desc:"Qué hacer con lo que sobra"}],
-      cta:"Mejorar ahora — solo $3.99/mes",note:"Cancela cuando quieras"},
+      cta:"Mejorar a Pro",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     legalText:`Al usar esta herramienta aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos</span> y <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.`,
   },
   fr:{dir:"ltr",tagline:"Votre sous-chef personnel",profileBtn:"😊 Profil",clearBtn:"🗑 Effacer",
@@ -601,7 +601,7 @@ const T={
         placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer et en quelle quantité?",
         btn:"Obtenir une substitution"}
     },
-    proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Améliorer — 3,99$/mois",note:"Annulez à tout moment"},
+    proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Voir les plans",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     faqTitle:"FAQ",
     faqs:[["Pourquoi pas Claude/ChatGPT?","Claude ne vous connaît pas. RescueChef est conçu pour résoudre les problèmes culinaires instantanément."],
           ["Gratuit vs Pro?","Gratuit = solution courte. Pro = explication scientifique, substitutions, Zéro Déchet et profil personnel."],
@@ -612,7 +612,7 @@ const T={
                 {icon:"👤",title:"Profil personnel",desc:"Réponses adaptées à vous"},
                 {icon:"🔄",title:"Substitutions",desc:"Quantités exactes et impact"},
                 {icon:"♻️",title:"Zéro Déchet",desc:"Que faire avec les restes"}],
-      cta:"Améliorer — seulement 3,99$/mois",note:"Annulez à tout moment"},
+      cta:"Passer à Pro",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     legalText:`En utilisant cet outil vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.`,
   }
 };
@@ -677,13 +677,12 @@ function applyLang(){
   if(id("p-gender-m")) id("p-gender-m").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👨 זכר":"👨"):("👨");
   // show/hide pro fields
   const isPro=devMode||profile.isPro;
-  id("pro-profile-locked").style.display=isPro?"none":"block";
-  id("pro-profile-fields").style.display=isPro?"block":"none";
-  if(isPro){
-    id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
-    id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
-    id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleAllergy(this)">${l}</div>`).join("");
-  }
+  // Profile fields always visible and populated for all users
+  id("pro-profile-locked").style.display="none";
+  id("pro-profile-fields").style.display="block";
+  id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+  id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+  id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleAllergy(this)">${l}</div>`).join("");
 }
 
 function onProfileLangChange(lang){
@@ -719,18 +718,25 @@ function renderWelcome(){
         <div class="pro-card-title" style="text-align:center;font-size:20px;">${t.proCard.title}</div>
       </div>
       <div class="pro-card-features">${proFeaturesHtml}</div>
-      <div class="faq-section" style="margin-top:14px;max-width:100%;">
-        <div class="faq-title">${t.faqTitle}</div>
-        ${faqHtml}
-      </div>
       <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border2);text-align:center;">
-        <div style="margin-bottom:12px;">
-          <span style="font-size:28px;font-weight:900;color:var(--accent);">$3.99</span>
-          <span style="font-size:13px;color:var(--muted);margin-right:4px;">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"/ mois":profile.lang==="es"?"/ mes":"/ month"}</span>
+        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:120px;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px 10px;">
+            <div style="font-size:22px;font-weight:900;color:var(--accent);">$4.99</div>
+            <div style="font-size:11px;color:var(--muted);">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"/ mois":profile.lang==="es"?"/ mes":"/ month"}</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:rgba(200,168,80,0.08);border:2px solid var(--accent);border-radius:12px;padding:12px 10px;position:relative;">
+            <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">${profile.lang==="he"?"הכי משתלם":"Best Value"}</div>
+            <div style="font-size:22px;font-weight:900;color:var(--accent);">$39.99</div>
+            <div style="font-size:11px;color:var(--muted);">${profile.lang==="he"?"לשנה (33% חיסכון)":profile.lang==="fr"?"/ an (−33%)":profile.lang==="es"?"/ año (−33%)":"/ year (Save 33%)"}</div>
+          </div>
         </div>
         <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
-        <div class="pro-card-note">${t.proCard.note}</div>
+        <div class="pro-card-note">${profile.lang==="he"?"ביטול בכל עת · ללא התחייבות":"Cancel anytime · No commitment"}</div>
       </div>
+    </div>
+    <div class="faq-section" style="margin-top:20px;">
+      <div class="faq-title">${t.faqTitle}</div>
+      ${faqHtml}
     </div>`;
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
@@ -753,12 +759,11 @@ function openProfile(){
   const toggle=id("dev-mode-toggle");
   if(toggle){toggle.checked=devMode;}
   id("p-lang").value=profile.lang;
-  if(devMode||profile.isPro){
-    id("p-level").value=profile.level;
-    id("p-diet").value=profile.diet[0]||"regular";
-    id("p-gender-f").classList.toggle("active",profile.gender==="f");
-    id("p-gender-m").classList.toggle("active",profile.gender==="m");
-  }
+  id("p-level").value=profile.level;
+  id("p-diet").value=profile.diet[0]||"regular";
+  id("p-gender-f").classList.toggle("active",profile.gender==="f");
+  id("p-gender-m").classList.toggle("active",profile.gender==="m");
+  if(id("p-name"))id("p-name").value=profile.name||"";
   id("profile-panel").classList.add("open");
   id("overlay").classList.add("show");
 }
@@ -783,11 +788,11 @@ function toggleAllergy(el){
 
 function saveProfile(){
   profile.lang=id("p-lang").value;
-  if(devMode||profile.isPro){
-    if(id("p-name"))profile.name=id("p-name").value.trim();
-    if(id("p-level"))profile.level=id("p-level").value;
-    if(id("p-diet"))profile.diet=[id("p-diet").value];
-  }
+  if(id("p-name"))profile.name=id("p-name").value.trim();
+  if(id("p-level"))profile.level=id("p-level").value;
+  if(id("p-diet"))profile.diet=[id("p-diet").value];
+  if(id("p-gender-f")&&id("p-gender-f").classList.contains("active"))profile.gender="f";
+  else if(id("p-gender-m")&&id("p-gender-m").classList.contains("active"))profile.gender="m";
   localStorage.setItem("rc_profile",JSON.stringify(profile));
   closeProfile();
   applyLang();
@@ -805,7 +810,7 @@ function getSystemPrompt(){
     professional:{he:"שף מקצועי — טרמינולוגיה מקצועית מלאה",en:"professional chef — full professional terminology",es:"chef profesional — terminología completa",fr:"chef professionnel — terminologie complète"}
   };
   const level=levelMap[profile.level]||levelMap.intermediate;
-  const levelText=isPro?(level[profile.lang]||level.en):"home cook beginner — use very simple everyday language, avoid ALL professional culinary terms";
+  const levelText=level[profile.lang]||level.en;
   const genderNote=isPro&&profile.lang==="he"?(profile.gender==="f"?"פנה תמיד בלשון נקבה: ערבבי, הוסיפי, בדקי.":"פנה תמיד בלשון זכר: ערבב, הוסף, בדוק."):"";
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
@@ -846,7 +851,7 @@ CORE RULES:
 - Use culinary terminology but explain terms when needed.
 - If dish cannot be rescued, say so and give best alternative.
 - Pan size: Area = π × r². Larger pan = THINNER layer.
-- NEVER ask for a photo. Ask 1-2 precise diagnostic questions instead.
+- NEVER assume the method or ingredients used. When the solution depends on HOW the user cooked or WHAT they used — ask ONE focused clarifying question first, then give the precise answer. Example: onion burned → ask "What did you cook it in — oil, butter, or just water?" before suggesting a fix. Dough stuck → ask "What ratio of water to flour did you use?" One question only, then answer.
 - BE CONCISE. Every section must be SHORT and focused.
 
 RESPONSE STRUCTURE — keep each section brief:
@@ -892,7 +897,7 @@ async function sendQuestion(){
   const typingEl=addTyping();
   try{
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:devMode?1500:600,
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:(devMode||profile.isPro)?1500:600,
         system:getSystemPrompt(),messages:chatHistory})});
     if(!res.ok){const err=await res.json();throw new Error(err.error?.message||"Server error");}
     const data=await res.json();
@@ -1044,7 +1049,7 @@ function buildContentCard(container,cardT,content,isPro,key){
         <div class="blur-overlay">
           <div class="blur-lock">🔒</div>
           <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
-          <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
+          <div class="blur-price">$4.99/mo</div>
           <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
         </div>
       </div>`;
@@ -1059,7 +1064,7 @@ function buildContentCard(container,cardT,content,isPro,key){
         <div class="blur-overlay">
           <div class="blur-lock">🔒</div>
           <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
-          <div class="blur-price">$3.99/${profile.lang==="he"?"חודש":"month"}</div>
+          <div class="blur-price">$4.99/mo</div>
           <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
         </div>
       </div>`;
@@ -1140,6 +1145,29 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   const val=input.value.trim();
   if(!val)return;
   const t=T[profile.lang]||T.he;
+
+  // Daily limit check - same as sendQuestion
+  if(!devMode){
+    const today=new Date().toDateString();
+    const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
+    const count=stored.date===today?(stored.count||0):0;
+    const FREE_LIMIT=3;
+    if(count>=FREE_LIMIT){
+      const limitMsgs={
+        he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום. שדרגי ל-Pro להמשך.`,
+        en:`🔒 You've reached your ${FREE_LIMIT} free questions for today. Upgrade to Pro.`,
+        es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy. Mejora a Pro.`,
+        fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui. Passez à Pro.`
+      };
+      result.style.display="block";
+      result.innerHTML=`<span style="color:#E74C3C;">${limitMsgs[profile.lang]||limitMsgs.en}</span>`;
+      btn.disabled=true;
+      return;
+    }
+    // Increment counter
+    localStorage.setItem("rc_daily",JSON.stringify({date:today,count:count+1}));
+  }
+
   const origText=btn.textContent;
   btn.textContent=t.thinking||"...";
   btn.disabled=true;
