@@ -464,7 +464,11 @@ const T={
       substitution:{title:"🔄 צריכה תחליף למרכיב?",
         invite:"חסר מרכיב? ספרי לי מה — ואמצא לך תחליף מדויק עם כמויות.",
         placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
-        btn:"קבלי תחליף"}
+        btn:"קבלי תחליף"},
+      panScaler:{title:"📐 המרת קוטר תבנית / רינג",
+        invite:"רוצה להעביר מתכון לתבנית בגודל אחר? רשמי לי את קוטר התבנית המקורית במתכון ואת קוטר התבנית שיש לך בבית, ואחשב לך את יחס ההמרה המדויק לחומרי הגלם.",
+        placeholder:"למשל: המתכון מיועד לתבנית 24 ולי יש רינג בקוטר 20...",
+        btn:"חשב יחס המרה"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"בחרי תכנית",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
     faqTitle:"שאלות נפוצות",
@@ -509,7 +513,11 @@ const T={
       substitution:{title:"🔄 Need a substitution?",
         invite:"Missing an ingredient? Tell me what — and I'll find you an exact replacement.",
         placeholder:"e.g. I don't have butter, what can I substitute and how much?",
-        btn:"Get a substitute"}
+        btn:"Get a substitute"},
+      panScaler:{title:"📐 Pan / Ring Size Converter",
+        invite:"Want to scale a recipe to a different pan? Tell me the original pan diameter and the pan you have, and I'll calculate the exact conversion factor for all ingredients.",
+        placeholder:"e.g. Recipe calls for 24cm pan, I have a 20cm ring...",
+        btn:"Calculate conversion"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Full scientific explanation — chemistry & physics","🔄 Smart ingredient substitutions","♻️ Zero Waste Mode","🎯 Prevention Mode","👤 Personal profile — level, diet, allergies"],btn:"View Plans",note:"$4.99/mo · $39.99/yr (Save 33%) · Cancel anytime"},
     faqTitle:"FAQ",
@@ -554,7 +562,11 @@ const T={
       substitution:{title:"🔄 ¿Necesitas una sustitución?",
         invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",
         placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",
-        btn:"Obtener sustituto"}
+        btn:"Obtener sustituto"},
+      panScaler:{title:"📐 Conversor de molde / aro",
+        invite:"¿Quieres adaptar una receta a un molde diferente? Dime el diámetro del molde original y el que tienes, y calcularé el factor de conversión exacto.",
+        placeholder:"p.ej. La receta es para molde de 24cm, yo tengo uno de 20cm...",
+        btn:"Calcular conversión"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Ver planes",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
@@ -599,7 +611,11 @@ const T={
       substitution:{title:"🔄 Besoin d'une substitution?",
         invite:"Il manque un ingrédient? Dites-moi lequel — je trouve le remplacement exact.",
         placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer et en quelle quantité?",
-        btn:"Obtenir une substitution"}
+        btn:"Obtenir une substitution"},
+      panScaler:{title:"📐 Convertisseur de moule / cercle",
+        invite:"Vous voulez adapter une recette à un moule différent? Donnez-moi le diamètre du moule original et celui que vous avez, je calculerai le facteur de conversion exact.",
+        placeholder:"ex. La recette est pour un moule de 24cm, j'ai un cercle de 20cm...",
+        btn:"Calculer la conversion"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Voir les plans",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     faqTitle:"FAQ",
@@ -825,13 +841,15 @@ IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" jus
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
 
   const proContent=isPro?`
-ALWAYS end with these two sections — keep them VERY SHORT:
+ALWAYS end with these two sections — keep them VERY SHORT (this applies to ALL messages including follow-ups):
 ### 🔬 The Science
 Maximum 2 sentences. The core molecular/chemical reason. Be specific but brief.
 
 ### 💡 Prevention
 ONE sentence only. The single most important tip to prevent this next time.`:`
-ONE answer only, 2-3 sentences max. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
+IMPORTANT FREE USER RULE: Do NOT stop to ask clarifying questions. Give ONE direct answer of 2-3 sentences immediately. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
+
+  const panScalerRule=`PAN SCALING RULE: When a user asks to convert a recipe between pan sizes, use Area = π × r². Calculate: Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. Present clearly: "יש להכפיל את כל חומרי הגלם ב-[Factor מחושב]" followed by the key ingredients converted. Example: 24cm→20cm: Factor = 10²/12² = 100/144 = 0.69. Always show the calculation.`;
 
   return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics.
 
@@ -845,13 +863,14 @@ ${urgencyInstruction}
 
 ${timerInstruction}
 
+${panScalerRule}
+
 CORE RULES:
 - NEVER give generic advice. Analyze through: hydration, gluten relaxation, temperature, emulsification, fat percentage, starch types.
 - Diagnose ROOT CAUSE first, then give precise fix.
 - Use culinary terminology but explain terms when needed.
 - If dish cannot be rescued, say so and give best alternative.
-- Pan size: Area = π × r². Larger pan = THINNER layer.
-- NEVER assume the method or ingredients used. When the solution depends on HOW the user cooked or WHAT they used — ask ONE focused clarifying question first, then give the precise answer. Example: onion burned → ask "What did you cook it in — oil, butter, or just water?" before suggesting a fix. Dough stuck → ask "What ratio of water to flour did you use?" One question only, then answer.
+- ${isPro?"CLARIFYING QUESTIONS: Ask ONE focused clarifying question when the solution depends on HOW the user cooked or WHAT they used. Example: onion burned → ask what fat was used. One question only, then answer.":"FREE USER: Do NOT ask clarifying questions. Give direct answer immediately."}
 - BE CONCISE. Every section must be SHORT and focused.
 
 RESPONSE STRUCTURE — keep each section brief:
@@ -1013,6 +1032,8 @@ function addAIMessage(rawText,t){
   buildInviteCard(cardsDiv,fc.zeroWaste,t);
   // Substitution card
   buildInviteCard(cardsDiv,fc.substitution,t);
+  // Pan Scaler card
+  buildInviteCard(cardsDiv,fc.panScaler,t);
 
   bubble.appendChild(cardsDiv);
 
