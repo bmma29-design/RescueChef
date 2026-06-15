@@ -937,7 +937,6 @@ async function sendQuestion(){
     const count=stored.date===today?(stored.count||0):0;
     const FREE_LIMIT=3;
     if(count>=FREE_LIMIT){
-      const t=T[profile.lang]||T.en;
       const limitMsgs={he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום.`,en:`🔒 You've reached your ${FREE_LIMIT} free questions for today.`,es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy.`,fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui.`};
       const welcome=id("welcome");
       if(welcome)welcome.style.display="none";
@@ -955,7 +954,6 @@ async function sendQuestion(){
   addMessage("user",question);
   input.value="";autoResize(input);
   chatHistory.push({role:"user",content:question});
-  const t=T[profile.lang]||T.he;
   setLoading(true,t.thinking);
   const typingEl=addTyping();
   try{
@@ -1392,27 +1390,20 @@ function setStatus(text){id("status-text").textContent=text;}
 
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
-  // Detect country via server IP detection
+  // Detect country via server IP detection with 1.5s timeout fallback
+  const showHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="block";if(grid)grid.style.gridTemplateColumns="1fr 1fr";};
+  const hideHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="none";if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";};
+  const fallbackTimer=setTimeout(()=>showHebrew(),1500);
   fetch("/api/country")
     .then(r=>r.json())
     .then(data=>{
-      const isIsrael = data.country === "IL";
-      const heBtn=id("lang-he-btn");
-      const grid=id("lang-grid");
-      if(isIsrael){
-        if(heBtn)heBtn.style.display="block";
-        if(grid)grid.style.gridTemplateColumns="1fr 1fr";
-      } else {
-        if(heBtn)heBtn.style.display="none";
-        if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";
-      }
+      clearTimeout(fallbackTimer);
+      if(data.country==="IL")showHebrew();
+      else hideHebrew();
     })
     .catch(()=>{
-      // If detection fails, show all languages
-      const heBtn=id("lang-he-btn");
-      const grid=id("lang-grid");
-      if(heBtn)heBtn.style.display="block";
-      if(grid)grid.style.gridTemplateColumns="1fr 1fr";
+      clearTimeout(fallbackTimer);
+      showHebrew();
     });
   const saved=localStorage.getItem("rc_profile");
   if(saved){
