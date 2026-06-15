@@ -424,7 +424,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     </div>
     <div class="input-row">
       <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
-      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" ontouchstart="this.focus()"></textarea>
       <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()">➤</button>
     </div>
     <div class="input-hint" id="input-hint">Enter · Shift+Enter · 🎤</div>
@@ -887,6 +887,50 @@ async function sendQuestion(){
   const input=id("question-input");
   const question=input.value.trim();
   if(!question||isLoading)return;
+  const t=T[profile.lang]||T.he;
+  const isPro=devMode||profile.isPro;
+
+  // Pro feature detection — block before API call for free users
+  if(!isPro){
+    const zwPatterns=[/נשאר/,/שאריות/,/נותר/,/מה לעשות עם/,/leftover/i,/left over/i,/what.*do with/i,/sobr[oó]/i,/il me reste/i,/que faire avec/i,/restes/i];
+    const subPatterns=[/במה אפשר להחליף/,/מה מחליף/,/אין לי.*במה/,/נגמר לי/,/substitute/i,/replacement for/i,/instead of/i,/out of/i,/can i use.*instead/i,/sustituir/i,/remplacer/i,/à la place/i];
+    const isZW=zwPatterns.some(p=>p.test(question));
+    const isSub=subPatterns.some(p=>p.test(question));
+    if(isZW||isSub){
+      const featureKey=isZW?"zeroWaste":"substitution";
+      const featureTitle=isZW
+        ?(profile.lang==="he"?"Zero Waste Mode":"Zero Waste Mode")
+        :(profile.lang==="he"?"החלפת מרכיבים חכמה":"Smart Substitutions");
+      const blockedMsgs={
+        he:`🔒 זיהיתי שאלת ${featureTitle} — פיצ'ר זה זמין למנויי Pro בלבד. שדרגי כדי לקבל את כל האפשרויות.`,
+        en:`🔒 I detected a ${featureTitle} question — this feature is available for Pro subscribers only. Upgrade to get the full answer.`,
+        es:`🔒 Detecté una pregunta de ${featureTitle} — esta función está disponible solo para suscriptores Pro.`,
+        fr:`🔒 J'ai détecté une question ${featureTitle} — cette fonction est disponible uniquement pour les abonnés Pro.`
+      };
+      const welcome=id("welcome");
+      if(welcome)welcome.style.display="none";
+      id("input-area-wrap").style.display="flex";
+      addMessage("user",question);
+      input.value="";autoResize(input);
+      // Show blocked message with upgrade button
+      const container=id("messages");
+      const msg=document.createElement("div");
+      msg.className="message ai";
+      const avatar=document.createElement("div");
+      avatar.className="msg-avatar";
+      avatar.innerHTML=SVG_ICON;
+      const bubble=document.createElement("div");
+      bubble.className="msg-bubble";
+      bubble.innerHTML=`<div style="font-size:14px;line-height:1.8;color:var(--text);">${blockedMsgs[profile.lang]||blockedMsgs.en}</div>
+        <button class="locked-upgrade-btn" style="margin-top:12px;" onclick="openUpgradeModal()">${profile.lang==="he"?"⭐ שדרגי ל-Pro":"⭐ Upgrade to Pro"}</button>`;
+      msg.appendChild(avatar);
+      msg.appendChild(bubble);
+      container.appendChild(msg);
+      container.scrollTop=container.scrollHeight;
+      return;
+    }
+  }
+
   if(!devMode){
     const today=new Date().toDateString();
     const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
