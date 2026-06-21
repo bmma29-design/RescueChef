@@ -945,7 +945,7 @@ async function sendQuestion(){
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:(devMode||profile.isPro)?1500:600,
         system:getSystemPrompt(),messages:chatHistory})});
-    if(!res.ok){const err=await res.json();throw new Error(err.error?.message||"Server error");}
+    if(!res.ok){const err=await res.json();const msg=err.error?.message||"Server error";if(msg==="DAILY_LIMIT_REACHED"){typingEl.remove();addMessage("ai",T[profile.lang]?.ready?`🔒 ${profile.lang==="he"?"הגעת למגבלה היומית. שדרגי ל-Pro להמשך.":"You've reached today's limit. Upgrade to Pro."}`:msg);setLoading(false,T[profile.lang]?.ready||"Ready");return;}throw new Error(msg);}
     const data=await res.json();
     let answer=data.content[0].text;
     chatHistory.push({role:"assistant",content:answer});
