@@ -683,7 +683,6 @@ function applyLang(){
   id("question-input").placeholder=t.placeholder;
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
-  // update pro profile labels
   if(id("p-lbl-name")) id("p-lbl-name").textContent=t.pLblName;
   if(id("p-lbl-gender")) id("p-lbl-gender").textContent=t.pLblGender;
   if(id("p-lbl-level")) id("p-lbl-level").textContent=t.pLblLevel;
@@ -691,9 +690,7 @@ function applyLang(){
   if(id("p-sec-allergy")) id("p-sec-allergy").textContent=t.pSecAllergy;
   if(id("p-gender-f")) id("p-gender-f").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👩 נקבה":"👩"):("👩");
   if(id("p-gender-m")) id("p-gender-m").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👨 זכר":"👨"):("👨");
-  // show/hide pro fields
   const isPro=devMode||profile.isPro;
-  // Profile fields always visible and populated for all users
   id("pro-profile-locked").style.display="none";
   id("pro-profile-fields").style.display="block";
   id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
@@ -830,16 +827,13 @@ function getSystemPrompt(){
   const genderNote=isPro&&profile.lang==="he"?(profile.gender==="f"?"פנה תמיד בלשון נקבה: ערבבי, הוסיפי, בדקי.":"פנה תמיד בלשון זכר: ערבב, הוסף, בדוק."):"";
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
-
   const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line — base this ONLY on the actual culinary situation:
 [URGENCY:full] — if the dish can be fully rescued
 [URGENCY:partial] — if it's critical and needs immediate action but may be partially saved
 [URGENCY:none] — if it truly cannot be rescued and an alternative is needed
 [URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)
 IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" just because you are giving a short answer.`;
-
   const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
-
   const proContent=isPro?`
 ALWAYS end with these two sections — keep them VERY SHORT (this applies to ALL messages including follow-ups):
 ### 🔬 The Science
@@ -848,9 +842,7 @@ Maximum 2 sentences. The core molecular/chemical reason. Be specific but brief.
 ### 💡 Prevention
 ONE sentence only. The single most important tip to prevent this next time.`:`
 IMPORTANT FREE USER RULE: Do NOT stop to ask clarifying questions. Give ONE direct answer of 2-3 sentences immediately. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
-
   const panScalerRule=`PAN SCALING RULE: When a user asks to convert a recipe between pan sizes, use Area = π × r². Calculate: Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. Present clearly: "יש להכפיל את כל חומרי הגלם ב-[Factor מחושב]" followed by the key ingredients converted. Example: 24cm→20cm: Factor = 10²/12² = 100/144 = 0.69. Always show the calculation.`;
-
   return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics.
 
 Respond ONLY in ${langName}.
@@ -889,18 +881,13 @@ async function sendQuestion(){
   if(!question||isLoading)return;
   const t=T[profile.lang]||T.he;
   const isPro=devMode||profile.isPro;
-
-  // Pro feature detection — block before API call for free users
   if(!isPro){
     const zwPatterns=[/נשאר/,/שאריות/,/נותר/,/מה לעשות עם/,/leftover/i,/left over/i,/what.*do with/i,/sobr[oó]/i,/il me reste/i,/que faire avec/i,/restes/i];
     const subPatterns=[/במה אפשר להחליף/,/מה מחליף/,/אין לי.*במה/,/נגמר לי/,/substitute/i,/replacement for/i,/instead of/i,/out of/i,/can i use.*instead/i,/sustituir/i,/remplacer/i,/à la place/i];
     const isZW=zwPatterns.some(p=>p.test(question));
     const isSub=subPatterns.some(p=>p.test(question));
     if(isZW||isSub){
-      const featureKey=isZW?"zeroWaste":"substitution";
-      const featureTitle=isZW
-        ?(profile.lang==="he"?"Zero Waste Mode":"Zero Waste Mode")
-        :(profile.lang==="he"?"החלפת מרכיבים חכמה":"Smart Substitutions");
+      const featureTitle=isZW?(profile.lang==="he"?"Zero Waste Mode":"Zero Waste Mode"):(profile.lang==="he"?"החלפת מרכיבים חכמה":"Smart Substitutions");
       const blockedMsgs={
         he:`🔒 זיהיתי שאלת ${featureTitle} — פיצ'ר זה זמין למנויי Pro בלבד. שדרגי כדי לקבל את כל האפשרויות.`,
         en:`🔒 I detected a ${featureTitle} question — this feature is available for Pro subscribers only. Upgrade to get the full answer.`,
@@ -912,7 +899,6 @@ async function sendQuestion(){
       id("input-area-wrap").style.display="flex";
       addMessage("user",question);
       input.value="";autoResize(input);
-      // Show blocked message with upgrade button
       const container=id("messages");
       const msg=document.createElement("div");
       msg.className="message ai";
@@ -930,7 +916,6 @@ async function sendQuestion(){
       return;
     }
   }
-
   if(!devMode){
     const today=new Date().toDateString();
     const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
@@ -974,7 +959,7 @@ async function sendQuestion(){
   }
 }
 
-// ── ADD AI MESSAGE with urgency + timers + feature cards ─────────────────────
+// ── ADD AI MESSAGE ────────────────────────────────────────────────────────────
 function addAIMessage(rawText,t){
   const container=id("messages");
   const msg=document.createElement("div");
@@ -984,14 +969,9 @@ function addAIMessage(rawText,t){
   avatar.innerHTML=SVG_ICON;
   const bubble=document.createElement("div");
   bubble.className="msg-bubble";
-
-  // Parse urgency tag
   let urgencyLevel="full";
   let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
-
   const isPro=devMode||profile.isPro;
-
-  // Build urgency bar
   const urgencyData={
     full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
     partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
@@ -1009,47 +989,29 @@ function addAIMessage(rawText,t){
         <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
         <div class="urgency-text ${ud.cls}">${ud.label}</div>
       </div>`;
-
-  // Parse timers
   const timerBtns=[];
   text=text.replace(/\[TIMER:(\d+):([^\]]+)\]/g,(m,secs,label)=>{
     const tid="timer_"+Date.now()+"_"+Math.random().toString(36).slice(2);
     timerBtns.push({tid,secs:parseInt(secs),label});
     return `<span id="tw_${tid}"></span>`;
   });
-
-  // Extract science and prevention sections robustly
   let mainBody=text;
   let scienceContent="";
   let preventionContent="";
-
-  // Split on ### headers
   const parts=text.split(/(?=^###\s)/m);
   const mainParts=[];
-
   parts.forEach(part=>{
     if(!part.trim())return;
-    // Check if this is a science or prevention section
     const firstLine=part.split("\n")[0];
     const isScience=firstLine.includes("🔬")||/science|מדע|ciencia|science/i.test(firstLine);
     const isPrevention=firstLine.includes("💡")||/prevention|מניע|prevenci|prévention/i.test(firstLine);
-    if(isScience){
-      // Remove the header line, keep content
-      scienceContent=part.replace(/^###[^\n]*\n/,"").trim();
-    } else if(isPrevention){
-      preventionContent=part.replace(/^###[^\n]*\n/,"").trim();
-    } else {
-      mainParts.push(part);
-    }
+    if(isScience){scienceContent=part.replace(/^###[^\n]*\n/,"").trim();}
+    else if(isPrevention){preventionContent=part.replace(/^###[^\n]*\n/,"").trim();}
+    else{mainParts.push(part);}
   });
-
   mainBody=mainParts.join("").trim();
-
-  // Format and render main body
   let formatted=formatSection(mainBody);
   bubble.innerHTML=urgencyHTML+formatted;
-
-  // Insert timer buttons
   timerBtns.forEach(({tid,secs,label})=>{
     const wrap=bubble.querySelector(`#tw_${tid}`);
     if(!wrap)return;
@@ -1060,30 +1022,19 @@ function addAIMessage(rawText,t){
     btn.onclick=()=>handleTimer(tid,secs,label,btn,t);
     wrap.replaceWith(btn);
   });
-
-  // Build feature cards
   const fc=t.featureCards||{};
   const cardsDiv=document.createElement("div");
   cardsDiv.className="feature-cards";
-
-  // Science card
   buildContentCard(cardsDiv,fc.science,scienceContent,isPro,"science");
-  // Prevention card
   buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro,"prevention");
-  // Zero Waste card
   buildInviteCard(cardsDiv,fc.zeroWaste,t);
-  // Substitution card
   buildInviteCard(cardsDiv,fc.substitution,t);
-
   bubble.appendChild(cardsDiv);
-
-  // Speak button
   const speakBtn=document.createElement("button");
   speakBtn.className="speak-btn";
   speakBtn.innerHTML=t.speak;
   speakBtn.onclick=()=>speakText(rawText,speakBtn,t);
   bubble.appendChild(speakBtn);
-
   msg.appendChild(avatar);
   msg.appendChild(bubble);
   container.appendChild(msg);
@@ -1101,11 +1052,8 @@ function buildContentCard(container,cardT,content,isPro,key){
   const body=document.createElement("div");
   body.className="feature-card-body";
   if(content){
-    if(isPro){
-      body.innerHTML=formatSection(content);
-    } else {
-      // Show blur for free users
-      body.innerHTML=`<div class="blur-section">
+    if(isPro){body.innerHTML=formatSection(content);}
+    else{body.innerHTML=`<div class="blur-section">
         <div class="blur-content" style="min-height:60px;">${formatSection(content)}</div>
         <div class="blur-overlay">
           <div class="blur-lock">🔒</div>
@@ -1113,14 +1061,10 @@ function buildContentCard(container,cardT,content,isPro,key){
           <div class="blur-price">$4.99/mo</div>
           <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
         </div>
-      </div>`;
-    }
+      </div>`;}
   } else {
-    // No content yet — show locked for free, placeholder for pro
-    if(isPro){
-      body.innerHTML=`<div style="font-size:13px;color:var(--muted);font-style:italic;">${profile.lang==="he"?"המידע יופיע בשאלה הבאה":"Will appear with the next response"}</div>`;
-    } else {
-      body.innerHTML=`<div class="blur-section">
+    if(isPro){body.innerHTML=`<div style="font-size:13px;color:var(--muted);font-style:italic;">${profile.lang==="he"?"המידע יופיע בשאלה הבאה":"Will appear with the next response"}</div>`;}
+    else{body.innerHTML=`<div class="blur-section">
         <div class="blur-content" style="min-height:60px;"><p>████ ████████ ████ ███████ ████████ ███.</p></div>
         <div class="blur-overlay">
           <div class="blur-lock">🔒</div>
@@ -1128,8 +1072,7 @@ function buildContentCard(container,cardT,content,isPro,key){
           <div class="blur-price">$4.99/mo</div>
           <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
         </div>
-      </div>`;
-    }
+      </div>`;}
   }
   card.appendChild(header);
   card.appendChild(body);
@@ -1158,7 +1101,6 @@ function buildInviteCard(container,cardT,t){
   container.appendChild(card);
 }
 
-
 function formatSection(text){
   return text
     .replace(/###\s*(.+)/g,"<h3>$1</h3>")
@@ -1179,7 +1121,7 @@ function formatTime(secs){
 function playTimerDone(){
   try{
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const notes=[523.25,659.25,783.99]; // C5, E5, G5 — major chord ascending
+    const notes=[523.25,659.25,783.99];
     notes.forEach((freq,i)=>{
       const osc=ctx.createOscillator();
       const gain=ctx.createGain();
@@ -1194,7 +1136,6 @@ function playTimerDone(){
       osc.start(start);
       osc.stop(start+0.75);
     });
-    // vibrate on mobile
     if(navigator.vibrate)navigator.vibrate([200,100,200]);
   }catch(e){}
 }
@@ -1230,8 +1171,6 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   const val=input.value.trim();
   if(!val)return;
   const t=T[profile.lang]||T.he;
-
-  // Daily limit check - same as sendQuestion
   if(!devMode){
     const today=new Date().toDateString();
     const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
@@ -1249,10 +1188,8 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
       btn.disabled=true;
       return;
     }
-    // Increment counter
     localStorage.setItem("rc_daily",JSON.stringify({date:today,count:count+1}));
   }
-
   const origText=btn.textContent;
   btn.textContent=t.thinking||"...";
   btn.disabled=true;
@@ -1285,7 +1222,6 @@ function sendFeatureQuestion(inputId){
   id("question-input").value=val;
   sendQuestion();
 }
-
 
 function addMessage(role,text){
   const container=id("messages");
@@ -1355,6 +1291,25 @@ function speakText(text,btn,t){
 }
 
 // ── DEV MODE ──────────────────────────────────────────────────────────────────
+function unlock(password) {
+  if (password === "DEV10") {
+    devMode = true;
+    profile.devMode = true;
+    localStorage.setItem("rc_profile", JSON.stringify(profile));
+    applyLang();
+    if (!document.getElementById("dev-badge")) {
+      const b = document.createElement("div");
+      b.id = "dev-badge";
+      b.className = "dev-badge";
+      b.textContent = "🔧 Dev Mode";
+      document.body.appendChild(b);
+    }
+    console.log("✅ Dev Mode פעיל");
+  } else {
+    console.log("❌ סיסמא שגויה");
+  }
+}
+
 function toggleDevMode(val){
   devMode=val;profile.devMode=val;
   localStorage.setItem("rc_profile",JSON.stringify(profile));
@@ -1390,7 +1345,6 @@ function setStatus(text){id("status-text").textContent=text;}
 
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
-  // Detect country via server IP detection with 1.5s timeout fallback
   const showHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="block";if(grid)grid.style.gridTemplateColumns="1fr 1fr";};
   const hideHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="none";if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";};
   const fallbackTimer=setTimeout(()=>showHebrew(),1500);
