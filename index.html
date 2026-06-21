@@ -18,7 +18,6 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
   background-image:radial-gradient(ellipse at 20% 30%,rgba(200,168,80,0.08) 0%,transparent 50%),
   radial-gradient(ellipse at 80% 70%,rgba(200,168,80,0.05) 0%,transparent 40%);}
 
-/* LANG PICKER */
 #lang-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
 .lang-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;
   padding:40px 36px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.12);text-align:center;}
@@ -37,7 +36,6 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
 .lang-continue.active{opacity:1;pointer-events:all;}
 .lang-continue.active:hover{background:var(--accent2);}
 
-/* APP */
 #app{display:none;flex-direction:column;height:100vh;}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;
   height:60px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:var(--shadow);}
@@ -50,7 +48,11 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
   cursor:pointer;transition:all 0.2s;}
 .hdr-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-/* PROFILE PANEL */
+/* ALPHA BADGE */
+.alpha-badge{position:fixed;top:68px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#C8A850,#B09040);color:white;font-size:11px;font-weight:700;
+  padding:4px 14px;border-radius:20px;z-index:200;letter-spacing:0.5px;}
+
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99;display:none;}
 .overlay.show{display:block;}
 .profile-panel{position:fixed;top:0;width:320px;height:100vh;background:var(--surface);
@@ -101,12 +103,10 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
   background:var(--accent);color:white;font-size:11px;font-weight:700;
   padding:5px 14px;border-radius:20px;z-index:200;}
 
-/* MESSAGES */
 .messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-/* WELCOME */
 .welcome{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px;}
 .welcome-icon{margin-bottom:16px;}
 .welcome h2{font-size:26px;font-weight:900;margin-bottom:10px;letter-spacing:-0.5px;}
@@ -128,13 +128,25 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
 .welcome-example button{background:none;border:none;color:var(--accent);font-family:"Heebo",sans-serif;
   font-size:12px;cursor:pointer;text-decoration:underline;padding:0;}
 
-/* PRO CARD */
+/* FEATURES TABLE */
+.features-table{max-width:540px;margin:24px auto 0;width:100%;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);}
+.features-table-header{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--accent);color:white;font-weight:700;font-size:13px;}
+.features-table-header div{padding:12px 14px;text-align:center;}
+.features-table-header div:first-child{text-align:right;}
+html[dir="ltr"] .features-table-header div:first-child{text-align:left;}
+.features-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border2);background:var(--surface);}
+.features-row:nth-child(odd){background:rgba(200,168,80,0.03);}
+.features-row div{padding:10px 14px;font-size:13px;color:var(--soft);text-align:center;display:flex;align-items:center;justify-content:center;}
+.features-row div:first-child{text-align:right;justify-content:flex-end;color:var(--text);font-weight:600;}
+html[dir="ltr"] .features-row div:first-child{text-align:left;justify-content:flex-start;}
+.feat-check{color:#2ECC71;font-size:16px;font-weight:900;}
+.feat-cross{color:#ccc;font-size:16px;}
+.feat-pro{color:var(--accent);font-size:16px;font-weight:900;}
+
 .pro-card{max-width:540px;margin:20px auto 0;background:var(--surface);border:2px solid var(--accent);
   border-radius:var(--radius);padding:20px 24px;width:100%;}
 .pro-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
 .pro-card-title{font-size:18px;font-weight:800;color:var(--text);}
-.pro-card-amount{font-size:24px;font-weight:800;color:var(--accent);}
-.pro-card-period{font-size:11px;color:var(--muted);}
 .pro-card-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 16px;
   border-top:1px solid var(--border2);padding-top:14px;}
 .pro-card-feature{display:flex;align-items:flex-start;gap:7px;font-size:13px;color:var(--soft);}
@@ -144,7 +156,6 @@ input:checked+.toggle-slider:before{transform:translateX(20px);}
 .pro-card-btn:hover{background:var(--accent2);}
 .pro-card-note{text-align:center;margin-top:8px;font-size:11px;color:var(--muted);}
 
-/* FAQ */
 .faq-section{max-width:540px;margin:16px auto 0;width:100%;}
 .faq-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
 .faq-item{border:1px solid var(--border2);border-radius:10px;margin-bottom:7px;overflow:hidden;background:rgba(255,255,255,0.6);}
@@ -156,7 +167,6 @@ html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
 .faq-a{display:none;padding:0 14px 12px;font-size:13px;color:var(--muted);line-height:1.7;}
 .faq-item.open .faq-a{display:block;}
 
-/* MESSAGES */
 .message{display:flex;gap:11px;align-items:flex-start;animation:fadeUp 0.35s ease forwards;opacity:0;}
 .message.user{flex-direction:row-reverse;}
 .msg-avatar{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;
@@ -177,7 +187,6 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .msg-bubble li{margin-bottom:5px;color:var(--soft);}
 .msg-bubble strong{color:#D4AF37;font-weight:700;}
 
-/* URGENCY METER */
 .urgency-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 14px;
   border-radius:10px;background:rgba(200,168,80,0.06);border:1px solid var(--border2);}
 .urgency-label{font-size:12px;font-weight:700;color:var(--soft);}
@@ -191,7 +200,6 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .urgency-text.orange{color:#E67E22;}
 .urgency-text.red{color:#E74C3C;}
 
-/* TIMER */
 .timer-btn{display:inline-flex;align-items:center;gap:7px;margin-top:10px;
   background:rgba(200,168,80,0.1);border:1.5px solid var(--border);border-radius:8px;
   color:var(--accent);font-family:"Heebo",sans-serif;font-size:13px;font-weight:700;
@@ -200,7 +208,6 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .timer-btn.running{background:rgba(231,76,60,0.1);border-color:#E74C3C;color:#E74C3C;}
 .timer-display{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums;}
 
-/* BLUR PAYWALL */
 .blur-section{position:relative;margin-top:12px;}
 .blur-content{filter:blur(5px);user-select:none;pointer-events:none;}
 .blur-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
@@ -212,7 +219,6 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .blur-btn{background:var(--accent);color:white;border:none;border-radius:8px;padding:8px 16px;
   font-family:"Heebo",sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
 
-/* FEATURE CARDS */
 .feature-cards{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
 .feature-card{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);}
 .feature-card-header{display:flex;align-items:center;justify-content:space-between;
@@ -235,18 +241,15 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
   font-weight:700;cursor:pointer;width:100%;}
 .feature-invite-btn:hover{background:var(--accent2);}
 
-/* TIP BOX */
 .tip-box{background:#FAECE7;border-right:4px solid #D85A30;border-radius:0 8px 8px 0;
   padding:12px 16px;font-size:14px;line-height:1.7;color:#4A1B0C;margin-top:6px;}
 html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-radius:8px 0 0 8px;}
 
-/* SPEAK BTN */
 .speak-btn{margin-top:9px;background:transparent;border:1px solid var(--border);border-radius:6px;
   color:var(--muted);font-family:"Heebo",sans-serif;font-size:12px;padding:5px 10px;
   cursor:pointer;display:flex;align-items:center;gap:4px;}
 .speak-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-/* LOCKED CARD */
 .locked-card{background:linear-gradient(135deg,rgba(200,168,80,0.08),rgba(200,168,80,0.04));
   border:1.5px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:4px;}
 .locked-card-icon{font-size:32px;margin-bottom:10px;display:block;}
@@ -258,7 +261,6 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 .locked-upgrade-btn{background:var(--accent);color:white;border:none;border-radius:8px;
   padding:10px 20px;font-family:"Heebo",sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
 
-/* INPUT AREA */
 .input-area{background:var(--surface);border-top:1px solid var(--border);padding:13px 18px;flex-shrink:0;}
 .status-bar{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-bottom:7px;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;}
@@ -280,13 +282,11 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 .send-btn:disabled{opacity:0.4;cursor:not-allowed;}
 .input-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:7px;}
 
-/* TYPING */
 .typing{display:flex;gap:5px;padding:4px 0;align-items:center;}
 .typing span{width:7px;height:7px;background:#9A7A50;border-radius:50%;animation:bounce 1.2s infinite;}
 .typing span:nth-child(2){animation-delay:0.2s;}
 .typing span:nth-child(3){animation-delay:0.4s;}
 
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;
   display:none;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.show{display:flex;}
@@ -300,7 +300,6 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
   border-radius:8px;padding:10px;font-family:"Heebo",sans-serif;font-size:14px;
   color:var(--text);cursor:pointer;margin-top:20px;}
 
-/* UPGRADE MODAL */
 .upgrade-modal-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
 .upgrade-feature{background:rgba(200,168,80,0.06);border:1px solid var(--border2);
   border-radius:10px;padding:12px;font-size:13px;color:var(--soft);}
@@ -317,6 +316,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
   .profile-panel{width:100%;}
   .pro-card-features{grid-template-columns:1fr;}
   .upgrade-modal-features{grid-template-columns:1fr;}
+  .features-table-header,.features-row{grid-template-columns:1.4fr 0.8fr 0.8fr;}
 }
 </style>
 </head>
@@ -351,6 +351,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       </div>
     </div>
     <div class="header-actions">
+      <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;">🏠</button>
       <button class="hdr-btn" id="profile-btn" onclick="openProfile()">😊</button>
       <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑</button>
     </div>
@@ -371,16 +372,9 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     </select>
 
     <div id="pro-profile-section">
-      <div class="panel-section">
-        <span id="p-sec-personal">Personal</span>
-      </div>
-      <div id="pro-profile-locked" style="background:rgba(200,168,80,0.06);border:1px dashed var(--border);border-radius:10px;padding:14px;text-align:center;margin-bottom:12px;">
-        <div style="font-size:22px;margin-bottom:6px;">🔒</div>
-        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;" id="pro-locked-title">Pro feature</div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;" id="pro-locked-desc">Personalized answers based on your profile</div>
-        <button class="locked-upgrade-btn" onclick="openUpgradeModal()" style="font-size:12px;padding:7px 14px;" id="pro-locked-btn">Upgrade to Pro</button>
-      </div>
-      <div id="pro-profile-fields" style="display:none;">
+      <div class="panel-section"><span id="p-sec-personal">Personal</span></div>
+      <div id="pro-profile-locked" style="display:none;"></div>
+      <div id="pro-profile-fields">
         <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-name">Name</label>
         <input type="text" id="p-name" class="panel-input" placeholder="..."/>
         <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-gender">Gender</label>
@@ -434,14 +428,15 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 <script>
 const SVG_ICON=`<svg fill="#D4AF37" height="20px" width="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
 
+// ── ALPHA MODE — כולם מקבלים Pro אוטומטית ──
+const ALPHA_MODE = true;
+
 const T={
-  he:{dir:"rtl",tagline:"הסו-שף הפרטי שלך",profileBtn:"😊 פרופיל",clearBtn:"🗑 נקה",
+  he:{dir:"rtl",tagline:"הסו-שף הפרטי שלך",profileBtn:"😊 פרופיל",clearBtn:"🗑 נקה",homeBtn:"🏠",
     panelTitle:"הפרופיל שלי",pSecLang:"שפה",pSecPersonal:"פרטים אישיים",
     pLblName:"שם",pLblGender:"פנייה",pLblLevel:"רמה",pSecDiet:"תזונה",pSecAllergy:"אלרגיות",
     pSaveBtn:"💾 שמור",pDeleteBtn:"🗑 מחק נתונים",linkPrivacy:"פרטיות",linkTerms:"תנאים",
     devModeLabel:"כל הפיצ׳רים",devHintOn:"פועל 🔓",devHintOff:"כבוי",
-    proLockedTitle:"פיצ׳ר Pro",proLockedDesc:"תשובות מותאמות אישית לרמה, תזונה ואלרגיות שלך",
-    proLockedBtn:"שדרגי ל-Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
     welcomeDesc:"ספרי לי מה קורה במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
     placeholder:"יש בעיה במטבח? אני כאן",
@@ -449,11 +444,26 @@ const T={
     ready:"מוכן לעזור",thinking:"מחשב...",listening:"מקשיב...",
     speak:"🔊 האזן",stop:"⏹ עצור",
     exampleLabel:"לדוגמה:",exampleText:"המיונז שלי נשבר",exampleQ:"המיונז שלי נשבר ונהיה נוזלי, מה עושים?",
+    alphaBadge:"🧪 גרסת אלפא — Pro פתוח לכולם",
     levels:[["beginner","🏠 בשלן ביתי"],["intermediate","👨‍🍳 טבח מתפתח"],["professional","⭐ שף מקצועי"]],
     diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
     urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעלי מהר",none:"לא ניתן להצלה",advice:"ייעוץ מקצועי"},
     timerBtn:"⏱ התחל טיימר",timerStop:"⏹ עצור",
+    featuresToggleBtn:"מה אני יודע לעשות? ›",featuresToggleBtnClose:"סגור ‹",
+    featuresTableTitle:"מה כלול בכל מסלול?",
+    featuresTableFree:"חינמי",featuresTablePro:"⭐ Pro",featuresTableFeature:"פיצ׳ר",
+    featuresRows:[
+      ["🚨 פתרון בעיות מיידי","✓","✓"],
+      ["💬 ייעוץ קולינרי","✓","✓"],
+      ["📐 המרת תבניות","✓","✓"],
+      ["⏱ טיימר מובנה","✓","✓"],
+      ["👤 פרופיל אישי","✓","✓"],
+      ["🔬 הסבר מדעי מלא","—","✓"],
+      ["💡 טיפ מניעה","—","✓"],
+      ["♻️ Zero Waste — שאריות","—","✓"],
+      ["🔄 תחליפי מרכיבים","—","✓"],
+    ],
     featureCards:{
       science:{title:"🔬 המדע מאחורי הבעיה",invite:null},
       prevention:{title:"💡 טיפ למניעה",invite:null},
@@ -466,11 +476,11 @@ const T={
         placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
         btn:"קבלי תחליף"},
       panScaler:{title:"📐 המרת קוטר תבנית / רינג",
-        invite:"רוצה להעביר מתכון לתבנית בגודל אחר? רשמי לי את קוטר התבנית המקורית במתכון ואת קוטר התבנית שיש לך בבית, ואחשב לך את יחס ההמרה המדויק לחומרי הגלם.",
+        invite:"רוצה להעביר מתכון לתבנית בגודל אחר? רשמי לי את קוטר התבנית המקורית ואת הקוטר שיש לך, ואחשב יחס המרה מדויק.",
         placeholder:"למשל: המתכון מיועד לתבנית 24 ולי יש רינג בקוטר 20...",
         btn:"חשב יחס המרה"}
     },
-    proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי — רמה, תזונה, אלרגיות"],btn:"בחרי תכנית",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
+    proCard:{title:"⭐ Pro",features:["🔬 הסבר מדעי מלא — כימיה ופיזיקה","🔄 תחליפי מרכיבים חכמים","♻️ Zero Waste Mode","🎯 מצב מניעה","👤 פרופיל אישי מורחב"],btn:"בחרי תכנית",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
     faqTitle:"שאלות נפוצות",
     faqs:[["למה לא לשאול Claude/ChatGPT רגיל?","Claude לא מכיר אותך. RescueChef מותאם לפתרון בעיות קולינריות מיידיות — עם אפשרות להתאמה אישית מלאה במנוי."],
           ["מה ההבדל בין חינם למנוי?","חינם = פתרון מיידי קצר. מנוי = הסבר מדעי מלא, תחליפים, Zero Waste, ופרופיל אישי שמותאם לך."],
@@ -484,13 +494,11 @@ const T={
       cta:"שדרגי ל-Pro",note:"$4.99 לחודש · $39.99 לשנה (חיסכון 33%) · ביטול בכל עת"},
     legalText:`בשימוש בכלי את מסכימה ל<span class="legal-link" onclick="openModal('terms-modal')">תנאי השימוש</span> ול<span class="legal-link" onclick="openModal('privacy-modal')">מדיניות הפרטיות</span>.`,
   },
-  en:{dir:"ltr",tagline:"Your personal sous-chef",profileBtn:"😊 Profile",clearBtn:"🗑 Clear",
+  en:{dir:"ltr",tagline:"Your personal sous-chef",profileBtn:"😊 Profile",clearBtn:"🗑 Clear",homeBtn:"🏠",
     panelTitle:"My Profile",pSecLang:"Language",pSecPersonal:"Personal",
     pLblName:"Name",pLblGender:"Gender",pLblLevel:"Level",pSecDiet:"Diet",pSecAllergy:"Allergies",
     pSaveBtn:"💾 Save",pDeleteBtn:"🗑 Delete data",linkPrivacy:"Privacy",linkTerms:"Terms",
     devModeLabel:"All features",devHintOn:"On 🔓",devHintOff:"Off",
-    proLockedTitle:"Pro feature",proLockedDesc:"Personalized answers based on your level, diet & allergies",
-    proLockedBtn:"Upgrade to Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}I'm RescueChef`,
     welcomeDesc:"Describe what went wrong in your kitchen — I'll diagnose it, explain why, and give you an immediate solution.",
     placeholder:"What went wrong in your kitchen right now?",
@@ -498,11 +506,26 @@ const T={
     ready:"Ready to help",thinking:"Thinking...",listening:"Listening...",
     speak:"🔊 Listen",stop:"⏹ Stop",
     exampleLabel:"e.g.",exampleText:"My mayo broke",exampleQ:"My mayonnaise broke and became runny, what do I do?",
+    alphaBadge:"🧪 Alpha version — Pro unlocked for all",
     levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
     urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued",advice:"Professional advice"},
     timerBtn:"⏱ Start timer",timerStop:"⏹ Stop",
+    featuresToggleBtn:"What can I do for you? ›",featuresToggleBtnClose:"Close ‹",
+    featuresTableTitle:"What's included in each plan?",
+    featuresTableFree:"Free",featuresTablePro:"⭐ Pro",featuresTableFeature:"Feature",
+    featuresRows:[
+      ["🚨 Immediate problem solving","✓","✓"],
+      ["💬 Culinary advice","✓","✓"],
+      ["📐 Pan size converter","✓","✓"],
+      ["⏱ Built-in timer","✓","✓"],
+      ["👤 Personal profile","✓","✓"],
+      ["🔬 Full scientific explanation","—","✓"],
+      ["💡 Prevention tip","—","✓"],
+      ["♻️ Zero Waste — leftovers","—","✓"],
+      ["🔄 Smart substitutions","—","✓"],
+    ],
     featureCards:{
       science:{title:"🔬 The Science Behind It",invite:null},
       prevention:{title:"💡 Prevention Tip",invite:null},
@@ -515,7 +538,7 @@ const T={
         placeholder:"e.g. I don't have butter, what can I substitute and how much?",
         btn:"Get a substitute"},
       panScaler:{title:"📐 Pan / Ring Size Converter",
-        invite:"Want to scale a recipe to a different pan? Tell me the original pan diameter and the pan you have, and I'll calculate the exact conversion factor for all ingredients.",
+        invite:"Want to scale a recipe to a different pan? Tell me the original pan diameter and the pan you have, and I'll calculate the exact conversion factor.",
         placeholder:"e.g. Recipe calls for 24cm pan, I have a 20cm ring...",
         btn:"Calculate conversion"}
     },
@@ -533,13 +556,11 @@ const T={
       cta:"Upgrade to Pro",note:"$4.99/mo · $39.99/yr (Save 33%) · Cancel anytime"},
     legalText:`By using this tool you agree to our <span class="legal-link" onclick="openModal('terms-modal')">Terms</span> and <span class="legal-link" onclick="openModal('privacy-modal')">Privacy Policy</span>.`,
   },
-  es:{dir:"ltr",tagline:"Tu sous-chef personal",profileBtn:"😊 Perfil",clearBtn:"🗑 Limpiar",
+  es:{dir:"ltr",tagline:"Tu sous-chef personal",profileBtn:"😊 Perfil",clearBtn:"🗑 Limpiar",homeBtn:"🏠",
     panelTitle:"Mi Perfil",pSecLang:"Idioma",pSecPersonal:"Personal",
     pLblName:"Nombre",pLblGender:"Género",pLblLevel:"Nivel",pSecDiet:"Dieta",pSecAllergy:"Alergias",
     pSaveBtn:"💾 Guardar",pDeleteBtn:"🗑 Borrar datos",linkPrivacy:"Privacidad",linkTerms:"Términos",
     devModeLabel:"Todas las funciones",devHintOn:"Activado 🔓",devHintOff:"Desactivado",
-    proLockedTitle:"Función Pro",proLockedDesc:"Respuestas personalizadas según tu nivel, dieta y alergias",
-    proLockedBtn:"Mejorar a Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}Soy RescueChef`,
     welcomeDesc:"Descríbeme qué salió mal en tu cocina — diagnosticaré, explicaré por qué y te daré una solución inmediata.",
     placeholder:"¿Qué salió mal en tu cocina ahora mismo?",
@@ -547,48 +568,44 @@ const T={
     ready:"Listo",thinking:"Pensando...",listening:"Escuchando...",
     speak:"🔊 Escuchar",stop:"⏹ Parar",
     exampleLabel:"p.ej.",exampleText:"Mi mayonesa se cortó",exampleQ:"Mi mayonesa se cortó y quedó líquida, ¿qué hago?",
+    alphaBadge:"🧪 Versión alfa — Pro desbloqueado",
     levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
     urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar",advice:"Consejo profesional"},
     timerBtn:"⏱ Iniciar temporizador",timerStop:"⏹ Parar",
+    featuresToggleBtn:"¿Qué puedo hacer por ti? ›",featuresToggleBtnClose:"Cerrar ‹",
+    featuresTableTitle:"¿Qué incluye cada plan?",
+    featuresTableFree:"Gratis",featuresTablePro:"⭐ Pro",featuresTableFeature:"Función",
+    featuresRows:[
+      ["🚨 Solución inmediata","✓","✓"],
+      ["💬 Consejo culinario","✓","✓"],
+      ["📐 Conversor de moldes","✓","✓"],
+      ["⏱ Temporizador","✓","✓"],
+      ["👤 Perfil personal","✓","✓"],
+      ["🔬 Explicación científica","—","✓"],
+      ["💡 Consejo de prevención","—","✓"],
+      ["♻️ Zero Waste","—","✓"],
+      ["🔄 Sustituciones","—","✓"],
+    ],
     featureCards:{
       science:{title:"🔬 La Ciencia Detrás",invite:null},
       prevention:{title:"💡 Consejo de Prevención",invite:null},
-      zeroWaste:{title:"♻️ Zero Waste — ¿Qué hacer con los restos?",
-        invite:"¿Sobró algo? No lo tires — dime qué tienes y pensamos juntos.",
-        placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",
-        btn:"Obtener ideas"},
-      substitution:{title:"🔄 ¿Necesitas una sustitución?",
-        invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",
-        placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",
-        btn:"Obtener sustituto"},
-      panScaler:{title:"📐 Conversor de molde / aro",
-        invite:"¿Quieres adaptar una receta a un molde diferente? Dime el diámetro del molde original y el que tienes, y calcularé el factor de conversión exacto.",
-        placeholder:"p.ej. La receta es para molde de 24cm, yo tengo uno de 20cm...",
-        btn:"Calcular conversión"}
+      zeroWaste:{title:"♻️ Zero Waste — ¿Qué hacer con los restos?",invite:"¿Sobró algo? No lo tires — dime qué tienes y pensamos juntos.",placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",btn:"Obtener ideas"},
+      substitution:{title:"🔄 ¿Necesitas una sustitución?",invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",btn:"Obtener sustituto"},
+      panScaler:{title:"📐 Conversor de molde / aro",invite:"¿Quieres adaptar una receta a un molde diferente?",placeholder:"p.ej. La receta es para molde de 24cm, yo tengo uno de 20cm...",btn:"Calcular conversión"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Ver planes",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
-    faqs:[["¿Por qué no usar Claude/ChatGPT?","Claude no te conoce. RescueChef está diseñado para resolver problemas de cocina al instante, con personalización completa en Pro."],
-          ["¿Gratis vs Pro?","Gratis = solución corta. Pro = explicación científica, sustituciones, Zero Waste y perfil personal."],
-          ["¿Funciona en móvil?","Sí. También puedes guardarlo como app — toca Compartir y luego Añadir a pantalla de inicio."],
-          ["¿Se guardan mis datos?","Solo en tu dispositivo."]],
-    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Tu chef digital — a nivel profesional",
-      features:[{icon:"🔬",title:"Explicación científica",desc:"Química y física detrás de cada problema"},
-                {icon:"👤",title:"Perfil personal",desc:"Respuestas adaptadas a ti"},
-                {icon:"🔄",title:"Sustituciones",desc:"Cantidades exactas e impacto"},
-                {icon:"♻️",title:"Zero Waste",desc:"Qué hacer con lo que sobra"}],
-      cta:"Mejorar a Pro",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
+    faqs:[["¿Por qué no usar Claude/ChatGPT?","Claude no te conoce. RescueChef está diseñado para resolver problemas de cocina al instante."],["¿Gratis vs Pro?","Gratis = solución corta. Pro = explicación científica, sustituciones, Zero Waste y perfil personal."],["¿Funciona en móvil?","Sí. También puedes guardarlo como app."],["¿Se guardan mis datos?","Solo en tu dispositivo."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Tu chef digital — a nivel profesional",features:[{icon:"🔬",title:"Explicación científica",desc:"Química y física detrás de cada problema"},{icon:"👤",title:"Perfil personal",desc:"Respuestas adaptadas a ti"},{icon:"🔄",title:"Sustituciones",desc:"Cantidades exactas e impacto"},{icon:"♻️",title:"Zero Waste",desc:"Qué hacer con lo que sobra"}],cta:"Mejorar a Pro",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     legalText:`Al usar esta herramienta aceptas nuestros <span class="legal-link" onclick="openModal('terms-modal')">Términos</span> y <span class="legal-link" onclick="openModal('privacy-modal')">Política de Privacidad</span>.`,
   },
-  fr:{dir:"ltr",tagline:"Votre sous-chef personnel",profileBtn:"😊 Profil",clearBtn:"🗑 Effacer",
+  fr:{dir:"ltr",tagline:"Votre sous-chef personnel",profileBtn:"😊 Profil",clearBtn:"🗑 Effacer",homeBtn:"🏠",
     panelTitle:"Mon Profil",pSecLang:"Langue",pSecPersonal:"Personnel",
     pLblName:"Prénom",pLblGender:"Genre",pLblLevel:"Niveau",pSecDiet:"Régime",pSecAllergy:"Allergies",
     pSaveBtn:"💾 Enregistrer",pDeleteBtn:"🗑 Supprimer",linkPrivacy:"Confidentialité",linkTerms:"Conditions",
     devModeLabel:"Toutes les fonctions",devHintOn:"Activé 🔓",devHintOff:"Désactivé",
-    proLockedTitle:"Fonction Pro",proLockedDesc:"Réponses personnalisées selon votre niveau, régime et allergies",
-    proLockedBtn:"Passer à Pro",
     welcomeTitle:(n)=>`${n?n+" — ":""}Je suis RescueChef`,
     welcomeDesc:"Décrivez ce qui a mal tourné dans votre cuisine — je diagnostiquerai, expliquerai pourquoi et vous donnerai une solution immédiate.",
     placeholder:"Qu'est-ce qui a mal tourné dans votre cuisine?",
@@ -596,50 +613,47 @@ const T={
     ready:"Prêt",thinking:"Réflexion...",listening:"Écoute...",
     speak:"🔊 Écouter",stop:"⏹ Arrêter",
     exampleLabel:"ex.",exampleText:"Ma mayo a tranché",exampleQ:"Ma mayonnaise a tranché et est devenue liquide, que faire?",
+    alphaBadge:"🧪 Version alpha — Pro débloqué",
     levels:[["beginner","🏠 Amateur"],["intermediate","👨‍🍳 En Développement"],["professional","⭐ Professionnel"]],
     diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
     urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable",advice:"Conseil professionnel"},
     timerBtn:"⏱ Démarrer minuteur",timerStop:"⏹ Arrêter",
+    featuresToggleBtn:"Que puis-je faire pour vous? ›",featuresToggleBtnClose:"Fermer ‹",
+    featuresTableTitle:"Qu'est-ce qui est inclus dans chaque plan?",
+    featuresTableFree:"Gratuit",featuresTablePro:"⭐ Pro",featuresTableFeature:"Fonction",
+    featuresRows:[
+      ["🚨 Solution immédiate","✓","✓"],
+      ["💬 Conseil culinaire","✓","✓"],
+      ["📐 Convertisseur de moules","✓","✓"],
+      ["⏱ Minuteur intégré","✓","✓"],
+      ["👤 Profil personnel","✓","✓"],
+      ["🔬 Explication scientifique","—","✓"],
+      ["💡 Conseil de prévention","—","✓"],
+      ["♻️ Zéro Déchet","—","✓"],
+      ["🔄 Substitutions","—","✓"],
+    ],
     featureCards:{
       science:{title:"🔬 La Science Derrière",invite:null},
       prevention:{title:"💡 Conseil de Prévention",invite:null},
-      zeroWaste:{title:"♻️ Zéro Déchet — Que faire avec les restes?",
-        invite:"Des restes? Ne jetez pas — dites-moi ce que vous avez et on réfléchit ensemble.",
-        placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème et un peu de farine...",
-        btn:"Obtenir des idées"},
-      substitution:{title:"🔄 Besoin d'une substitution?",
-        invite:"Il manque un ingrédient? Dites-moi lequel — je trouve le remplacement exact.",
-        placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer et en quelle quantité?",
-        btn:"Obtenir une substitution"},
-      panScaler:{title:"📐 Convertisseur de moule / cercle",
-        invite:"Vous voulez adapter une recette à un moule différent? Donnez-moi le diamètre du moule original et celui que vous avez, je calculerai le facteur de conversion exact.",
-        placeholder:"ex. La recette est pour un moule de 24cm, j'ai un cercle de 20cm...",
-        btn:"Calculer la conversion"}
+      zeroWaste:{title:"♻️ Zéro Déchet — Que faire avec les restes?",invite:"Des restes? Ne jetez pas — dites-moi ce que vous avez.",placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème...",btn:"Obtenir des idées"},
+      substitution:{title:"🔄 Besoin d'une substitution?",invite:"Il manque un ingrédient? Dites-moi lequel.",placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer?",btn:"Obtenir une substitution"},
+      panScaler:{title:"📐 Convertisseur de moule / cercle",invite:"Vous voulez adapter une recette à un moule différent?",placeholder:"ex. La recette est pour un moule de 24cm, j'ai un cercle de 20cm...",btn:"Calculer la conversion"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Voir les plans",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     faqTitle:"FAQ",
-    faqs:[["Pourquoi pas Claude/ChatGPT?","Claude ne vous connaît pas. RescueChef est conçu pour résoudre les problèmes culinaires instantanément."],
-          ["Gratuit vs Pro?","Gratuit = solution courte. Pro = explication scientifique, substitutions, Zéro Déchet et profil personnel."],
-          ["Fonctionne sur mobile?","Oui. Vous pouvez aussi l'enregistrer comme app — appuyez sur Partager puis Sur l'écran d'accueil."],
-          ["Mes données sont stockées?","Uniquement sur votre appareil."]],
-    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Votre chef digital — au niveau professionnel",
-      features:[{icon:"🔬",title:"Explication scientifique",desc:"Chimie et physique derrière chaque problème"},
-                {icon:"👤",title:"Profil personnel",desc:"Réponses adaptées à vous"},
-                {icon:"🔄",title:"Substitutions",desc:"Quantités exactes et impact"},
-                {icon:"♻️",title:"Zéro Déchet",desc:"Que faire avec les restes"}],
-      cta:"Passer à Pro",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
+    faqs:[["Pourquoi pas Claude/ChatGPT?","Claude ne vous connaît pas. RescueChef est conçu pour résoudre les problèmes culinaires instantanément."],["Gratuit vs Pro?","Gratuit = solution courte. Pro = explication scientifique, substitutions, Zéro Déchet et profil personnel."],["Fonctionne sur mobile?","Oui. Vous pouvez aussi l'enregistrer comme app."],["Mes données sont stockées?","Uniquement sur votre appareil."]],
+    upgradeModal:{title:"⭐ RescueChef Pro",subtitle:"Votre chef digital — au niveau professionnel",features:[{icon:"🔬",title:"Explication scientifique",desc:"Chimie et physique derrière chaque problème"},{icon:"👤",title:"Profil personnel",desc:"Réponses adaptées à vous"},{icon:"🔄",title:"Substitutions",desc:"Quantités exactes et impact"},{icon:"♻️",title:"Zéro Déchet",desc:"Que faire avec les restes"}],cta:"Passer à Pro",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     legalText:`En utilisant cet outil vous acceptez nos <span class="legal-link" onclick="openModal('terms-modal')">Conditions</span> et notre <span class="legal-link" onclick="openModal('privacy-modal')">Politique de Confidentialité</span>.`,
   }
 };
 
 let profile={lang:"he",gender:"f",name:"",level:"intermediate",diet:["regular"],allergies:[],devMode:false,isPro:false};
-let devMode=false;
+let devMode=ALPHA_MODE;
 let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtterance=null;
 let selectedLang=null;
 let activeTimers={};
 
-// ── LANG SCREEN ──────────────────────────────────────────────────────────────
 function selectLang(lang){
   selectedLang=lang;
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("selected"));
@@ -660,7 +674,6 @@ function startWithLang(){
   renderWelcome();
 }
 
-// ── APPLY LANG ───────────────────────────────────────────────────────────────
 function applyLang(){
   const t=T[profile.lang]||T.he;
   document.documentElement.dir=t.dir;
@@ -677,9 +690,6 @@ function applyLang(){
   id("link-terms").textContent=t.linkTerms;
   id("dev-mode-label").textContent=t.devModeLabel;
   id("dev-hint").textContent=devMode?t.devHintOn:t.devHintOff;
-  id("pro-locked-title").textContent=t.proLockedTitle;
-  id("pro-locked-desc").textContent=t.proLockedDesc;
-  id("pro-locked-btn").textContent=t.proLockedBtn;
   id("question-input").placeholder=t.placeholder;
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
@@ -688,32 +698,51 @@ function applyLang(){
   if(id("p-lbl-level")) id("p-lbl-level").textContent=t.pLblLevel;
   if(id("p-sec-diet")) id("p-sec-diet").textContent=t.pSecDiet;
   if(id("p-sec-allergy")) id("p-sec-allergy").textContent=t.pSecAllergy;
-  if(id("p-gender-f")) id("p-gender-f").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👩 נקבה":"👩"):("👩");
-  if(id("p-gender-m")) id("p-gender-m").textContent=["he","es","fr"].includes(profile.lang)?(profile.lang==="he"?"👨 זכר":"👨"):("👨");
-  const isPro=devMode||profile.isPro;
+  if(id("p-gender-f")) id("p-gender-f").textContent=profile.lang==="he"?"👩 נקבה":"👩";
+  if(id("p-gender-m")) id("p-gender-m").textContent=profile.lang==="he"?"👨 זכר":"👨";
   id("pro-profile-locked").style.display="none";
   id("pro-profile-fields").style.display="block";
   id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
   id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
   id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleAllergy(this)">${l}</div>`).join("");
+
+  // Alpha badge
+  let badge=id("alpha-badge");
+  if(ALPHA_MODE){
+    if(!badge){badge=document.createElement("div");badge.id="alpha-badge";badge.className="alpha-badge";document.body.appendChild(badge);}
+    badge.textContent=t.alphaBadge;
+  }
 }
 
-function onProfileLangChange(lang){
-  profile.lang=lang;
-  applyLang();
+function onProfileLangChange(lang){profile.lang=lang;applyLang();}
+
+function goHome(){
+  Object.values(activeTimers).forEach(clearInterval);
+  activeTimers={};
+  chatHistory=[];
+  id("home-btn").style.display="none";
+  renderWelcome();
 }
 
-// ── WELCOME ───────────────────────────────────────────────────────────────────
 function renderWelcome(){
   const t=T[profile.lang]||T.he;
   const msgs=id("messages");
   msgs.innerHTML="";
   id("input-area-wrap").style.display="none";
+  id("home-btn").style.display="none";
   const w=document.createElement("div");
   w.className="welcome"; w.id="welcome";
   const SVG_BIG=`<svg fill="#D4AF37" height="56px" width="56px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
-  const proFeaturesHtml=t.proCard.features.map(f=>`<div class="pro-card-feature"><span class="pro-card-feature-icon">✓</span>${f}</div>`).join("");
+
+  const featuresRowsHtml=t.featuresRows.map(([feat,free,pro])=>`
+    <div class="features-row">
+      <div>${feat}</div>
+      <div class="${free==="✓"?"feat-check":"feat-cross"}">${free}</div>
+      <div class="${pro==="✓"?"feat-pro":"feat-cross"}">${pro}</div>
+    </div>`).join("");
+
   const faqHtml=t.faqs.map(([q,a])=>`<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>${q}</span><span class="faq-arrow">›</span></div><div class="faq-a">${a}</div></div>`).join("");
+
   w.innerHTML=`
     <div class="welcome-icon">${SVG_BIG}</div>
     <h2>${t.welcomeTitle(profile.name)}</h2>
@@ -726,27 +755,25 @@ function renderWelcome(){
       </div>
     </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
-    <div class="pro-card" style="margin-top:28px;">
-      <div class="pro-card-header" style="justify-content:center;">
-        <div class="pro-card-title" style="text-align:center;font-size:20px;">${t.proCard.title}</div>
-      </div>
-      <div class="pro-card-features">${proFeaturesHtml}</div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border2);text-align:center;">
-        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;">
-          <div style="flex:1;min-width:120px;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px 10px;">
-            <div style="font-size:22px;font-weight:900;color:var(--accent);">$4.99</div>
-            <div style="font-size:11px;color:var(--muted);">${profile.lang==="he"?"לחודש":profile.lang==="fr"?"/ mois":profile.lang==="es"?"/ mes":"/ month"}</div>
+
+    <div style="max-width:540px;margin:16px auto 0;width:100%;text-align:center;">
+      <button onclick="toggleFeaturesTable(this)" style="background:none;border:none;color:var(--accent);font-family:'Heebo',sans-serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:4px 0;" data-open="false">${t.featuresToggleBtn}</button>
+      <div id="features-table-wrap" style="display:none;margin-top:12px;">
+        <div class="features-table">
+          <div class="features-table-header">
+            <div>${t.featuresTableFeature}</div>
+            <div>${t.featuresTableFree}</div>
+            <div>${t.featuresTablePro}</div>
           </div>
-          <div style="flex:1;min-width:120px;background:rgba(200,168,80,0.08);border:2px solid var(--accent);border-radius:12px;padding:12px 10px;position:relative;">
-            <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;">${profile.lang==="he"?"הכי משתלם":"Best Value"}</div>
-            <div style="font-size:22px;font-weight:900;color:var(--accent);">$39.99</div>
-            <div style="font-size:11px;color:var(--muted);">${profile.lang==="he"?"לשנה (33% חיסכון)":profile.lang==="fr"?"/ an (−33%)":profile.lang==="es"?"/ año (−33%)":"/ year (Save 33%)"}</div>
-          </div>
+          ${featuresRowsHtml}
         </div>
-        <button class="pro-card-btn" onclick="openUpgradeModal()">${t.proCard.btn}</button>
-        <div class="pro-card-note">${profile.lang==="he"?"ביטול בכל עת · ללא התחייבות":"Cancel anytime · No commitment"}</div>
+        <div style="margin-top:12px;">
+          <button class="pro-card-btn" onclick="openUpgradeModal()" style="max-width:300px;">${t.proCard.btn}</button>
+          <div class="pro-card-note" style="margin-top:8px;">${profile.lang==="he"?"ביטול בכל עת · ללא התחייבות":"Cancel anytime · No commitment"}</div>
+        </div>
       </div>
     </div>
+
     <div class="faq-section" style="margin-top:20px;">
       <div class="faq-title">${t.faqTitle}</div>
       ${faqHtml}
@@ -767,7 +794,6 @@ function sendFromWelcome(){
   sendQuestion();
 }
 
-// ── PROFILE PANEL ─────────────────────────────────────────────────────────────
 function openProfile(){
   const toggle=id("dev-mode-toggle");
   if(toggle){toggle.checked=devMode;}
@@ -812,11 +838,10 @@ function saveProfile(){
   if(chatHistory.length===0)renderWelcome();
 }
 
-// ── SYSTEM PROMPT ─────────────────────────────────────────────────────────────
 function getSystemPrompt(){
   const langNames={he:"עברית",en:"English",es:"Español",fr:"Français"};
   const langName=langNames[profile.lang]||"English";
-  const isPro=devMode||profile.isPro;
+  const isPro=ALPHA_MODE||devMode||profile.isPro;
   const levelMap={
     beginner:{he:"בשלן ביתי מתחיל — שפה פשוטה לחלוטין, ללא מונחים מקצועיים",en:"home cook beginner — simple everyday language only",es:"principiante — lenguaje simple",fr:"débutant — langage simple"},
     intermediate:{he:"טבח מתפתח — מונחים מקצועיים עם הסבר קצר",en:"developing cook — professional terms with brief explanation",es:"en desarrollo — términos profesionales con explicación",fr:"en développement — termes professionnels avec explication"},
@@ -827,22 +852,22 @@ function getSystemPrompt(){
   const genderNote=isPro&&profile.lang==="he"?(profile.gender==="f"?"פנה תמיד בלשון נקבה: ערבבי, הוסיפי, בדקי.":"פנה תמיד בלשון זכר: ערבב, הוסף, בדוק."):"";
   const dietNote=isPro&&profile.diet&&profile.diet[0]!=="regular"?(profile.lang==="he"?`תזונת המשתמש: ${profile.diet.join(", ")}.`:`User diet: ${profile.diet.join(", ")}.`):"";
   const allergyNote=isPro&&profile.allergies&&profile.allergies.length?(profile.lang==="he"?`אלרגיות קריטיות: ${profile.allergies.join(", ")} — לעולם אל תציע אותם.`:`Critical allergies: ${profile.allergies.join(", ")} — never suggest these.`):"";
-  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line — base this ONLY on the actual culinary situation:
+  const urgencyInstruction=`At the very start of your response, before any other text, output exactly one of these tags on its own line:
 [URGENCY:full] — if the dish can be fully rescued
 [URGENCY:partial] — if it's critical and needs immediate action but may be partially saved
 [URGENCY:none] — if it truly cannot be rescued and an alternative is needed
-[URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)
-IMPORTANT: The urgency tag must reflect the TRUE situation. Never say "none" just because you are giving a short answer.`;
-  const timerInstruction=`If your rescue steps include any timed action (e.g. "whisk for 3 minutes", "bake for 20 minutes", "rest for 5 minutes"), format it exactly like this: [TIMER:X:label] where X is seconds and label is a short description. Example: [TIMER:180:Whisking] or [TIMER:1200:Baking]. Place this tag right before the step that requires timing.`;
+[URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)`;
+  const timerInstruction=`If your rescue steps include any timed action, format it exactly like this: [TIMER:X:label] where X is seconds. Example: [TIMER:180:Whisking]. Place this tag right before the step that requires timing.`;
+  const panScalerRule=`PAN SCALING RULE: When converting between pan sizes, use Area = π × r². Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. IMPORTANT BAKING TIME RULE: A smaller pan means the batter is deeper/taller, so baking time stays approximately the same or increases slightly (add 3-5 minutes max). A larger pan means shallower batter, so reduce baking time by 5-10 minutes. NEVER say to reduce time significantly for a smaller pan. Always show the calculation clearly.`;
   const proContent=isPro?`
-ALWAYS end with these two sections — keep them VERY SHORT (this applies to ALL messages including follow-ups):
+ALWAYS end with these two sections — keep them VERY SHORT:
 ### 🔬 The Science
-Maximum 2 sentences. The core molecular/chemical reason. Be specific but brief.
+Maximum 2 sentences. The core molecular/chemical reason.
 
 ### 💡 Prevention
 ONE sentence only. The single most important tip to prevent this next time.`:`
-IMPORTANT FREE USER RULE: Do NOT stop to ask clarifying questions. Give ONE direct answer of 2-3 sentences immediately. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי וטיפ מניעה — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
-  const panScalerRule=`PAN SCALING RULE: When a user asks to convert a recipe between pan sizes, use Area = π × r². Calculate: Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. Present clearly: "יש להכפיל את כל חומרי הגלם ב-[Factor מחושב]" followed by the key ingredients converted. Example: 24cm→20cm: Factor = 10²/12² = 100/144 = 0.69. Always show the calculation.`;
+IMPORTANT FREE USER RULE: Give ONE direct answer of 2-3 sentences immediately. End with: "🔒 ${profile.lang==="he"?"לפתרון המלא עם הסבר מדעי — שדרגי ל-Pro.":"For the full solution with scientific explanation — upgrade to Pro."}"`;
+
   return `You are RescueChef — an elite culinary expert trained at Le Cordon Bleu, with deep knowledge of food science, chemistry and physics.
 
 Respond ONLY in ${langName}.
@@ -861,11 +886,11 @@ CORE RULES:
 - NEVER give generic advice. Analyze through: hydration, gluten relaxation, temperature, emulsification, fat percentage, starch types.
 - Diagnose ROOT CAUSE first, then give precise fix.
 - Use culinary terminology but explain terms when needed.
-- If dish cannot be rescued, say so and give best alternative.
-- ${isPro?"CLARIFYING QUESTIONS: Ask ONE focused clarifying question when the solution depends on HOW the user cooked or WHAT they used. Example: onion burned → ask what fat was used. One question only, then answer.":"FREE USER: Do NOT ask clarifying questions. Give direct answer immediately."}
+- If dish cannot be rescued, say so honestly and suggest Zero Waste alternatives.
+- ${isPro?"CLARIFYING QUESTIONS: Ask ONE focused clarifying question when needed. One question only, then answer.":"FREE USER: Do NOT ask clarifying questions. Give direct answer immediately."}
 - BE CONCISE. Every section must be SHORT and focused.
 
-RESPONSE STRUCTURE — keep each section brief:
+RESPONSE STRUCTURE:
 ### 🔍 מה קרה / What happened
 [1-2 sentences: root cause]
 
@@ -874,68 +899,17 @@ RESPONSE STRUCTURE — keep each section brief:
 ${proContent}`;
 }
 
-// ── SEND ─────────────────────────────────────────────────────────────────────
 async function sendQuestion(){
   const input=id("question-input");
   const question=input.value.trim();
   if(!question||isLoading)return;
   const t=T[profile.lang]||T.he;
-  const isPro=devMode||profile.isPro;
-  if(!isPro){
-    const zwPatterns=[/נשאר/,/שאריות/,/נותר/,/מה לעשות עם/,/leftover/i,/left over/i,/what.*do with/i,/sobr[oó]/i,/il me reste/i,/que faire avec/i,/restes/i];
-    const subPatterns=[/במה אפשר להחליף/,/מה מחליף/,/אין לי.*במה/,/נגמר לי/,/substitute/i,/replacement for/i,/instead of/i,/out of/i,/can i use.*instead/i,/sustituir/i,/remplacer/i,/à la place/i];
-    const isZW=zwPatterns.some(p=>p.test(question));
-    const isSub=subPatterns.some(p=>p.test(question));
-    if(isZW||isSub){
-      const featureTitle=isZW?(profile.lang==="he"?"Zero Waste Mode":"Zero Waste Mode"):(profile.lang==="he"?"החלפת מרכיבים חכמה":"Smart Substitutions");
-      const blockedMsgs={
-        he:`🔒 זיהיתי שאלת ${featureTitle} — פיצ'ר זה זמין למנויי Pro בלבד. שדרגי כדי לקבל את כל האפשרויות.`,
-        en:`🔒 I detected a ${featureTitle} question — this feature is available for Pro subscribers only. Upgrade to get the full answer.`,
-        es:`🔒 Detecté una pregunta de ${featureTitle} — esta función está disponible solo para suscriptores Pro.`,
-        fr:`🔒 J'ai détecté une question ${featureTitle} — cette fonction est disponible uniquement pour les abonnés Pro.`
-      };
-      const welcome=id("welcome");
-      if(welcome)welcome.style.display="none";
-      id("input-area-wrap").style.display="flex";
-      addMessage("user",question);
-      input.value="";autoResize(input);
-      const container=id("messages");
-      const msg=document.createElement("div");
-      msg.className="message ai";
-      const avatar=document.createElement("div");
-      avatar.className="msg-avatar";
-      avatar.innerHTML=SVG_ICON;
-      const bubble=document.createElement("div");
-      bubble.className="msg-bubble";
-      bubble.innerHTML=`<div style="font-size:14px;line-height:1.8;color:var(--text);">${blockedMsgs[profile.lang]||blockedMsgs.en}</div>
-        <button class="locked-upgrade-btn" style="margin-top:12px;" onclick="openUpgradeModal()">${profile.lang==="he"?"⭐ שדרגי ל-Pro":"⭐ Upgrade to Pro"}</button>`;
-      msg.appendChild(avatar);
-      msg.appendChild(bubble);
-      container.appendChild(msg);
-      container.scrollTop=container.scrollHeight;
-      return;
-    }
-  }
-  if(!devMode){
-    const today=new Date().toDateString();
-    const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
-    const count=stored.date===today?(stored.count||0):0;
-    const FREE_LIMIT=3;
-    if(count>=FREE_LIMIT){
-      const limitMsgs={he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום.`,en:`🔒 You've reached your ${FREE_LIMIT} free questions for today.`,es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy.`,fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui.`};
-      const welcome=id("welcome");
-      if(welcome)welcome.style.display="none";
-      id("input-area-wrap").style.display="flex";
-      addMessage("user",question);
-      input.value="";autoResize(input);
-      addMessage("ai",limitMsgs[profile.lang]||limitMsgs.en);
-      return;
-    }
-    localStorage.setItem("rc_daily",JSON.stringify({date:today,count:count+1}));
-  }
+  const isPro=ALPHA_MODE||devMode||profile.isPro;
+
   const welcome=id("welcome");
   if(welcome)welcome.style.display="none";
   id("input-area-wrap").style.display="flex";
+  id("home-btn").style.display="flex";
   addMessage("user",question);
   input.value="";autoResize(input);
   chatHistory.push({role:"user",content:question});
@@ -943,9 +917,9 @@ async function sendQuestion(){
   const typingEl=addTyping();
   try{
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:(devMode||profile.isPro)?1500:600,
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1500,
         system:getSystemPrompt(),messages:chatHistory})});
-    if(!res.ok){const err=await res.json();const msg=err.error?.message||"Server error";if(msg==="DAILY_LIMIT_REACHED"){typingEl.remove();addMessage("ai",profile.lang==="he"?"🔒 הגעת למגבלה היומית. שדרגי ל-Pro להמשך.":profile.lang==="es"?"🔒 Alcanzaste el límite diario. Mejora a Pro.":profile.lang==="fr"?"🔒 Vous avez atteint la limite quotidienne. Passez à Pro.":"🔒 You've reached today's limit. Upgrade to Pro.");setLoading(false,T[profile.lang]?.ready||"Ready");return;}throw new Error(msg);}
+    if(!res.ok){const err=await res.json();const msg=err.error?.message||"Server error";if(msg==="DAILY_LIMIT_REACHED"){typingEl.remove();addMessage("ai",profile.lang==="he"?"🔒 הגעת למגבלה היומית.":"🔒 You've reached today's limit.");setLoading(false,T[profile.lang]?.ready||"Ready");return;}throw new Error(msg);}
     const data=await res.json();
     let answer=data.content[0].text;
     chatHistory.push({role:"assistant",content:answer});
@@ -959,7 +933,6 @@ async function sendQuestion(){
   }
 }
 
-// ── ADD AI MESSAGE ────────────────────────────────────────────────────────────
 function addAIMessage(rawText,t){
   const container=id("messages");
   const msg=document.createElement("div");
@@ -971,7 +944,7 @@ function addAIMessage(rawText,t){
   bubble.className="msg-bubble";
   let urgencyLevel="full";
   let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
-  const isPro=devMode||profile.isPro;
+  const isPro=ALPHA_MODE||devMode||profile.isPro;
   const urgencyData={
     full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
     partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
@@ -980,22 +953,14 @@ function addAIMessage(rawText,t){
   };
   const ud=urgencyData[urgencyLevel]||urgencyData.full;
   const urgencyHTML=ud.isAdvice
-    ?`<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);">
-        <div class="urgency-label">💡</div>
-        <div class="urgency-text green" style="flex:1;font-size:13px;">${ud.label}</div>
-      </div>`
-    :`<div class="urgency-bar">
-        <div class="urgency-label">📊</div>
-        <div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div>
-        <div class="urgency-text ${ud.cls}">${ud.label}</div>
-      </div>`;
+    ?`<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);"><div class="urgency-label">💡</div><div class="urgency-text green" style="flex:1;font-size:13px;">${ud.label}</div></div>`
+    :`<div class="urgency-bar"><div class="urgency-label">📊</div><div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div><div class="urgency-text ${ud.cls}">${ud.label}</div></div>`;
   const timerBtns=[];
   text=text.replace(/\[TIMER:(\d+):([^\]]+)\]/g,(m,secs,label)=>{
     const tid="timer_"+Date.now()+"_"+Math.random().toString(36).slice(2);
     timerBtns.push({tid,secs:parseInt(secs),label});
     return `<span id="tw_${tid}"></span>`;
   });
-  let mainBody=text;
   let scienceContent="";
   let preventionContent="";
   const parts=text.split(/(?=^###\s)/m);
@@ -1003,21 +968,19 @@ function addAIMessage(rawText,t){
   parts.forEach(part=>{
     if(!part.trim())return;
     const firstLine=part.split("\n")[0];
-    const isScience=firstLine.includes("🔬")||/science|מדע|ciencia|science/i.test(firstLine);
+    const isScience=firstLine.includes("🔬")||/science|מדע|ciencia/i.test(firstLine);
     const isPrevention=firstLine.includes("💡")||/prevention|מניע|prevenci|prévention/i.test(firstLine);
     if(isScience){scienceContent=part.replace(/^###[^\n]*\n/,"").trim();}
     else if(isPrevention){preventionContent=part.replace(/^###[^\n]*\n/,"").trim();}
     else{mainParts.push(part);}
   });
-  mainBody=mainParts.join("").trim();
-  let formatted=formatSection(mainBody);
-  bubble.innerHTML=urgencyHTML+formatted;
+  const mainBody=mainParts.join("").trim();
+  bubble.innerHTML=urgencyHTML+formatSection(mainBody);
   timerBtns.forEach(({tid,secs,label})=>{
     const wrap=bubble.querySelector(`#tw_${tid}`);
     if(!wrap)return;
     const btn=document.createElement("button");
     btn.className="timer-btn";
-    btn.id="tbtn_"+tid;
     btn.innerHTML=`${t.timerBtn||"⏱ Timer"}: ${label} (${formatTime(secs)})`;
     btn.onclick=()=>handleTimer(tid,secs,label,btn,t);
     wrap.replaceWith(btn);
@@ -1025,8 +988,8 @@ function addAIMessage(rawText,t){
   const fc=t.featureCards||{};
   const cardsDiv=document.createElement("div");
   cardsDiv.className="feature-cards";
-  buildContentCard(cardsDiv,fc.science,scienceContent,isPro,"science");
-  buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro,"prevention");
+  buildContentCard(cardsDiv,fc.science,scienceContent,isPro);
+  buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro);
   buildInviteCard(cardsDiv,fc.zeroWaste,t);
   buildInviteCard(cardsDiv,fc.substitution,t);
   bubble.appendChild(cardsDiv);
@@ -1041,7 +1004,7 @@ function addAIMessage(rawText,t){
   container.scrollTop=container.scrollHeight;
 }
 
-function buildContentCard(container,cardT,content,isPro,key){
+function buildContentCard(container,cardT,content,isPro){
   if(!cardT)return;
   const card=document.createElement("div");
   card.className="feature-card";
@@ -1052,27 +1015,9 @@ function buildContentCard(container,cardT,content,isPro,key){
   const body=document.createElement("div");
   body.className="feature-card-body";
   if(content){
-    if(isPro){body.innerHTML=formatSection(content);}
-    else{body.innerHTML=`<div class="blur-section">
-        <div class="blur-content" style="min-height:60px;">${formatSection(content)}</div>
-        <div class="blur-overlay">
-          <div class="blur-lock">🔒</div>
-          <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
-          <div class="blur-price">$4.99/mo</div>
-          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
-        </div>
-      </div>`;}
+    body.innerHTML=formatSection(content);
   } else {
-    if(isPro){body.innerHTML=`<div style="font-size:13px;color:var(--muted);font-style:italic;">${profile.lang==="he"?"המידע יופיע בשאלה הבאה":"Will appear with the next response"}</div>`;}
-    else{body.innerHTML=`<div class="blur-section">
-        <div class="blur-content" style="min-height:60px;"><p>████ ████████ ████ ███████ ████████ ███.</p></div>
-        <div class="blur-overlay">
-          <div class="blur-lock">🔒</div>
-          <div class="blur-title">${profile.lang==="he"?"זמין למנויי Pro בלבד":"Available for Pro subscribers only"}</div>
-          <div class="blur-price">$4.99/mo</div>
-          <button class="blur-btn" onclick="openUpgradeModal()">${profile.lang==="he"?"שדרגי ל-Pro":"Upgrade to Pro"}</button>
-        </div>
-      </div>`;}
+    body.innerHTML=`<div style="font-size:13px;color:var(--muted);font-style:italic;">${profile.lang==="he"?"המידע יופיע בשאלה הבאה":"Will appear with the next response"}</div>`;
   }
   card.appendChild(header);
   card.appendChild(body);
@@ -1107,59 +1052,38 @@ function formatSection(text){
     .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
     .replace(/^(\d+)\.\s(.+)/gm,"<div style='display:flex;gap:8px;margin:5px 0;'><span style='color:var(--accent);font-weight:700;min-width:20px;'>$1.</span><span>$2</span></div>")
     .replace(/^-\s(.+)/gm,"<li>$1</li>")
-    .replace(/(?:\s*<li>[\s\S]*?<\/li>)+/g, m => `<ul>${m}</ul>`)
+    .replace(/(?:\s*<li>[\s\S]*?<\/li>)+/g,m=>`<ul>${m}</ul>`)
     .replace(/\n\n/g,"<br>")
     .replace(/\n/g,"<br>");
 }
 
-// ── TIMER ─────────────────────────────────────────────────────────────────────
-function formatTime(secs){
-  const m=Math.floor(secs/60),s=secs%60;
-  return `${m}:${s.toString().padStart(2,"0")}`;
-}
+function formatTime(secs){const m=Math.floor(secs/60),s=secs%60;return `${m}:${s.toString().padStart(2,"0")}`;}
 
 function playTimerDone(){
   try{
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const notes=[523.25,659.25,783.99];
-    notes.forEach((freq,i)=>{
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type="sine";
-      osc.frequency.value=freq;
+    [523.25,659.25,783.99].forEach((freq,i)=>{
+      const osc=ctx.createOscillator(),gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type="sine";osc.frequency.value=freq;
       const start=ctx.currentTime+i*0.18;
       gain.gain.setValueAtTime(0,start);
       gain.gain.linearRampToValueAtTime(0.35,start+0.04);
       gain.gain.exponentialRampToValueAtTime(0.001,start+0.7);
-      osc.start(start);
-      osc.stop(start+0.75);
+      osc.start(start);osc.stop(start+0.75);
     });
     if(navigator.vibrate)navigator.vibrate([200,100,200]);
   }catch(e){}
 }
 
 function handleTimer(tid,totalSecs,label,btn,t){
-  if(activeTimers[tid]){
-    clearInterval(activeTimers[tid]);
-    delete activeTimers[tid];
-    btn.classList.remove("running");
-    btn.innerHTML=`${t.timerBtn||"⏱ Timer"}: ${label} (${formatTime(totalSecs)})`;
-    return;
-  }
+  if(activeTimers[tid]){clearInterval(activeTimers[tid]);delete activeTimers[tid];btn.classList.remove("running");btn.innerHTML=`${t.timerBtn||"⏱ Timer"}: ${label} (${formatTime(totalSecs)})`;return;}
   let remaining=totalSecs;
   btn.classList.add("running");
   activeTimers[tid]=setInterval(()=>{
     remaining--;
     btn.innerHTML=`${t.timerStop||"⏹"} ${label} — <span class="timer-display">${formatTime(remaining)}</span>`;
-    if(remaining<=0){
-      clearInterval(activeTimers[tid]);
-      delete activeTimers[tid];
-      btn.classList.remove("running");
-      btn.innerHTML=`✅ ${label} — ${profile.lang==="he"?"הזמן הסתיים!":"Done!"}`;
-      playTimerDone();
-    }
+    if(remaining<=0){clearInterval(activeTimers[tid]);delete activeTimers[tid];btn.classList.remove("running");btn.innerHTML=`✅ ${label} — ${profile.lang==="he"?"הזמן הסתיים!":"Done!"}`;playTimerDone();}
   },1000);
 }
 
@@ -1171,25 +1095,6 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   const val=input.value.trim();
   if(!val)return;
   const t=T[profile.lang]||T.he;
-  if(!devMode){
-    const today=new Date().toDateString();
-    const stored=JSON.parse(localStorage.getItem("rc_daily")||"{}");
-    const count=stored.date===today?(stored.count||0):0;
-    const FREE_LIMIT=3;
-    if(count>=FREE_LIMIT){
-      const limitMsgs={
-        he:`🔒 הגעת ל-${FREE_LIMIT} השאלות החינמיות שלך להיום. שדרגי ל-Pro להמשך.`,
-        en:`🔒 You've reached your ${FREE_LIMIT} free questions for today. Upgrade to Pro.`,
-        es:`🔒 Alcanzaste tus ${FREE_LIMIT} preguntas gratuitas de hoy. Mejora a Pro.`,
-        fr:`🔒 Vous avez atteint vos ${FREE_LIMIT} questions gratuites d'aujourd'hui. Passez à Pro.`
-      };
-      result.style.display="block";
-      result.innerHTML=`<span style="color:#E74C3C;">${limitMsgs[profile.lang]||limitMsgs.en}</span>`;
-      btn.disabled=true;
-      return;
-    }
-    localStorage.setItem("rc_daily",JSON.stringify({date:today,count:count+1}));
-  }
   const origText=btn.textContent;
   btn.textContent=t.thinking||"...";
   btn.disabled=true;
@@ -1198,29 +1103,16 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   try{
     const msgs=[...chatHistory,{role:"user",content:val}];
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:800,
-        system:getSystemPrompt(),messages:msgs})});
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:800,system:getSystemPrompt(),messages:msgs})});
     if(!res.ok)throw new Error("Server error");
     const data=await res.json();
     const answer=data.content[0].text.replace(/^\[URGENCY:[^\]]+\]\n?/m,"");
     result.innerHTML=formatSection(answer);
-    input.value="";
-    input.style.display="none";
-    btn.style.display="none";
+    input.value="";input.style.display="none";btn.style.display="none";
   }catch(err){
     result.innerHTML=`<span style="color:#E74C3C;">❌ ${profile.lang==="he"?"שגיאה, נסי שוב":"Error, try again"}</span>`;
-    btn.textContent=origText;
-    btn.disabled=false;
+    btn.textContent=origText;btn.disabled=false;
   }
-}
-
-function sendFeatureQuestion(inputId){
-  const el=document.getElementById(inputId);
-  if(!el)return;
-  const val=el.value.trim();
-  if(!val)return;
-  id("question-input").value=val;
-  sendQuestion();
 }
 
 function addMessage(role,text){
@@ -1233,8 +1125,7 @@ function addMessage(role,text){
   const bubble=document.createElement("div");
   bubble.className="msg-bubble";
   bubble.textContent=text;
-  msg.appendChild(avatar);
-  msg.appendChild(bubble);
+  msg.appendChild(avatar);msg.appendChild(bubble);
   container.appendChild(msg);
   container.scrollTop=container.scrollHeight;
 }
@@ -1244,12 +1135,19 @@ function addTyping(){
   const m=document.createElement("div");
   m.className="message ai";
   m.innerHTML=`<div class="msg-avatar">${SVG_ICON}</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  c.appendChild(m);
-  c.scrollTop=c.scrollHeight;
+  c.appendChild(m);c.scrollTop=c.scrollHeight;
   return m;
 }
 
-// ── UPGRADE MODAL ─────────────────────────────────────────────────────────────
+function toggleFeaturesTable(btn){
+  const wrap=id("features-table-wrap");
+  if(!wrap)return;
+  const isOpen=btn.dataset.open==="true";
+  const t=T[profile.lang]||T.he;
+  if(isOpen){wrap.style.display="none";btn.dataset.open="false";btn.textContent=t.featuresToggleBtn;}
+  else{wrap.style.display="block";btn.dataset.open="true";btn.textContent=t.featuresToggleBtnClose;}
+}
+
 function openUpgradeModal(){
   const t=T[profile.lang]||T.en;
   const um=t.upgradeModal;
@@ -1260,10 +1158,22 @@ function openUpgradeModal(){
   modal.querySelector(".upgrade-modal-features").innerHTML=featuresHtml;
   modal.querySelector(".upgrade-cta").textContent=um.cta;
   modal.querySelector("#upgrade-note").textContent=um.note;
+  // Add features comparison table to upgrade modal
+  const featRowsHtml=t.featuresRows.map(([feat,free,pro])=>
+    `<div class="features-row"><div>${feat}</div><div class="${free==="✓"?"feat-check":"feat-cross"}">${free}</div><div class="${pro==="✓"?"feat-pro":"feat-cross"}">${pro}</div></div>`
+  ).join("");
+  const tableHtml=`<div style="margin-top:16px;">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">${t.featuresTableTitle}</div>
+    <div class="features-table">
+      <div class="features-table-header"><div>${t.featuresTableFeature}</div><div>${t.featuresTableFree}</div><div>${t.featuresTablePro}</div></div>
+      ${featRowsHtml}
+    </div>
+  </div>`;
+  const existingTable=modal.querySelector("#upgrade-features-table");
+  if(existingTable)existingTable.innerHTML=tableHtml;
   modal.classList.add("show");
 }
 
-// ── VOICE ─────────────────────────────────────────────────────────────────────
 function toggleVoice(){
   if(!("webkitSpeechRecognition"in window)&&!("SpeechRecognition"in window)){alert("Use Chrome for voice.");return;}
   if(isRecording){recognition.stop();return;}
@@ -1290,24 +1200,9 @@ function speakText(text,btn,t){
   speechSynthesis.speak(u);
 }
 
-// ── DEV MODE ──────────────────────────────────────────────────────────────────
-function unlock(password) {
-  if (password === "DEV10") {
-    devMode = true;
-    profile.devMode = true;
-    localStorage.setItem("rc_profile", JSON.stringify(profile));
-    applyLang();
-    if (!document.getElementById("dev-badge")) {
-      const b = document.createElement("div");
-      b.id = "dev-badge";
-      b.className = "dev-badge";
-      b.textContent = "🔧 Dev Mode";
-      document.body.appendChild(b);
-    }
-    console.log("✅ Dev Mode פעיל");
-  } else {
-    console.log("❌ סיסמא שגויה");
-  }
+function unlock(password){
+  if(password==="DEV10"){devMode=true;profile.devMode=true;localStorage.setItem("rc_profile",JSON.stringify(profile));applyLang();if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}console.log("✅ Dev Mode פעיל");}
+  else{console.log("❌ סיסמא שגויה");}
 }
 
 function toggleDevMode(val){
@@ -1316,17 +1211,14 @@ function toggleDevMode(val){
   const t=T[profile.lang]||T.en;
   id("dev-hint").textContent=val?t.devHintOn:t.devHintOff;
   applyLang();
-  if(val){
-    if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}
-  }else{const b=id("dev-badge");if(b)b.remove();}
+  if(val){if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}}
+  else{const b=id("dev-badge");if(b)b.remove();}
 }
 
-// ── MODALS ────────────────────────────────────────────────────────────────────
 function openModal(modalId){document.getElementById(modalId).classList.add("show");}
 function closeModal(modalId){document.getElementById(modalId).classList.remove("show");}
 function deleteAccount(){localStorage.removeItem("rc_profile");closeModal("delete-modal");location.reload();}
 
-// ── ERRORS ────────────────────────────────────────────────────────────────────
 function getFriendlyError(msg,lang){
   const isHe=lang==="he";
   if(msg.includes("401")||msg.includes("invalid_api_key"))return isHe?"🔑 מפתח API לא תקין.":"🔑 Invalid API key.";
@@ -1335,37 +1227,25 @@ function getFriendlyError(msg,lang){
   return isHe?`❌ שגיאה. נסי שוב. (${msg})`:`❌ Error. Try again. (${msg})`;
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
 function id(x){return document.getElementById(x);}
-function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];renderWelcome();}
+function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];id("home-btn").style.display="none";renderWelcome();}
 function handleKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendQuestion();}}
 function autoResize(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,140)+"px";}
 function setLoading(val,txt){isLoading=val;id("send-btn").disabled=val;setStatus(txt);id("status-dot").className="status-dot"+(val?" loading":"");}
 function setStatus(text){id("status-text").textContent=text;}
 
-// ── BOOT ──────────────────────────────────────────────────────────────────────
 window.addEventListener("load",()=>{
   const showHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="block";if(grid)grid.style.gridTemplateColumns="1fr 1fr";};
   const hideHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="none";if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";};
   const fallbackTimer=setTimeout(()=>showHebrew(),1500);
-  fetch("/api/country")
-    .then(r=>r.json())
-    .then(data=>{
-      clearTimeout(fallbackTimer);
-      if(data.country==="IL")showHebrew();
-      else hideHebrew();
-    })
-    .catch(()=>{
-      clearTimeout(fallbackTimer);
-      showHebrew();
-    });
+  fetch("/api/country").then(r=>r.json()).then(data=>{clearTimeout(fallbackTimer);if(data.country==="IL")showHebrew();else hideHebrew();}).catch(()=>{clearTimeout(fallbackTimer);showHebrew();});
   const saved=localStorage.getItem("rc_profile");
   if(saved){
     try{
       const p=JSON.parse(saved);
       if(p.lang){
         profile={...profile,...p};
-        devMode=profile.devMode||false;
+        devMode=ALPHA_MODE||profile.devMode||false;
         id("lang-screen").style.display="none";
         id("app").style.display="flex";
         applyLang();
@@ -1383,6 +1263,7 @@ window.addEventListener("load",()=>{
     <div class="modal-title"></div>
     <div id="upgrade-subtitle" style="font-size:14px;color:var(--muted);margin-bottom:16px;"></div>
     <div class="upgrade-modal-features"></div>
+    <div id="upgrade-features-table"></div>
     <button class="upgrade-cta" onclick="alert('Coming soon! 🚀');closeModal('upgrade-modal')"></button>
     <div id="upgrade-note" style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px;"></div>
     <button class="modal-close" onclick="closeModal('upgrade-modal')" id="upgrade-close">סגור / Close</button>
