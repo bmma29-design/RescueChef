@@ -1,28 +1,35 @@
 const rateLimitMap = new Map();
+const dailyMap = new Map();
 
 function getRateLimit(ip) {
   const now = Date.now();
-  const windowMs = 60 * 1000; // חלון זמן של דקה אחת
-  const maxRequests = 10; // מקסימום 10 בקשות לדקה
-
+  const windowMs = 60 * 1000;
+  const maxPerMinute = 10;
   if (!rateLimitMap.has(ip)) {
     rateLimitMap.set(ip, { count: 1, start: now });
     return true;
   }
-
   const entry = rateLimitMap.get(ip);
-
   if (now - entry.start > windowMs) {
-    // עברה דקה — מאפסים את המונה
     rateLimitMap.set(ip, { count: 1, start: now });
     return true;
   }
-
-  if (entry.count >= maxRequests) {
-    return false; // חסום
-  }
-
+  if (entry.count >= maxPerMinute) return false;
   entry.count++;
+  return true;
+}
+
+function getDailyLimit(ip) {
+  const today = new Date().toDateString();
+  const key = ip + "_" + today;
+  const FREE_LIMIT = 10;
+  if (!dailyMap.has(key)) {
+    dailyMap.set(key, 1);
+    return true;
+  }
+  const count = dailyMap.get(key);
+  if (count >= FREE_LIMIT) return false;
+  dailyMap.set(key, count + 1);
   return true;
 }
 
@@ -40,14 +47,16 @@ export default async function handler(req, res) {
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  // בדיקת Rate Limit
   const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket?.remoteAddress || 'unknown';
-  const allowed = getRateLimit(ip);
 
-  if (!allowed) {
-    return res.status(429).json({ 
-      error: { message: 'יותר מדי בקשות. נסי שוב בעוד דקה.' }
-    });
+  if (!getRateLimit(ip)) {
+    return res.status(429).json({ error: { message: 'יותר מדי בקשות. נסי שוב בעוד דקה.' } });
+  }
+
+  const isPro = req.body?.isPro === true;
+
+  if (!isPro && !getDailyLimit(ip)) {
+    return res.status(429).json({ error: { message: 'DAILY_LIMIT_REACHED' } });
   }
 
   try {
@@ -60,15 +69,9 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify(req.body)
     });
-
     const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(response.status).json(data);
-    }
-
+    if (!response.ok) return res.status(response.status).json(data);
     return res.status(200).json(data);
-
   } catch (err) {
     return res.status(500).json({ error: { message: err.message } });
   }
