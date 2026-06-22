@@ -88,20 +88,6 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
   color:#EF4444;cursor:pointer;margin-top:8px;}
 .legal-links{display:flex;gap:12px;justify-content:center;margin-top:12px;}
 .legal-link{font-size:11px;color:var(--muted);cursor:pointer;text-decoration:underline;}
-.dev-toggle-row{display:flex;align-items:center;justify-content:space-between;
-  background:rgba(200,168,80,0.05);border:1px solid rgba(200,168,80,0.15);border-radius:10px;
-  padding:12px 14px;margin-bottom:6px;}
-.dev-toggle-row span{font-size:13px;font-weight:600;color:var(--soft);}
-.toggle-switch{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;}
-.toggle-switch input{opacity:0;width:0;height:0;}
-.toggle-slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:24px;transition:0.3s;}
-.toggle-slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.3s;}
-input:checked+.toggle-slider{background:var(--accent);}
-input:checked+.toggle-slider:before{transform:translateX(20px);}
-.dev-hint{font-size:11px;color:var(--muted);margin-bottom:14px;}
-.dev-badge{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
-  background:var(--accent);color:white;font-size:11px;font-weight:700;
-  padding:5px 14px;border-radius:20px;z-index:200;}
 
 .messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
 .messages::-webkit-scrollbar{width:4px;}
@@ -391,15 +377,6 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       </div>
     </div>
 
-    <div class="panel-section">🔧 Dev Mode</div>
-    <div class="dev-toggle-row">
-      <span id="dev-mode-label">All features</span>
-      <label class="toggle-switch">
-        <input type="checkbox" id="dev-mode-toggle" onchange="toggleDevMode(this.checked)">
-        <span class="toggle-slider"></span>
-      </label>
-    </div>
-    <div class="dev-hint" id="dev-hint">Off</div>
     <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 Save</button>
     <button class="delete-btn" onclick="openModal('delete-modal')" id="p-delete-btn">🗑 Delete data</button>
     <div class="legal-links" style="margin-top:12px;">
@@ -436,7 +413,6 @@ const T={
     panelTitle:"הפרופיל שלי",pSecLang:"שפה",pSecPersonal:"פרטים אישיים",
     pLblName:"שם",pLblGender:"פנייה",pLblLevel:"רמה",pSecDiet:"תזונה",pSecAllergy:"אלרגיות",
     pSaveBtn:"💾 שמור",pDeleteBtn:"🗑 מחק נתונים",linkPrivacy:"פרטיות",linkTerms:"תנאים",
-    devModeLabel:"כל הפיצ׳רים",devHintOn:"פועל 🔓",devHintOff:"כבוי",
     welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
     welcomeDesc:"ספרי לי מה קורה במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
     placeholder:"יש בעיה במטבח? אני כאן",
@@ -498,7 +474,6 @@ const T={
     panelTitle:"My Profile",pSecLang:"Language",pSecPersonal:"Personal",
     pLblName:"Name",pLblGender:"Gender",pLblLevel:"Level",pSecDiet:"Diet",pSecAllergy:"Allergies",
     pSaveBtn:"💾 Save",pDeleteBtn:"🗑 Delete data",linkPrivacy:"Privacy",linkTerms:"Terms",
-    devModeLabel:"All features",devHintOn:"On 🔓",devHintOff:"Off",
     welcomeTitle:(n)=>`${n?n+" — ":""}I'm RescueChef`,
     welcomeDesc:"Describe what went wrong in your kitchen — I'll diagnose it, explain why, and give you an immediate solution.",
     placeholder:"What went wrong in your kitchen right now?",
@@ -560,7 +535,6 @@ const T={
     panelTitle:"Mi Perfil",pSecLang:"Idioma",pSecPersonal:"Personal",
     pLblName:"Nombre",pLblGender:"Género",pLblLevel:"Nivel",pSecDiet:"Dieta",pSecAllergy:"Alergias",
     pSaveBtn:"💾 Guardar",pDeleteBtn:"🗑 Borrar datos",linkPrivacy:"Privacidad",linkTerms:"Términos",
-    devModeLabel:"Todas las funciones",devHintOn:"Activado 🔓",devHintOff:"Desactivado",
     welcomeTitle:(n)=>`${n?n+" — ":""}Soy RescueChef`,
     welcomeDesc:"Descríbeme qué salió mal en tu cocina — diagnosticaré, explicaré por qué y te daré una solución inmediata.",
     placeholder:"¿Qué salió mal en tu cocina ahora mismo?",
@@ -605,7 +579,6 @@ const T={
     panelTitle:"Mon Profil",pSecLang:"Langue",pSecPersonal:"Personnel",
     pLblName:"Prénom",pLblGender:"Genre",pLblLevel:"Niveau",pSecDiet:"Régime",pSecAllergy:"Allergies",
     pSaveBtn:"💾 Enregistrer",pDeleteBtn:"🗑 Supprimer",linkPrivacy:"Confidentialité",linkTerms:"Conditions",
-    devModeLabel:"Toutes les fonctions",devHintOn:"Activé 🔓",devHintOff:"Désactivé",
     welcomeTitle:(n)=>`${n?n+" — ":""}Je suis RescueChef`,
     welcomeDesc:"Décrivez ce qui a mal tourné dans votre cuisine — je diagnostiquerai, expliquerai pourquoi et vous donnerai une solution immédiate.",
     placeholder:"Qu'est-ce qui a mal tourné dans votre cuisine?",
@@ -648,8 +621,7 @@ const T={
   }
 };
 
-let profile={lang:"he",gender:"f",name:"",level:"intermediate",diet:["regular"],allergies:[],devMode:false,isPro:false};
-let devMode=ALPHA_MODE;
+let profile={lang:"he",gender:"f",name:"",level:"intermediate",diet:["regular"],allergies:[],isPro:false};
 let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtterance=null;
 let selectedLang=null;
 let activeTimers={};
@@ -688,8 +660,6 @@ function applyLang(){
   id("p-delete-btn").textContent=t.pDeleteBtn;
   id("link-privacy").textContent=t.linkPrivacy;
   id("link-terms").textContent=t.linkTerms;
-  id("dev-mode-label").textContent=t.devModeLabel;
-  id("dev-hint").textContent=devMode?t.devHintOn:t.devHintOff;
   id("question-input").placeholder=t.placeholder;
   id("input-hint").textContent=t.hint;
   setStatus(t.ready);
@@ -745,7 +715,7 @@ function renderWelcome(){
 
   w.innerHTML=`
     <div class="welcome-icon">${SVG_BIG}</div>
-    <h2>${t.welcomeTitle(profile.name)}</h2>
+    <h2>${t.welcomeTitle(escapeHtml(profile.name))}</h2>
     <p>${t.welcomeDesc}</p>
     <div class="welcome-input-wrap">
       <div class="welcome-box">
@@ -795,8 +765,6 @@ function sendFromWelcome(){
 }
 
 function openProfile(){
-  const toggle=id("dev-mode-toggle");
-  if(toggle){toggle.checked=devMode;}
   id("p-lang").value=profile.lang;
   id("p-level").value=profile.level;
   id("p-diet").value=profile.diet[0]||"regular";
@@ -841,7 +809,7 @@ function saveProfile(){
 function getSystemPrompt(){
   const langNames={he:"עברית",en:"English",es:"Español",fr:"Français"};
   const langName=langNames[profile.lang]||"English";
-  const isPro=ALPHA_MODE||devMode||profile.isPro;
+  const isPro=ALPHA_MODE||profile.isPro;
   const levelMap={
     beginner:{he:"בשלן ביתי מתחיל — שפה פשוטה לחלוטין, ללא מונחים מקצועיים",en:"home cook beginner — simple everyday language only",es:"principiante — lenguaje simple",fr:"débutant — langage simple"},
     intermediate:{he:"טבח מתפתח — מונחים מקצועיים עם הסבר קצר",en:"developing cook — professional terms with brief explanation",es:"en desarrollo — términos profesionales con explicación",fr:"en développement — termes professionnels avec explication"},
@@ -904,7 +872,7 @@ async function sendQuestion(){
   const question=input.value.trim();
   if(!question||isLoading)return;
   const t=T[profile.lang]||T.he;
-  const isPro=ALPHA_MODE||devMode||profile.isPro;
+  const isPro=ALPHA_MODE||profile.isPro;
 
   const welcome=id("welcome");
   if(welcome)welcome.style.display="none";
@@ -944,7 +912,7 @@ function addAIMessage(rawText,t){
   bubble.className="msg-bubble";
   let urgencyLevel="full";
   let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
-  const isPro=ALPHA_MODE||devMode||profile.isPro;
+  const isPro=ALPHA_MODE||profile.isPro;
   const urgencyData={
     full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
     partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
@@ -1200,20 +1168,6 @@ function speakText(text,btn,t){
   speechSynthesis.speak(u);
 }
 
-function unlock(password){
-  if(password==="DEV10"){devMode=true;profile.devMode=true;localStorage.setItem("rc_profile",JSON.stringify(profile));applyLang();if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}console.log("✅ Dev Mode פעיל");}
-  else{console.log("❌ סיסמא שגויה");}
-}
-
-function toggleDevMode(val){
-  devMode=val;profile.devMode=val;
-  localStorage.setItem("rc_profile",JSON.stringify(profile));
-  const t=T[profile.lang]||T.en;
-  id("dev-hint").textContent=val?t.devHintOn:t.devHintOff;
-  applyLang();
-  if(val){if(!id("dev-badge")){const b=document.createElement("div");b.id="dev-badge";b.className="dev-badge";b.textContent="🔧 Dev Mode";document.body.appendChild(b);}}
-  else{const b=id("dev-badge");if(b)b.remove();}
-}
 
 function openModal(modalId){document.getElementById(modalId).classList.add("show");}
 function closeModal(modalId){document.getElementById(modalId).classList.remove("show");}
@@ -1228,6 +1182,7 @@ function getFriendlyError(msg,lang){
 }
 
 function id(x){return document.getElementById(x);}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
 function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];id("home-btn").style.display="none";renderWelcome();}
 function handleKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendQuestion();}}
 function autoResize(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,140)+"px";}
@@ -1245,7 +1200,6 @@ window.addEventListener("load",()=>{
       const p=JSON.parse(saved);
       if(p.lang){
         profile={...profile,...p};
-        devMode=ALPHA_MODE||profile.devMode||false;
         id("lang-screen").style.display="none";
         id("app").style.display="flex";
         applyLang();
