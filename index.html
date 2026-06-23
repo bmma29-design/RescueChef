@@ -392,6 +392,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     <div class="status-bar">
       <div class="status-dot" id="status-dot"></div>
       <span id="status-text">Ready</span>
+      <span id="daily-count" style="margin-inline-start:auto;font-size:11px;color:var(--muted);"></span>
     </div>
     <div class="input-row">
       <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
@@ -626,6 +627,27 @@ let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtt
 let selectedLang=null;
 let activeTimers={};
 
+const FREE_LIMIT=5;
+function getDailyLocal(){
+  const today=new Date().toDateString();
+  try{const s=JSON.parse(localStorage.getItem("rc_daily")||"null");if(s&&s.date===today)return s.count;}catch(e){}
+  return 0;
+}
+function incrementDailyLocal(){
+  const today=new Date().toDateString();
+  const count=getDailyLocal()+1;
+  localStorage.setItem("rc_daily",JSON.stringify({date:today,count}));
+  renderDailyCount();
+}
+function renderDailyCount(){
+  const el=id("daily-count");
+  if(!el)return;
+  const isPro=ALPHA_MODE||profile.isPro;
+  if(isPro){el.textContent="";return;}
+  const remaining=Math.max(0,FREE_LIMIT-getDailyLocal());
+  el.textContent=profile.lang==="he"?`${remaining}/${FREE_LIMIT} שאלות חינמיות`:`${remaining}/${FREE_LIMIT} free questions`;
+}
+
 function selectLang(lang){
   selectedLang=lang;
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("selected"));
@@ -670,6 +692,7 @@ function applyLang(){
   if(id("p-sec-allergy")) id("p-sec-allergy").textContent=t.pSecAllergy;
   if(id("p-gender-f")) id("p-gender-f").textContent=profile.lang==="he"?"👩 נקבה":"👩";
   if(id("p-gender-m")) id("p-gender-m").textContent=profile.lang==="he"?"👨 זכר":"👨";
+  renderDailyCount();
   id("pro-profile-locked").style.display="none";
   id("pro-profile-fields").style.display="block";
   id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
@@ -893,6 +916,7 @@ async function sendQuestion(){
     chatHistory.push({role:"assistant",content:answer});
     typingEl.remove();
     addAIMessage(answer,t);
+    incrementDailyLocal();
   }catch(err){
     typingEl.remove();
     addMessage("ai",getFriendlyError(err.message,profile.lang));

@@ -22,7 +22,7 @@ function getRateLimit(ip) {
 function getDailyLimit(ip) {
   const today = new Date().toDateString();
   const key = ip + "_" + today;
-  const FREE_LIMIT = 10;
+  const FREE_LIMIT = 5;
   if (!dailyMap.has(key)) {
     dailyMap.set(key, 1);
     return true;
