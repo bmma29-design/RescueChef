@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RescueChef 🍳</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
   --bg:#FAF6EF; --surface:#FFFFFF;
@@ -337,9 +338,9 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       </div>
     </div>
     <div class="header-actions">
-      <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;">🏠</button>
-      <button class="hdr-btn" id="profile-btn" onclick="openProfile()">😊</button>
-      <button class="hdr-btn" id="clear-btn" onclick="clearChat()">🗑</button>
+      <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;"><i class="ti ti-home" aria-hidden="true"></i></button>
+      <button class="hdr-btn" id="profile-btn" onclick="openProfile()"><i class="ti ti-user" aria-hidden="true"></i></button>
+      <button class="hdr-btn" id="clear-btn" onclick="clearChat()"><i class="ti ti-trash" aria-hidden="true"></i></button>
     </div>
   </div>
 
@@ -377,8 +378,8 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       </div>
     </div>
 
-    <button class="panel-save" id="p-save-btn" onclick="saveProfile()">💾 Save</button>
-    <button class="delete-btn" onclick="openModal('delete-modal')" id="p-delete-btn">🗑 Delete data</button>
+    <button class="panel-save" id="p-save-btn" onclick="saveProfile()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save</button>
+    <button class="delete-btn" onclick="openModal('delete-modal')" id="p-delete-btn"><i class="ti ti-trash" aria-hidden="true"></i> Delete data</button>
     <div class="legal-links" style="margin-top:12px;">
       <span class="legal-link" onclick="openModal('privacy-modal')" id="link-privacy">Privacy</span>
       <span style="color:var(--muted);font-size:11px;">·</span>
@@ -395,9 +396,9 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       <span id="daily-count" style="margin-inline-start:auto;font-size:11px;color:var(--muted);"></span>
     </div>
     <div class="input-row">
-      <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
+      <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()" aria-label="קלט קולי"><i class="ti ti-microphone" aria-hidden="true"></i></button>
       <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" ontouchstart="this.focus()"></textarea>
-      <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()">➤</button>
+      <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()" aria-label="שלח"><i class="ti ti-send" aria-hidden="true"></i></button>
     </div>
     <div class="input-hint" id="input-hint">Enter · Shift+Enter · 🎤</div>
   </div>
@@ -413,20 +414,20 @@ const T={
   he:{dir:"rtl",tagline:"הסו-שף הפרטי שלך",profileBtn:"😊 פרופיל",clearBtn:"🗑 נקה",homeBtn:"🏠",
     panelTitle:"הפרופיל שלי",pSecLang:"שפה",pSecPersonal:"פרטים אישיים",
     pLblName:"שם",pLblGender:"פנייה",pLblLevel:"רמה",pSecDiet:"תזונה",pSecAllergy:"אלרגיות",
-    pSaveBtn:"💾 שמור",pDeleteBtn:"🗑 מחק נתונים",linkPrivacy:"פרטיות",linkTerms:"תנאים",
+    pSaveBtn:'<i class="ti ti-device-floppy" aria-hidden="true"></i> שמור',pDeleteBtn:'<i class="ti ti-trash" aria-hidden="true"></i> מחק נתונים',linkPrivacy:"פרטיות",linkTerms:"תנאים",
     welcomeTitle:(n)=>`${n?n+" — ":""}אני RescueChef`,
     welcomeDesc:"ספרי לי מה קורה במטבח — אאבחן, אסביר למה זה קרה ואתן לך פתרון מיידי.",
     placeholder:"יש בעיה במטבח? אני כאן",
     hint:"Enter לשליחה · Shift+Enter שורה חדשה · 🎤 לדיבור",
     ready:"מוכן לעזור",thinking:"מחשב...",listening:"מקשיב...",
-    speak:"🔊 האזן",stop:"⏹ עצור",
+    speak:'<i class="ti ti-volume" aria-hidden="true"></i> האזן',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> עצור',
     exampleLabel:"לדוגמה:",exampleText:"המיונז שלי נשבר",exampleQ:"המיונז שלי נשבר ונהיה נוזלי, מה עושים?",
-    alphaBadge:"🧪 גרסת אלפא — Pro פתוח לכולם",
+    alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> גרסת אלפא — Pro פתוח לכולם',
     levels:[["beginner","🏠 בשלן ביתי"],["intermediate","👨‍🍳 טבח מתפתח"],["professional","⭐ שף מקצועי"]],
     diets:[["regular","🍖 רגיל"],["vegetarian","🥗 צמחוני"],["vegan","🌱 טבעוני"],["kosher","✡️ כשר"],["gluten-free","🌾 ללא גלוטן"],["lactose-free","🥛 ללא לקטוז"],["paleo","🦴 פלאו"],["keto","🥑 קיטו"]],
     allergies:[["nuts","🥜 אגוזים"],["peanuts","🥜 בוטנים"],["eggs","🥚 ביצים"],["fish","🐟 דגים"],["seafood","🦐 פירות ים"],["soy","🌿 סויה"],["sesame","🌾 שומשום"],["cashew","🥜 קשיו"]],
     urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעלי מהר",none:"לא ניתן להצלה",advice:"ייעוץ מקצועי"},
-    timerBtn:"⏱ התחל טיימר",timerStop:"⏹ עצור",
+    timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> התחל טיימר',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> עצור',
     featuresToggleBtn:"מה אני יודע לעשות? ›",featuresToggleBtnClose:"סגור ‹",
     featuresTableTitle:"מה כלול בכל מסלול?",
     featuresTableFree:"חינמי",featuresTablePro:"⭐ Pro",featuresTableFeature:"פיצ׳ר",
@@ -442,17 +443,17 @@ const T={
       ["🔄 תחליפי מרכיבים","—","✓"],
     ],
     featureCards:{
-      science:{title:"🔬 המדע מאחורי הבעיה",invite:null},
-      prevention:{title:"💡 טיפ למניעה",invite:null},
-      zeroWaste:{title:"♻️ Zero Waste — מה עושים עם השאריות?",
+      science:{title:"המדע מאחורי הבעיה",icon:"ti-microscope",invite:null},
+      prevention:{title:"טיפ למניעה",icon:"ti-bulb",invite:null},
+      zeroWaste:{title:"Zero Waste — מה עושים עם השאריות?",icon:"ti-recycle",
         invite:"יש שאריות? אל תזרקי — ספרי לי מה יש ואחשוב איתך מה אפשר לעשות.",
         placeholder:"למשל: נשארו לי חלמונים, שמנת חמוצה וקצת קמח...",
         btn:"קבלי רעיונות"},
-      substitution:{title:"🔄 צריכה תחליף למרכיב?",
+      substitution:{title:"צריכה תחליף למרכיב?",icon:"ti-replace",
         invite:"חסר מרכיב? ספרי לי מה — ואמצא לך תחליף מדויק עם כמויות.",
         placeholder:"למשל: אין לי חמאה, מה אני יכולה להחליף ובכמה?",
         btn:"קבלי תחליף"},
-      panScaler:{title:"📐 המרת קוטר תבנית / רינג",
+      panScaler:{title:"המרת קוטר תבנית / רינג",icon:"ti-ruler-measure",
         invite:"רוצה להעביר מתכון לתבנית בגודל אחר? רשמי לי את קוטר התבנית המקורית ואת הקוטר שיש לך, ואחשב יחס המרה מדויק.",
         placeholder:"למשל: המתכון מיועד לתבנית 24 ולי יש רינג בקוטר 20...",
         btn:"חשב יחס המרה"}
@@ -474,20 +475,20 @@ const T={
   en:{dir:"ltr",tagline:"Your personal sous-chef",profileBtn:"😊 Profile",clearBtn:"🗑 Clear",homeBtn:"🏠",
     panelTitle:"My Profile",pSecLang:"Language",pSecPersonal:"Personal",
     pLblName:"Name",pLblGender:"Gender",pLblLevel:"Level",pSecDiet:"Diet",pSecAllergy:"Allergies",
-    pSaveBtn:"💾 Save",pDeleteBtn:"🗑 Delete data",linkPrivacy:"Privacy",linkTerms:"Terms",
+    pSaveBtn:'<i class="ti ti-device-floppy" aria-hidden="true"></i> Save',pDeleteBtn:'<i class="ti ti-trash" aria-hidden="true"></i> Delete data',linkPrivacy:"Privacy",linkTerms:"Terms",
     welcomeTitle:(n)=>`${n?n+" — ":""}I'm RescueChef`,
     welcomeDesc:"Describe what went wrong in your kitchen — I'll diagnose it, explain why, and give you an immediate solution.",
     placeholder:"What went wrong in your kitchen right now?",
     hint:"Enter to send · Shift+Enter new line · 🎤 speak",
     ready:"Ready to help",thinking:"Thinking...",listening:"Listening...",
-    speak:"🔊 Listen",stop:"⏹ Stop",
+    speak:'<i class="ti ti-volume" aria-hidden="true"></i> Listen',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Stop',
     exampleLabel:"e.g.",exampleText:"My mayo broke",exampleQ:"My mayonnaise broke and became runny, what do I do?",
-    alphaBadge:"🧪 Alpha version — Pro unlocked for all",
+    alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Alpha version — Pro unlocked for all',
     levels:[["beginner","🏠 Home Cook"],["intermediate","👨‍🍳 Developing Chef"],["professional","⭐ Professional Chef"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetarian"],["vegan","🌱 Vegan"],["gluten-free","🌾 Gluten-Free"],["lactose-free","🥛 Lactose-Free"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Tree Nuts"],["peanuts","🥜 Peanuts"],["eggs","🥚 Eggs"],["fish","🐟 Fish"],["seafood","🦐 Seafood"],["soy","🌿 Soy"],["sesame","🌾 Sesame"],["cashew","🥜 Cashew"]],
     urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued",advice:"Professional advice"},
-    timerBtn:"⏱ Start timer",timerStop:"⏹ Stop",
+    timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Start timer',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Stop',
     featuresToggleBtn:"What can I do for you? ›",featuresToggleBtnClose:"Close ‹",
     featuresTableTitle:"What's included in each plan?",
     featuresTableFree:"Free",featuresTablePro:"⭐ Pro",featuresTableFeature:"Feature",
@@ -503,17 +504,17 @@ const T={
       ["🔄 Smart substitutions","—","✓"],
     ],
     featureCards:{
-      science:{title:"🔬 The Science Behind It",invite:null},
-      prevention:{title:"💡 Prevention Tip",invite:null},
-      zeroWaste:{title:"♻️ Zero Waste — What to do with leftovers?",
+      science:{title:"The Science Behind It",icon:"ti-microscope",invite:null},
+      prevention:{title:"Prevention Tip",icon:"ti-bulb",invite:null},
+      zeroWaste:{title:"Zero Waste — What to do with leftovers?",icon:"ti-recycle",
         invite:"Got leftovers? Don't toss them — tell me what you have and I'll think with you.",
         placeholder:"e.g. I have leftover egg yolks, cream and some flour...",
         btn:"Get ideas"},
-      substitution:{title:"🔄 Need a substitution?",
+      substitution:{title:"Need a substitution?",icon:"ti-replace",
         invite:"Missing an ingredient? Tell me what — and I'll find you an exact replacement.",
         placeholder:"e.g. I don't have butter, what can I substitute and how much?",
         btn:"Get a substitute"},
-      panScaler:{title:"📐 Pan / Ring Size Converter",
+      panScaler:{title:"Pan / Ring Size Converter",icon:"ti-ruler-measure",
         invite:"Want to scale a recipe to a different pan? Tell me the original pan diameter and the pan you have, and I'll calculate the exact conversion factor.",
         placeholder:"e.g. Recipe calls for 24cm pan, I have a 20cm ring...",
         btn:"Calculate conversion"}
@@ -535,20 +536,20 @@ const T={
   es:{dir:"ltr",tagline:"Tu sous-chef personal",profileBtn:"😊 Perfil",clearBtn:"🗑 Limpiar",homeBtn:"🏠",
     panelTitle:"Mi Perfil",pSecLang:"Idioma",pSecPersonal:"Personal",
     pLblName:"Nombre",pLblGender:"Género",pLblLevel:"Nivel",pSecDiet:"Dieta",pSecAllergy:"Alergias",
-    pSaveBtn:"💾 Guardar",pDeleteBtn:"🗑 Borrar datos",linkPrivacy:"Privacidad",linkTerms:"Términos",
+    pSaveBtn:'<i class="ti ti-device-floppy" aria-hidden="true"></i> Guardar',pDeleteBtn:'<i class="ti ti-trash" aria-hidden="true"></i> Borrar datos',linkPrivacy:"Privacidad",linkTerms:"Términos",
     welcomeTitle:(n)=>`${n?n+" — ":""}Soy RescueChef`,
     welcomeDesc:"Descríbeme qué salió mal en tu cocina — diagnosticaré, explicaré por qué y te daré una solución inmediata.",
     placeholder:"¿Qué salió mal en tu cocina ahora mismo?",
     hint:"Enter para enviar · Shift+Enter nueva línea · 🎤 hablar",
     ready:"Listo",thinking:"Pensando...",listening:"Escuchando...",
-    speak:"🔊 Escuchar",stop:"⏹ Parar",
+    speak:'<i class="ti ti-volume" aria-hidden="true"></i> Escuchar',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Parar',
     exampleLabel:"p.ej.",exampleText:"Mi mayonesa se cortó",exampleQ:"Mi mayonesa se cortó y quedó líquida, ¿qué hago?",
-    alphaBadge:"🧪 Versión alfa — Pro desbloqueado",
+    alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Versión alfa — Pro desbloqueado',
     levels:[["beginner","🏠 Cocinero Casero"],["intermediate","👨‍🍳 Chef en Desarrollo"],["professional","⭐ Chef Profesional"]],
     diets:[["regular","🍖 Regular"],["vegetarian","🥗 Vegetariano"],["vegan","🌱 Vegano"],["gluten-free","🌾 Sin Gluten"],["lactose-free","🥛 Sin Lactosa"],["paleo","🦴 Paleo"],["keto","🥑 Keto"]],
     allergies:[["nuts","🥜 Nueces"],["peanuts","🥜 Maní"],["eggs","🥚 Huevos"],["fish","🐟 Pescado"],["seafood","🦐 Mariscos"],["soy","🌿 Soja"],["sesame","🌾 Sésamo"],["cashew","🥜 Anacardo"]],
     urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar",advice:"Consejo profesional"},
-    timerBtn:"⏱ Iniciar temporizador",timerStop:"⏹ Parar",
+    timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Iniciar temporizador',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Parar',
     featuresToggleBtn:"¿Qué puedo hacer por ti? ›",featuresToggleBtnClose:"Cerrar ‹",
     featuresTableTitle:"¿Qué incluye cada plan?",
     featuresTableFree:"Gratis",featuresTablePro:"⭐ Pro",featuresTableFeature:"Función",
@@ -564,11 +565,11 @@ const T={
       ["🔄 Sustituciones","—","✓"],
     ],
     featureCards:{
-      science:{title:"🔬 La Ciencia Detrás",invite:null},
-      prevention:{title:"💡 Consejo de Prevención",invite:null},
-      zeroWaste:{title:"♻️ Zero Waste — ¿Qué hacer con los restos?",invite:"¿Sobró algo? No lo tires — dime qué tienes y pensamos juntos.",placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",btn:"Obtener ideas"},
-      substitution:{title:"🔄 ¿Necesitas una sustitución?",invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",btn:"Obtener sustituto"},
-      panScaler:{title:"📐 Conversor de molde / aro",invite:"¿Quieres adaptar una receta a un molde diferente?",placeholder:"p.ej. La receta es para molde de 24cm, yo tengo uno de 20cm...",btn:"Calcular conversión"}
+      science:{title:"La Ciencia Detrás",icon:"ti-microscope",invite:null},
+      prevention:{title:"Consejo de Prevención",icon:"ti-bulb",invite:null},
+      zeroWaste:{title:"Zero Waste — ¿Qué hacer con los restos?",icon:"ti-recycle",invite:"¿Sobró algo? No lo tires — dime qué tienes y pensamos juntos.",placeholder:"p.ej. Me sobraron yemas, crema y un poco de harina...",btn:"Obtener ideas"},
+      substitution:{title:"¿Necesitas una sustitución?",icon:"ti-replace",invite:"¿Falta un ingrediente? Dime cuál — y te encuentro el reemplazo exacto.",placeholder:"p.ej. No tengo mantequilla, ¿qué puedo sustituir y cuánto?",btn:"Obtener sustituto"},
+      panScaler:{title:"Conversor de molde / aro",icon:"ti-ruler-measure",invite:"¿Quieres adaptar una receta a un molde diferente?",placeholder:"p.ej. La receta es para molde de 24cm, yo tengo uno de 20cm...",btn:"Calcular conversión"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explicación científica completa","🔄 Sustituciones inteligentes","♻️ Modo Zero Waste","🎯 Modo Prevención","👤 Perfil personal"],btn:"Ver planes",note:"$4.99/mes · $39.99/año (Ahorra 33%) · Cancela cuando quieras"},
     faqTitle:"Preguntas Frecuentes",
@@ -579,20 +580,20 @@ const T={
   fr:{dir:"ltr",tagline:"Votre sous-chef personnel",profileBtn:"😊 Profil",clearBtn:"🗑 Effacer",homeBtn:"🏠",
     panelTitle:"Mon Profil",pSecLang:"Langue",pSecPersonal:"Personnel",
     pLblName:"Prénom",pLblGender:"Genre",pLblLevel:"Niveau",pSecDiet:"Régime",pSecAllergy:"Allergies",
-    pSaveBtn:"💾 Enregistrer",pDeleteBtn:"🗑 Supprimer",linkPrivacy:"Confidentialité",linkTerms:"Conditions",
+    pSaveBtn:'<i class="ti ti-device-floppy" aria-hidden="true"></i> Enregistrer',pDeleteBtn:'<i class="ti ti-trash" aria-hidden="true"></i> Supprimer',linkPrivacy:"Confidentialité",linkTerms:"Conditions",
     welcomeTitle:(n)=>`${n?n+" — ":""}Je suis RescueChef`,
     welcomeDesc:"Décrivez ce qui a mal tourné dans votre cuisine — je diagnostiquerai, expliquerai pourquoi et vous donnerai une solution immédiate.",
     placeholder:"Qu'est-ce qui a mal tourné dans votre cuisine?",
     hint:"Entrée pour envoyer · Shift+Entrée nouvelle ligne · 🎤 parler",
     ready:"Prêt",thinking:"Réflexion...",listening:"Écoute...",
-    speak:"🔊 Écouter",stop:"⏹ Arrêter",
+    speak:'<i class="ti ti-volume" aria-hidden="true"></i> Écouter',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Arrêter',
     exampleLabel:"ex.",exampleText:"Ma mayo a tranché",exampleQ:"Ma mayonnaise a tranché et est devenue liquide, que faire?",
-    alphaBadge:"🧪 Version alpha — Pro débloqué",
+    alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Version alpha — Pro débloqué',
     levels:[["beginner","🏠 Amateur"],["intermediate","👨‍🍳 En Développement"],["professional","⭐ Professionnel"]],
     diets:[["regular","🍖 Normal"],["vegetarian","🥗 Végétarien"],["vegan","🌱 Végétalien"],["gluten-free","🌾 Sans Gluten"],["lactose-free","🥛 Sans Lactose"],["paleo","🦴 Paléo"],["keto","🥑 Kéto"]],
     allergies:[["nuts","🥜 Noix"],["peanuts","🥜 Cacahuètes"],["eggs","🥚 Oeufs"],["fish","🐟 Poisson"],["seafood","🦐 Fruits de Mer"],["soy","🌿 Soja"],["sesame","🌾 Sésame"],["cashew","🥜 Cajou"]],
     urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable",advice:"Conseil professionnel"},
-    timerBtn:"⏱ Démarrer minuteur",timerStop:"⏹ Arrêter",
+    timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Démarrer minuteur',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Arrêter',
     featuresToggleBtn:"Que puis-je faire pour vous? ›",featuresToggleBtnClose:"Fermer ‹",
     featuresTableTitle:"Qu'est-ce qui est inclus dans chaque plan?",
     featuresTableFree:"Gratuit",featuresTablePro:"⭐ Pro",featuresTableFeature:"Fonction",
@@ -608,11 +609,11 @@ const T={
       ["🔄 Substitutions","—","✓"],
     ],
     featureCards:{
-      science:{title:"🔬 La Science Derrière",invite:null},
-      prevention:{title:"💡 Conseil de Prévention",invite:null},
-      zeroWaste:{title:"♻️ Zéro Déchet — Que faire avec les restes?",invite:"Des restes? Ne jetez pas — dites-moi ce que vous avez.",placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème...",btn:"Obtenir des idées"},
-      substitution:{title:"🔄 Besoin d'une substitution?",invite:"Il manque un ingrédient? Dites-moi lequel.",placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer?",btn:"Obtenir une substitution"},
-      panScaler:{title:"📐 Convertisseur de moule / cercle",invite:"Vous voulez adapter une recette à un moule différent?",placeholder:"ex. La recette est pour un moule de 24cm, j'ai un cercle de 20cm...",btn:"Calculer la conversion"}
+      science:{title:"La Science Derrière",icon:"ti-microscope",invite:null},
+      prevention:{title:"Conseil de Prévention",icon:"ti-bulb",invite:null},
+      zeroWaste:{title:"Zéro Déchet — Que faire avec les restes?",icon:"ti-recycle",invite:"Des restes? Ne jetez pas — dites-moi ce que vous avez.",placeholder:"ex. Il me reste des jaunes d'oeufs, de la crème...",btn:"Obtenir des idées"},
+      substitution:{title:"Besoin d'une substitution?",icon:"ti-replace",invite:"Il manque un ingrédient? Dites-moi lequel.",placeholder:"ex. Je n'ai pas de beurre, que puis-je substituer?",btn:"Obtenir une substitution"},
+      panScaler:{title:"Convertisseur de moule / cercle",icon:"ti-ruler-measure",invite:"Vous voulez adapter une recette à un moule différent?",placeholder:"ex. La recette est pour un moule de 24cm, j'ai un cercle de 20cm...",btn:"Calculer la conversion"}
     },
     proCard:{title:"⭐ Pro",features:["🔬 Explication scientifique complète","🔄 Substitutions intelligentes","♻️ Mode Zéro Déchet","🎯 Mode Prévention","👤 Profil personnel"],btn:"Voir les plans",note:"4,99$/mois · 39,99$/an (Économisez 33%) · Annulez à tout moment"},
     faqTitle:"FAQ",
@@ -673,13 +674,11 @@ function applyLang(){
   document.documentElement.dir=t.dir;
   document.documentElement.lang=profile.lang;
   id("header-tagline").textContent=t.tagline;
-  id("profile-btn").textContent=t.profileBtn;
-  id("clear-btn").textContent=t.clearBtn;
   id("p-panel-title").textContent=t.panelTitle;
   id("p-sec-lang").textContent=t.pSecLang;
   id("p-sec-personal").textContent=t.pSecPersonal;
-  id("p-save-btn").textContent=t.pSaveBtn;
-  id("p-delete-btn").textContent=t.pDeleteBtn;
+  id("p-save-btn").innerHTML=t.pSaveBtn;
+  id("p-delete-btn").innerHTML=t.pDeleteBtn;
   id("link-privacy").textContent=t.linkPrivacy;
   id("link-terms").textContent=t.linkTerms;
   id("question-input").placeholder=t.placeholder;
@@ -703,7 +702,7 @@ function applyLang(){
   let badge=id("alpha-badge");
   if(ALPHA_MODE){
     if(!badge){badge=document.createElement("div");badge.id="alpha-badge";badge.className="alpha-badge";document.body.appendChild(badge);}
-    badge.textContent=t.alphaBadge;
+    badge.innerHTML=t.alphaBadge;
   }
 }
 
@@ -1002,7 +1001,7 @@ function buildContentCard(container,cardT,content,isPro){
   card.className="feature-card";
   const header=document.createElement("div");
   header.className="feature-card-header";
-  header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
+  header.innerHTML=`<div class="feature-card-left"><i class="ti ${cardT.icon||'ti-star'}" style="font-size:16px;color:var(--gold);flex-shrink:0;" aria-hidden="true"></i><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
   header.onclick=()=>card.classList.toggle("open");
   const body=document.createElement("div");
   body.className="feature-card-body";
@@ -1022,7 +1021,7 @@ function buildInviteCard(container,cardT,t){
   card.className="feature-card";
   const header=document.createElement("div");
   header.className="feature-card-header";
-  header.innerHTML=`<div class="feature-card-left"><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
+  header.innerHTML=`<div class="feature-card-left"><i class="ti ${cardT.icon||'ti-star'}" style="font-size:16px;color:var(--gold);flex-shrink:0;" aria-hidden="true"></i><span class="feature-card-title">${cardT.title}</span></div><span class="feature-card-arrow">›</span>`;
   header.onclick=()=>card.classList.toggle("open");
   const body=document.createElement("div");
   body.className="feature-card-body";
@@ -1174,10 +1173,10 @@ function toggleVoice(){
   const lm={he:"he-IL",en:"en-US",es:"es-ES",fr:"fr-FR"};
   recognition.lang=lm[profile.lang]||"en-US";
   const t=T[profile.lang]||T.en;
-  recognition.onstart=()=>{isRecording=true;id("voice-btn").classList.add("recording");id("voice-btn").textContent="⏹";setStatus(t.listening);};
+  recognition.onstart=()=>{isRecording=true;id("voice-btn").classList.add("recording");id("voice-btn").innerHTML='<i class="ti ti-player-stop" aria-hidden="true"></i>';setStatus(t.listening);};
   recognition.onresult=e=>{id("question-input").value=e.results[0][0].transcript;autoResize(id("question-input"));};
-  recognition.onend=()=>{isRecording=false;id("voice-btn").classList.remove("recording");id("voice-btn").textContent="🎤";setStatus(t.ready);};
-  recognition.onerror=()=>{isRecording=false;id("voice-btn").classList.remove("recording");id("voice-btn").textContent="🎤";setStatus(t.ready);};
+  recognition.onend=()=>{isRecording=false;id("voice-btn").classList.remove("recording");id("voice-btn").innerHTML='<i class="ti ti-microphone" aria-hidden="true"></i>';setStatus(t.ready);};
+  recognition.onerror=()=>{isRecording=false;id("voice-btn").classList.remove("recording");id("voice-btn").innerHTML='<i class="ti ti-microphone" aria-hidden="true"></i>';setStatus(t.ready);};
   recognition.start();
 }
 
