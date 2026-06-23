@@ -909,7 +909,7 @@ async function sendQuestion(){
   try{
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1500,
-        system:getSystemPrompt(),messages:chatHistory})});
+        system:getSystemPrompt(),messages:chatHistory.slice(-10)})});
     if(!res.ok){const err=await res.json();const msg=err.error?.message||"Server error";if(msg==="DAILY_LIMIT_REACHED"){typingEl.remove();addMessage("ai",profile.lang==="he"?"🔒 הגעת למגבלה היומית.":"🔒 You've reached today's limit.");setLoading(false,T[profile.lang]?.ready||"Ready");return;}throw new Error(msg);}
     const data=await res.json();
     let answer=data.content[0].text;
@@ -1093,7 +1093,7 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   result.style.display="block";
   result.innerHTML=`<div class="typing"><span></span><span></span><span></span></div>`;
   try{
-    const msgs=[...chatHistory,{role:"user",content:val}];
+    const msgs=[...chatHistory,{role:"user",content:val}].slice(-10);
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:800,system:getSystemPrompt(),messages:msgs})});
     if(!res.ok)throw new Error("Server error");
