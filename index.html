@@ -109,6 +109,10 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
   color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
   font-size:18px;flex-shrink:0;transition:all 0.2s;}
 .welcome-send:hover{background:var(--accent2);}
+.shortcut-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:540px;margin:10px auto 4px;}
+.shortcut-btn{background:rgba(200,168,80,0.08);border:1px solid var(--border);border-radius:20px;font-family:"Heebo",sans-serif;font-size:13px;color:var(--text);padding:7px 14px;cursor:pointer;white-space:nowrap;transition:background 0.15s;}
+.shortcut-btn:hover{background:rgba(200,168,80,0.18);}
+@media(max-width:600px){.shortcut-btns{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px;}}
 .welcome-example{font-size:12px;color:var(--muted);margin-top:4px;}
 .welcome-example button{background:none;border:none;color:var(--accent);font-family:"Heebo",sans-serif;
   font-size:12px;cursor:pointer;text-decoration:underline;padding:0;}
@@ -740,6 +744,13 @@ function renderWelcome(){
         <button class="welcome-send" onclick="sendFromWelcome()" aria-label="שלח"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
       </div>
     </div>
+    <div class="shortcut-btns">
+      <button class="shortcut-btn" onclick="useShortcut('emergency')">🚨 עזרה! משהו השתבש</button>
+      <button class="shortcut-btn" onclick="useShortcut('impress')">✨ רוצה להרשים</button>
+      <button class="shortcut-btn" onclick="useShortcut('kids')">👧 מבשלת לילדים</button>
+      <button class="shortcut-btn" onclick="useShortcut('fridge')">🪄 תעשי לי קסם מהמקרר</button>
+      <button class="shortcut-btn" onclick="useShortcut('learn')">📚 רוצה ללמוד</button>
+    </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
 
     <div style="max-width:540px;margin:16px auto 0;width:100%;text-align:center;">
@@ -771,6 +782,27 @@ function renderWelcome(){
 
 function handleWelcomeKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendFromWelcome();}}
 function useExample(){const el=id("welcome-ta");if(el){el.value=window._exQ||"";autoResize(el);el.focus();}}
+function useShortcut(ctx){
+  window.activeContext=ctx;
+  if(ctx==="fridge"){
+    const t=T[profile.lang]||T.he;
+    const welcome=id("welcome");
+    if(welcome)welcome.style.display="none";
+    id("input-area-wrap").style.display="flex";
+    id("home-btn").style.display="flex";
+    addAIMessage("מה יש לך עכשיו במקרר או במזווה?",t);
+    return;
+  }
+  const openers={
+    emergency:"משהו השתבש במטבח, אני צריכה עזרה!",
+    impress:"אני רוצה להרשים מישהו בארוחה",
+    kids:"אני מבשלת לילדים",
+    learn:"אני רוצה ללמוד משהו חדש על בישול"
+  };
+  id("question-input").value=openers[ctx]||"";
+  sendQuestion();
+}
+
 function sendFromWelcome(){
   const el=id("welcome-ta");
   if(!el)return;
