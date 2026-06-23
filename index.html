@@ -94,21 +94,21 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 
 .welcome{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px;}
 .welcome-icon{margin-bottom:16px;}
-.welcome h2{font-size:26px;font-weight:900;margin-bottom:10px;letter-spacing:-0.5px;}
-.welcome p{font-size:15px;color:var(--soft);max-width:440px;margin:0 auto 28px;line-height:1.75;}
+.welcome h2{font-size:30px;font-weight:900;margin-bottom:6px;letter-spacing:-1px;}
+.welcome p{font-size:13px;color:var(--muted);max-width:440px;margin:0 auto 24px;line-height:1.7;}
 .welcome-input-wrap{width:100%;max-width:540px;margin:0 auto 10px;}
 .welcome-box{display:flex;gap:8px;align-items:flex-end;background:var(--surface);
-  border:2px solid var(--border);border-radius:18px;padding:16px;
-  transition:border-color 0.2s;box-shadow:0 4px 24px rgba(200,168,80,0.12);}
+  border:0.5px solid var(--border);border-radius:26px;padding:12px 12px 12px 16px;
+  transition:border-color 0.2s;}
 .welcome-box:focus-within{border-color:var(--accent);}
 .welcome-box textarea{flex:1;background:transparent;border:none;color:var(--text);
-  font-family:"Heebo",sans-serif;font-size:16px;resize:none;outline:none;
+  font-family:"Heebo",sans-serif;font-size:15px;resize:none;outline:none;
   line-height:1.6;max-height:140px;min-height:32px;}
 .welcome-box textarea::placeholder{color:var(--muted);}
-.welcome-send{width:46px;height:46px;border-radius:13px;border:none;background:var(--accent);
+.welcome-send{width:40px;height:40px;border-radius:50%;border:none;background:var(--accent);
   color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;transition:all 0.2s;}
-.welcome-send:hover{background:var(--accent2);transform:translateY(-1px);}
+  font-size:18px;flex-shrink:0;transition:all 0.2s;}
+.welcome-send:hover{background:var(--accent2);}
 .welcome-example{font-size:12px;color:var(--muted);margin-top:4px;}
 .welcome-example button{background:none;border:none;color:var(--accent);font-family:"Heebo",sans-serif;
   font-size:12px;cursor:pointer;text-decoration:underline;padding:0;}
@@ -158,7 +158,7 @@ html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
   justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;}
 .message.user .msg-avatar{background:#CF6D1A;color:white;}
 .message.ai .msg-avatar{background:#2D5A42;}
-.msg-bubble{max-width:72%;padding:14px 18px;border-radius:var(--radius);font-size:15px;line-height:1.85;unicode-bidi:plaintext;}
+.msg-bubble{max-width:72%;padding:10px 14px;border-radius:var(--radius);font-size:13px;line-height:1.7;unicode-bidi:plaintext;}
 .message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;direction:rtl;}
 html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;direction:ltr;}
 .message.ai .msg-bubble{background:var(--surface);border:0.5px solid var(--border);
@@ -172,18 +172,14 @@ html[dir="ltr"] .msg-bubble ul{padding-left:16px;padding-right:0;}
 .msg-bubble li{margin-bottom:5px;color:var(--soft);}
 .msg-bubble strong{color:#D4AF37;font-weight:700;}
 
-.urgency-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 14px;
-  border-radius:10px;background:rgba(200,168,80,0.06);border:1px solid var(--border2);}
-.urgency-label{font-size:12px;font-weight:700;color:var(--soft);}
-.urgency-track{flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
-.urgency-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
-.urgency-fill.green{background:#2ECC71;}
-.urgency-fill.orange{background:#E67E22;}
-.urgency-fill.red{background:#E74C3C;}
-.urgency-text{font-size:11px;font-weight:700;white-space:nowrap;}
-.urgency-text.green{color:#2ECC71;}
-.urgency-text.orange{color:#E67E22;}
-.urgency-text.red{color:#E74C3C;}
+.urgency-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:8px 12px;
+  border-radius:8px;font-size:12px;font-weight:600;}
+.urgency-bar.green{background:rgba(46,204,113,0.12);color:#1a7a43;}
+.urgency-bar.orange{background:rgba(230,126,34,0.12);color:#a0520a;}
+.urgency-bar.red{background:rgba(231,76,60,0.12);color:#9b1e1e;}
+.urgency-bar.advice{background:rgba(200,168,80,0.10);color:var(--accent);}
+.urgency-icon{font-size:14px;flex-shrink:0;}
+.urgency-text{font-size:12px;font-weight:600;}
 
 .timer-btn{display:inline-flex;align-items:center;gap:7px;margin-top:10px;
   background:rgba(200,168,80,0.1);border:1.5px solid var(--border);border-radius:8px;
@@ -250,8 +246,8 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 .status-bar{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-bottom:7px;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;}
 .status-dot.loading{background:var(--gold);animation:blink 1s infinite;}
-.input-row{display:flex;gap:8px;align-items:flex-end;background:var(--bg);
-  border:1.5px solid var(--border);border-radius:13px;padding:9px 11px;transition:border-color 0.2s;width:100%;}
+.input-row{display:flex;gap:8px;align-items:flex-end;background:var(--surface);
+  border:0.5px solid var(--border);border-radius:26px;padding:9px 9px 9px 14px;transition:border-color 0.2s;width:100%;}
 .input-row:focus-within{border-color:var(--accent);}
 #question-input{flex:1;background:transparent;border:none;color:var(--text);
   font-family:"Heebo",sans-serif;font-size:15px;resize:none;outline:none;
@@ -262,7 +258,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
 .voice-btn{background:rgba(200,168,80,0.08);border:1.5px solid var(--border);color:var(--muted);}
 .voice-btn:hover{border-color:var(--accent);color:var(--accent);}
 .voice-btn.recording{background:#DC2626;border-color:#DC2626;color:white;}
-.send-btn{background:var(--accent);color:white;}
+.send-btn{background:var(--accent);color:white;border-radius:50% !important;}
 .send-btn:hover{background:var(--accent2);}
 .send-btn:disabled{opacity:0.4;cursor:not-allowed;}
 .input-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:7px;}
@@ -396,7 +392,7 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     <div class="input-row">
       <button class="input-btn voice-btn" id="voice-btn" onclick="toggleVoice()" aria-label="קלט קולי"><i class="ti ti-microphone" aria-hidden="true"></i></button>
       <textarea id="question-input" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)" ontouchstart="this.focus()"></textarea>
-      <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()" aria-label="שלח"><i class="ti ti-send" aria-hidden="true"></i></button>
+      <button class="input-btn send-btn" id="send-btn" onclick="sendQuestion()" aria-label="שלח"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
     </div>
     <div class="input-hint" id="input-hint">Enter · Shift+Enter · 🎤</div>
   </div>
@@ -741,7 +737,7 @@ function renderWelcome(){
       <div class="welcome-box">
         <textarea id="welcome-ta" rows="1" placeholder="${t.placeholder}"
           oninput="autoResize(this)" onkeydown="handleWelcomeKey(event)"></textarea>
-        <button class="welcome-send" onclick="sendFromWelcome()">➤</button>
+        <button class="welcome-send" onclick="sendFromWelcome()" aria-label="שלח"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
       </div>
     </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
@@ -764,9 +760,9 @@ function renderWelcome(){
       </div>
     </div>
 
-    <div class="faq-section" style="margin-top:20px;">
-      <div class="faq-title">${t.faqTitle}</div>
-      ${faqHtml}
+    <div class="faq-section" style="margin-top:8px;">
+      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" style="background:none;border:none;color:var(--muted);font-family:'Heebo',sans-serif;font-size:12px;cursor:pointer;padding:4px 0;">${t.faqTitle} ›</button>
+      <div style="display:none;margin-top:10px;">${faqHtml}</div>
     </div>`;
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
@@ -935,15 +931,13 @@ function addAIMessage(rawText,t){
   let text=rawText.replace(/^\[URGENCY:(full|partial|none|advice)\]\n?/m,(m,level)=>{urgencyLevel=level;return "";});
   const isPro=ALPHA_MODE||profile.isPro;
   const urgencyData={
-    full:{fill:90,cls:"green",label:t.urgency?.full||"Rescuable"},
-    partial:{fill:50,cls:"orange",label:t.urgency?.partial||"Critical"},
-    none:{fill:10,cls:"red",label:t.urgency?.none||"Cannot rescue"},
-    advice:{fill:0,cls:"green",label:t.urgency?.advice||"Professional advice",isAdvice:true}
+    full:{cls:"green",icon:"ti-circle-check",label:t.urgency?.full||"Rescuable"},
+    partial:{cls:"orange",icon:"ti-alert-triangle",label:t.urgency?.partial||"Critical"},
+    none:{cls:"red",icon:"ti-circle-x",label:t.urgency?.none||"Cannot rescue"},
+    advice:{cls:"advice",icon:"ti-bulb",label:t.urgency?.advice||"Professional advice"}
   };
   const ud=urgencyData[urgencyLevel]||urgencyData.full;
-  const urgencyHTML=ud.isAdvice
-    ?`<div class="urgency-bar" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);"><div class="urgency-label">💡</div><div class="urgency-text green" style="flex:1;font-size:13px;">${ud.label}</div></div>`
-    :`<div class="urgency-bar"><div class="urgency-label">📊</div><div class="urgency-track"><div class="urgency-fill ${ud.cls}" style="width:${ud.fill}%"></div></div><div class="urgency-text ${ud.cls}">${ud.label}</div></div>`;
+  const urgencyHTML=`<div class="urgency-bar ${ud.cls}"><i class="ti ${ud.icon} urgency-icon" aria-hidden="true"></i><span class="urgency-text">${ud.label}</span></div>`;
   const timerBtns=[];
   text=text.replace(/\[TIMER:(\d+):([^\]]+)\]/g,(m,secs,label)=>{
     const tid="timer_"+Date.now()+"_"+Math.random().toString(36).slice(2);
