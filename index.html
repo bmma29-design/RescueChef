@@ -46,6 +46,8 @@ body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-h
   color:var(--soft);font-family:"Heebo",sans-serif;font-size:13px;padding:6px 13px;
   cursor:pointer;transition:all 0.2s;}
 .hdr-btn:hover{background:rgba(200,168,80,0.08);color:var(--accent);}
+.hdr-label{display:none;font-size:11px;font-weight:600;}
+@media(max-width:600px){.hdr-label{display:inline;margin-inline-start:4px;}}
 
 /* ALPHA BADGE */
 .alpha-badge{position:fixed;top:68px;left:50%;transform:translateX(-50%);
@@ -336,9 +338,9 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
       </div>
     </div>
     <div class="header-actions">
-      <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;"><i class="ti ti-home" aria-hidden="true"></i></button>
-      <button class="hdr-btn" id="profile-btn" onclick="openProfile()"><i class="ti ti-user" aria-hidden="true"></i></button>
-      <button class="hdr-btn" id="clear-btn" onclick="clearChat()"><i class="ti ti-trash" aria-hidden="true"></i></button>
+      <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;" title="בית"><i class="ti ti-home" aria-hidden="true"></i><span class="hdr-label">בית</span></button>
+      <button class="hdr-btn" id="profile-btn" onclick="openProfile()" title="פרופיל"><i class="ti ti-user" aria-hidden="true"></i><span class="hdr-label">פרופיל</span></button>
+      <button class="hdr-btn" id="clear-btn" onclick="clearChat()" title="נקה שיחה"><i class="ti ti-trash" aria-hidden="true"></i><span class="hdr-label">נקה</span></button>
     </div>
   </div>
 
