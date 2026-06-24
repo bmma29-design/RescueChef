@@ -745,11 +745,11 @@ function renderWelcome(){
       </div>
     </div>
     <div class="shortcut-btns">
-      <button class="shortcut-btn" onclick="useShortcut('emergency')">🚨 עזרה! משהו השתבש</button>
-      <button class="shortcut-btn" onclick="useShortcut('impress')">✨ רוצה להרשים</button>
-      <button class="shortcut-btn" onclick="useShortcut('kids')">👧 מבשלת לילדים</button>
-      <button class="shortcut-btn" onclick="useShortcut('fridge')">🪄 תעשי לי קסם מהמקרר</button>
-      <button class="shortcut-btn" onclick="useShortcut('learn')">📚 רוצה ללמוד</button>
+      <button class="shortcut-btn" onclick="useShortcut('emergency')"><i class="ti ti-alert-circle"></i> הצילו! משהו הלך עקום</button>
+      <button class="shortcut-btn" onclick="useShortcut('impress')"><i class="ti ti-star"></i> רוצה שידברו עליי</button>
+      <button class="shortcut-btn" onclick="useShortcut('kids')"><i class="ti ti-mood-smile"></i> הילדים גם ייאכלו את זה</button>
+      <button class="shortcut-btn" onclick="useShortcut('fridge')"><i class="ti ti-wand"></i> תמציאי לי משהו מהכלום</button>
+      <button class="shortcut-btn" onclick="useShortcut('learn')"><i class="ti ti-book"></i> תסבירי לי למה זה קרה</button>
     </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
 
@@ -794,10 +794,10 @@ function useShortcut(ctx){
     return;
   }
   const openers={
-    emergency:"משהו השתבש במטבח, אני צריכה עזרה!",
-    impress:"אני רוצה להרשים מישהו בארוחה",
-    kids:"אני מבשלת לילדים",
-    learn:"אני רוצה ללמוד משהו חדש על בישול"
+    emergency:"הצילו! משהו הלך עקום במטבח",
+    impress:"אני רוצה שידברו עליי — עזרי לי להרשים",
+    kids:"הילדים גם ייאכלו את זה — מה מכינים?",
+    learn:"תסבירי לי למה זה קרה"
   };
   id("question-input").value=openers[ctx]||"";
   sendQuestion();
