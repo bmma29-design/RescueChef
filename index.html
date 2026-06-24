@@ -622,7 +622,7 @@ const T={
 };
 
 let profile={lang:"he",gender:"f",name:"",level:"intermediate",diet:["regular"],allergies:[],isPro:false};
-let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtterance=null;
+let chatHistory=[],isLoading=false,recognition=null,isRecording=false,currentUtterance=null,firstAIMessage=true;
 let selectedLang=null;
 let activeTimers={};
 
@@ -875,6 +875,16 @@ function getSystemPrompt(){
 [URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)`;
   const timerInstruction=`If your rescue steps include any timed action, format it exactly like this: [TIMER:X:label] where X is seconds. Example: [TIMER:180:Whisking]. Place this tag right before the step that requires timing.`;
   const panScalerRule=`PAN SCALING RULE: When converting between pan sizes, use Area = π × r². Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. IMPORTANT BAKING TIME RULE: A smaller pan means the batter is deeper/taller, so baking time stays approximately the same or increases slightly (add 3-5 minutes max). A larger pan means shallower batter, so reduce baking time by 5-10 minutes. NEVER say to reduce time significantly for a smaller pan. Always show the calculation clearly.`;
+  const contextMap={
+    emergency:{he:"המשתמשת נמצאת עכשיו ממש במטבח עם בעיה דחופה. תן פתרון מיידי ותכליתי — לא הסברים ארוכים. שלב ראשון קודם כל.",en:"User is right now in the kitchen with an urgent problem. Give immediate, actionable solution — no long explanations. First step first."},
+    impress:{he:"המשתמשת רוצה להרשים אורחים. הדגש אסתטיקה, הגשה מקצועית, וטריקים של שפים שיגרמו לאנשים לדבר על האוכל.",en:"User wants to impress guests. Emphasize aesthetics, professional plating, and chef techniques that'll make people talk."},
+    kids:{he:"המשתמשת מבשלת לילדים. התמקד בטעמים פשוטים שילדים אוהבים, הצגה כיפית, ובטיחות תזונתית. הימנע ממרכיבים חריפים.",en:"User is cooking for kids. Focus on simple flavors kids enjoy, fun presentation, nutritional safety. Avoid spicy ingredients."},
+    fridge:{he:"המשתמשת רוצה להמציא משהו ממה שיש לה. היה יצירתי ופרקטי. הצע מנה מלאה עם מה שתיארה.",en:"User wants to create something from what they have. Be creative and practical. Suggest a full dish from what they described."},
+    learn:{he:"המשתמשת רוצה להבין את הסיבה לתופעה קולינרית. הסבר את הכימיה והפיזיקה בצורה מרתקת ומובנת.",en:"User wants to understand the why behind a culinary phenomenon. Explain the chemistry and physics in a fascinating, accessible way."}
+  };
+  const ctx=window.activeContext;
+  const contextNote=ctx&&contextMap[ctx]?(contextMap[ctx][profile.lang]||contextMap[ctx].en):"";
+
   const proContent=isPro?`
 ALWAYS end with these two sections — keep them VERY SHORT:
 ### 🔬 The Science
@@ -891,6 +901,8 @@ User level: ${levelText}.
 ${genderNote}
 ${dietNote}
 ${allergyNote}
+${contextNote?`CURRENT SESSION FOCUS: ${contextNote}`:""}
+
 
 ${urgencyInstruction}
 
@@ -1004,7 +1016,8 @@ function addAIMessage(rawText,t){
   const cardsDiv=document.createElement("div");
   cardsDiv.className="feature-cards";
   buildContentCard(cardsDiv,fc.science,scienceContent,isPro);
-  buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro);
+  if(firstAIMessage)buildContentCard(cardsDiv,fc.prevention,preventionContent,isPro);
+  firstAIMessage=false;
   buildInviteCard(cardsDiv,fc.zeroWaste,t);
   buildInviteCard(cardsDiv,fc.substitution,t);
   bubble.appendChild(cardsDiv);
@@ -1230,7 +1243,7 @@ function getFriendlyError(msg,lang){
 
 function id(x){return document.getElementById(x);}
 function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
-function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];id("home-btn").style.display="none";renderWelcome();}
+function clearChat(){Object.values(activeTimers).forEach(clearInterval);activeTimers={};chatHistory=[];firstAIMessage=true;window.activeContext=null;id("home-btn").style.display="none";renderWelcome();}
 function handleKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendQuestion();}}
 function autoResize(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,140)+"px";}
 function setLoading(val,txt){isLoading=val;id("send-btn").disabled=val;setStatus(txt);id("status-dot").className="status-dot"+(val?" loading":"");}
