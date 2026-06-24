@@ -1,36 +1,44 @@
-const rateLimitMap = new Map();
-const dailyMap = new Map();
+import { kv } from '@vercel/kv';
 
-function getRateLimit(ip) {
+const ALPHA_MODE = process.env.ALPHA_MODE === 'true';
+const RATE_LIMIT_PER_MINUTE = 10;
+const FREE_DAILY_LIMIT = 5;
+const MAX_TOKENS_CAP = 1500;
+const MODEL = 'claude-sonnet-4-6';
+
+async function getRateLimit(ip) {
+  const key = `rl:${ip}`;
   const now = Date.now();
   const windowMs = 60 * 1000;
-  const maxPerMinute = 10;
-  if (!rateLimitMap.has(ip)) {
-    rateLimitMap.set(ip, { count: 1, start: now });
+  try {
+    const entry = await kv.get(key);
+    if (!entry || now - entry.start > windowMs) {
+      await kv.set(key, { count: 1, start: now }, { px: windowMs });
+      return true;
+    }
+    if (entry.count >= RATE_LIMIT_PER_MINUTE) return false;
+    await kv.set(key, { count: entry.count + 1, start: entry.start }, { px: windowMs - (now - entry.start) });
+    return true;
+  } catch {
     return true;
   }
-  const entry = rateLimitMap.get(ip);
-  if (now - entry.start > windowMs) {
-    rateLimitMap.set(ip, { count: 1, start: now });
-    return true;
-  }
-  if (entry.count >= maxPerMinute) return false;
-  entry.count++;
-  return true;
 }
 
-function getDailyLimit(ip) {
+async function getDailyLimit(ip) {
   const today = new Date().toDateString();
-  const key = ip + "_" + today;
-  const FREE_LIMIT = 5;
-  if (!dailyMap.has(key)) {
-    dailyMap.set(key, 1);
+  const key = `daily:${ip}:${today}`;
+  try {
+    const count = await kv.get(key);
+    if (!count) {
+      await kv.set(key, 1, { ex: 86400 });
+      return true;
+    }
+    if (count >= FREE_DAILY_LIMIT) return false;
+    await kv.set(key, count + 1, { ex: 86400 });
+    return true;
+  } catch {
     return true;
   }
-  const count = dailyMap.get(key);
-  if (count >= FREE_LIMIT) return false;
-  dailyMap.set(key, count + 1);
-  return true;
 }
 
 export default async function handler(req, res) {
@@ -49,15 +57,28 @@ export default async function handler(req, res) {
 
   const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket?.remoteAddress || 'unknown';
 
-  if (!getRateLimit(ip)) {
+  if (!await getRateLimit(ip)) {
     return res.status(429).json({ error: { message: 'יותר מדי בקשות. נסי שוב בעוד דקה.' } });
   }
 
-  const isPro = req.body?.isPro === true;
+  const isPro = ALPHA_MODE;
 
-  if (!isPro && !getDailyLimit(ip)) {
+  if (!isPro && !await getDailyLimit(ip)) {
     return res.status(429).json({ error: { message: 'DAILY_LIMIT_REACHED' } });
   }
+
+  const { messages, system, max_tokens } = req.body || {};
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: { message: 'Missing messages' } });
+  }
+
+  const anthropicBody = {
+    model: MODEL,
+    max_tokens: Math.min(Number(max_tokens) || MAX_TOKENS_CAP, MAX_TOKENS_CAP),
+    system: typeof system === 'string' ? system : undefined,
+    messages,
+  };
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -67,7 +88,7 @@ export default async function handler(req, res) {
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01'
       },
-      body: JSON.stringify(req.body)
+      body: JSON.stringify(anthropicBody)
     });
     const data = await response.json();
     if (!response.ok) return res.status(response.status).json(data);

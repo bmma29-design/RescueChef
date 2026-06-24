@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RescueChef 🍳</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+<meta name="description" content="RescueChef — your personal AI sous-chef. Immediate solutions for kitchen emergencies, pan size conversions, ingredient substitutions, and more.">
+<meta property="og:title" content="RescueChef 🍳">
+<meta property="og:description" content="Something went wrong in the kitchen? RescueChef diagnoses the problem and gives you an immediate fix — in seconds.">
+<meta property="og:image" content="https://rescuechef.vercel.app/og-image.png">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -11,7 +17,7 @@
   --bg:#FAF6EF; --surface:#FFFFFF;
   --accent:#C8A850; --accent2:#B09040; --gold:#C8A850;
   --text:#5C3D1A; --soft:#9A7A50;
-  --muted:#B8A080; --border:rgba(200,168,80,0.25); --border2:rgba(200,168,80,0.15);
+  --muted:#8A6A40; --border:rgba(200,168,80,0.25); --border2:rgba(200,168,80,0.15);
   --radius:14px; --shadow:0 2px 20px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -791,6 +797,7 @@ function useShortcut(ctx){
     if(welcome)welcome.style.display="none";
     id("input-area-wrap").style.display="flex";
     id("home-btn").style.display="flex";
+    chatHistory.push({role:"assistant",content:"מה יש לך עכשיו במקרר או במזווה?"});
     addAIMessage("מה יש לך עכשיו במקרר או במזווה?",t);
     return;
   }
@@ -946,12 +953,12 @@ async function sendQuestion(){
   const typingEl=addTyping();
   try{
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1500,
+      body:JSON.stringify({max_tokens:1500,
         system:getSystemPrompt(),messages:chatHistory.slice(-10)})});
     if(!res.ok){const err=await res.json();const msg=err.error?.message||"Server error";if(msg==="DAILY_LIMIT_REACHED"){typingEl.remove();addMessage("ai",profile.lang==="he"?"🔒 הגעת למגבלה היומית.":"🔒 You've reached today's limit.");setLoading(false,T[profile.lang]?.ready||"Ready");return;}throw new Error(msg);}
     const data=await res.json();
     let answer=data.content[0].text;
-    chatHistory.push({role:"assistant",content:answer});
+    chatHistory.push({role:"assistant",content:answer.replace(/\[URGENCY:[^\]]+\]\n?/m,"").replace(/\[TIMER:\d+:[^\]]+\]/g,"")});
     typingEl.remove();
     addAIMessage(answer,t);
     incrementDailyLocal();
@@ -1132,7 +1139,7 @@ async function sendInlineQuestion(inputId,resultId,btn,e){
   try{
     const msgs=[...chatHistory,{role:"user",content:val}].slice(-10);
     const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:800,system:getSystemPrompt(),messages:msgs})});
+      body:JSON.stringify({max_tokens:800,system:getSystemPrompt(),messages:msgs})});
     if(!res.ok)throw new Error("Server error");
     const data=await res.json();
     const answer=data.content[0].text.replace(/^\[URGENCY:[^\]]+\]\n?/m,"");
