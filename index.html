@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
+#lang-screen{display:none !important;}
 :root {
   --bg:#FAF6EF; --surface:#FFFFFF;
   --accent:#C8A850; --accent2:#B09040; --gold:#C8A850;
@@ -21,7 +22,7 @@
   --radius:14px; --shadow:0 2px 20px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+body{font-family:"Heebo",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:16px;line-height:1.85;}
 
 #lang-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
 .lang-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;
@@ -169,7 +170,7 @@ html[dir="ltr"] .faq-arrow{margin-right:0;margin-left:8px;}
   justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;}
 .message.user .msg-avatar{background:#CF6D1A;color:white;}
 .message.ai .msg-avatar{background:#2D5A42;}
-.msg-bubble{max-width:72%;padding:10px 14px;border-radius:var(--radius);font-size:13px;line-height:1.7;unicode-bidi:plaintext;}
+.msg-bubble{max-width:72%;padding:10px 14px;border-radius:var(--radius);font-size:15px;line-height:1.85;unicode-bidi:plaintext;}
 .message.user .msg-bubble{background:var(--accent);color:white;border-top-left-radius:4px;direction:rtl;}
 html[dir="ltr"] .message.user .msg-bubble{border-top-left-radius:var(--radius);border-top-right-radius:4px;direction:ltr;}
 .message.ai .msg-bubble{background:var(--surface);border:0.5px solid var(--border);
@@ -345,7 +346,6 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
     <div class="header-actions">
       <button class="hdr-btn" id="home-btn" onclick="goHome()" style="display:none;" title="בית"><i class="ti ti-home" aria-hidden="true"></i><span class="hdr-label">בית</span></button>
       <button class="hdr-btn" id="profile-btn" onclick="openProfile()" title="פרופיל"><i class="ti ti-user" aria-hidden="true"></i><span class="hdr-label">פרופיל</span></button>
-      <button class="hdr-btn" id="clear-btn" onclick="clearChat()" title="נקה שיחה"><i class="ti ti-trash" aria-hidden="true"></i><span class="hdr-label">נקה</span></button>
     </div>
   </div>
 
@@ -751,13 +751,6 @@ function renderWelcome(){
         <button class="welcome-send" onclick="sendFromWelcome()" aria-label="שלח"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
       </div>
     </div>
-    <div class="shortcut-btns">
-      <button class="shortcut-btn" onclick="useShortcut('emergency')"><i class="ti ti-alert-circle"></i> הצילו! משהו הלך עקום</button>
-      <button class="shortcut-btn" onclick="useShortcut('impress')"><i class="ti ti-star"></i> רוצה שידברו עליי</button>
-      <button class="shortcut-btn" onclick="useShortcut('kids')"><i class="ti ti-mood-smile"></i> הילדים גם ייאכלו את זה</button>
-      <button class="shortcut-btn" onclick="useShortcut('fridge')"><i class="ti ti-wand"></i> תמציאי לי משהו מהכלום</button>
-      <button class="shortcut-btn" onclick="useShortcut('learn')"><i class="ti ti-book"></i> תסבירי לי למה זה קרה</button>
-    </div>
     <div class="welcome-example">${t.exampleLabel} <button onclick="useExample()">${t.exampleText}</button></div>
 
     <div style="max-width:540px;margin:16px auto 0;width:100%;text-align:center;">
@@ -785,6 +778,22 @@ function renderWelcome(){
   msgs.appendChild(w);
   setTimeout(()=>{const el=id("welcome-ta");if(el)el.focus();},300);
   window._exQ=t.exampleQ;
+
+  const placeholders={
+    he:["הפירה יצא גושי, מה עושים?","למה סופלה תמיד נופל?","יש לי תבנית 20 במקום 24, איך מתאימים?","אין לי ביצים, מה שמים במקום?","נשארו לי חלמונים וקצת שמנת, מה עושים?","יש לי עוף, פירורי לחם ותפוחי אדמה, מה מכינים?","איך מגישים קרם ברולה כמו במסעדה?"],
+    en:["My mashed potatoes are lumpy, what do I do?","Why does my soufflé always collapse?","I have a 20cm pan instead of 24cm, how do I adjust?","I have no eggs, what can I substitute?","I have leftover egg yolks and some cream, what can I make?","I have chicken, breadcrumbs and potatoes, what can I cook?","How do I plate crème brûlée like a restaurant?"],
+    es:["Mi puré quedó grumoso, ¿qué hago?","¿Por qué mi soufflé siempre se cae?","Tengo un molde de 20cm en vez de 24cm, ¿cómo adapto?","No tengo huevos, ¿qué pongo en su lugar?","Me sobraron yemas y un poco de crema, ¿qué hago?","Tengo pollo, pan rallado y papas, ¿qué preparo?","¿Cómo presento crème brûlée como en un restaurante?"],
+    fr:["Ma purée est grumeleuse, que faire?","Pourquoi mon soufflé s'effondre toujours?","J'ai un moule de 20cm au lieu de 24cm, comment adapter?","Je n'ai pas d'œufs, que mettre à la place?","Il me reste des jaunes et un peu de crème, qu'est-ce que je fais?","J'ai du poulet, de la chapelure et des pommes de terre, que cuisiner?","Comment dresser une crème brûlée comme au restaurant?"]
+  };
+  const ph=placeholders[profile.lang]||placeholders.he;
+  let phIdx=0;
+  if(window._phInterval)clearInterval(window._phInterval);
+  window._phInterval=setInterval(()=>{
+    const ta=id("welcome-ta");
+    if(!ta||ta.value){clearInterval(window._phInterval);return;}
+    phIdx=(phIdx+1)%ph.length;
+    ta.placeholder=ph[phIdx];
+  },3000);
 }
 
 function handleWelcomeKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendFromWelcome();}}
@@ -1258,17 +1267,12 @@ function setLoading(val,txt){isLoading=val;id("send-btn").disabled=val;setStatus
 function setStatus(text){id("status-text").textContent=text;}
 
 window.addEventListener("load",()=>{
-  const showHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="block";if(grid)grid.style.gridTemplateColumns="1fr 1fr";};
-  const hideHebrew=()=>{const heBtn=id("lang-he-btn");const grid=id("lang-grid");if(heBtn)heBtn.style.display="none";if(grid)grid.style.gridTemplateColumns="1fr 1fr 1fr";};
-  const fallbackTimer=setTimeout(()=>showHebrew(),1500);
-  fetch("/api/country").then(r=>r.json()).then(data=>{clearTimeout(fallbackTimer);if(data.country==="IL")showHebrew();else hideHebrew();}).catch(()=>{clearTimeout(fallbackTimer);showHebrew();});
   const saved=localStorage.getItem("rc_profile");
   if(saved){
     try{
       const p=JSON.parse(saved);
       if(p.lang){
         profile={...profile,...p};
-        id("lang-screen").style.display="none";
         id("app").style.display="flex";
         applyLang();
         renderWelcome();
@@ -1276,6 +1280,11 @@ window.addEventListener("load",()=>{
       }
     }catch(e){}
   }
+  profile.lang="he";
+  localStorage.setItem("rc_profile",JSON.stringify(profile));
+  id("app").style.display="flex";
+  applyLang();
+  renderWelcome();
 });
 </script>
 
