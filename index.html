@@ -375,9 +375,9 @@ html[dir="ltr"] .tip-box{border-right:none;border-left:4px solid #D85A30;border-
           <button class="gender-btn" id="p-gender-m" onclick="setPGender('m')"><i class="ti ti-gender-male" aria-hidden="true"></i> <span id="p-gender-m-label"></span></button>
         </div>
         <label style="font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:5px;" id="p-lbl-level">Level</label>
-        <select id="p-level" class="panel-select"></select>
+        <div class="checkbox-grid" id="p-level-options"></div>
         <div class="panel-section" id="p-sec-diet">Diet</div>
-        <select id="p-diet" class="panel-select"></select>
+        <div class="checkbox-grid" id="p-diet-options"></div>
         <div class="panel-section" id="p-sec-allergy">Allergies</div>
         <div class="checkbox-grid" id="p-allergy-options"></div>
       </div>
@@ -428,9 +428,9 @@ const T={
     speak:'<i class="ti ti-volume" aria-hidden="true"></i> האזן',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> עצור',
     exampleLabel:"לדוגמה:",exampleText:"המיונז שלי נשבר",exampleQ:"המיונז שלי נשבר ונהיה נוזלי, מה עושים?",
     alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> גרסת אלפא — Pro פתוח לכולם',
-    levels:[["beginner","בשלן ביתי"],["intermediate","טבח מתפתח"],["professional","שף מקצועי"]],
-    diets:[["regular","רגיל"],["vegetarian","צמחוני"],["vegan","טבעוני"],["kosher","כשר"],["gluten-free","ללא גלוטן"],["lactose-free","ללא לקטוז"],["paleo","פלאו"],["keto","קיטו"]],
-    allergies:[["nuts","אגוזים"],["peanuts","בוטנים"],["eggs","ביצים"],["fish","דגים"],["seafood","פירות ים"],["soy","סויה"],["sesame","שומשום"],["cashew","קשיו"]],
+    levels:[["beginner",'<i class="ti ti-home"></i> בשלן ביתי'],["intermediate",'<i class="ti ti-chef-hat"></i> טבח מתפתח'],["professional",'<i class="ti ti-award"></i> שף מקצועי']],
+    diets:[["regular",'<i class="ti ti-utensils"></i> רגיל'],["vegetarian",'<i class="ti ti-leaf"></i> צמחוני'],["vegan",'<i class="ti ti-plant-2"></i> טבעוני'],["kosher",'<i class="ti ti-shield-check"></i> כשר'],["gluten-free",'<i class="ti ti-wheat-off"></i> ללא גלוטן'],["lactose-free",'<i class="ti ti-droplet-off"></i> ללא לקטוז'],["paleo",'<i class="ti ti-bone"></i> פלאו'],["keto",'<i class="ti ti-flame"></i> קיטו']],
+    allergies:[["nuts",'<i class="ti ti-nut"></i> אגוזים'],["peanuts",'<i class="ti ti-nut"></i> בוטנים'],["eggs",'<i class="ti ti-egg"></i> ביצים'],["fish",'<i class="ti ti-fish"></i> דגים'],["seafood",'<i class="ti ti-anchor"></i> פירות ים'],["soy",'<i class="ti ti-leaf"></i> סויה'],["sesame",'<i class="ti ti-circle-dotted"></i> שומשום'],["cashew",'<i class="ti ti-nut"></i> קשיו']],
     urgency:{full:"ניתן להצלה מלאה",partial:"מצב קריטי — פעלי מהר",none:"לא ניתן להצלה",advice:"ייעוץ מקצועי"},
     timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> התחל טיימר',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> עצור',
     featuresToggleBtn:"מה אני יודע לעשות? ›",featuresToggleBtnClose:"סגור ‹",
@@ -489,9 +489,9 @@ const T={
     speak:'<i class="ti ti-volume" aria-hidden="true"></i> Listen',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Stop',
     exampleLabel:"e.g.",exampleText:"My mayo broke",exampleQ:"My mayonnaise broke and became runny, what do I do?",
     alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Alpha version — Pro unlocked for all',
-    levels:[["beginner","Home Cook"],["intermediate","Developing Chef"],["professional","Professional Chef"]],
-    diets:[["regular","Regular"],["vegetarian","Vegetarian"],["vegan","Vegan"],["gluten-free","Gluten-Free"],["lactose-free","Lactose-Free"],["paleo","Paleo"],["keto","Keto"]],
-    allergies:[["nuts","Tree Nuts"],["peanuts","Peanuts"],["eggs","Eggs"],["fish","Fish"],["seafood","Seafood"],["soy","Soy"],["sesame","Sesame"],["cashew","Cashew"]],
+    levels:[["beginner",'<i class="ti ti-home"></i> Home Cook'],["intermediate",'<i class="ti ti-chef-hat"></i> Developing Chef'],["professional",'<i class="ti ti-award"></i> Professional Chef']],
+    diets:[["regular",'<i class="ti ti-utensils"></i> Regular'],["vegetarian",'<i class="ti ti-leaf"></i> Vegetarian'],["vegan",'<i class="ti ti-plant-2"></i> Vegan'],["gluten-free",'<i class="ti ti-wheat-off"></i> Gluten-Free'],["lactose-free",'<i class="ti ti-droplet-off"></i> Lactose-Free'],["paleo",'<i class="ti ti-bone"></i> Paleo'],["keto",'<i class="ti ti-flame"></i> Keto']],
+    allergies:[["nuts",'<i class="ti ti-nut"></i> Tree Nuts'],["peanuts",'<i class="ti ti-nut"></i> Peanuts'],["eggs",'<i class="ti ti-egg"></i> Eggs'],["fish",'<i class="ti ti-fish"></i> Fish'],["seafood",'<i class="ti ti-anchor"></i> Seafood'],["soy",'<i class="ti ti-leaf"></i> Soy'],["sesame",'<i class="ti ti-circle-dotted"></i> Sesame'],["cashew",'<i class="ti ti-nut"></i> Cashew']],
     urgency:{full:"Fully rescuable",partial:"Critical — act fast",none:"Cannot be rescued",advice:"Professional advice"},
     timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Start timer',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Stop',
     featuresToggleBtn:"What can I do for you? ›",featuresToggleBtnClose:"Close ‹",
@@ -550,9 +550,9 @@ const T={
     speak:'<i class="ti ti-volume" aria-hidden="true"></i> Escuchar',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Parar',
     exampleLabel:"p.ej.",exampleText:"Mi mayonesa se cortó",exampleQ:"Mi mayonesa se cortó y quedó líquida, ¿qué hago?",
     alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Versión alfa — Pro desbloqueado',
-    levels:[["beginner","Cocinero Casero"],["intermediate","Chef en Desarrollo"],["professional","Chef Profesional"]],
-    diets:[["regular","Regular"],["vegetarian","Vegetariano"],["vegan","Vegano"],["gluten-free","Sin Gluten"],["lactose-free","Sin Lactosa"],["paleo","Paleo"],["keto","Keto"]],
-    allergies:[["nuts","Nueces"],["peanuts","Maní"],["eggs","Huevos"],["fish","Pescado"],["seafood","Mariscos"],["soy","Soja"],["sesame","Sésamo"],["cashew","Anacardo"]],
+    levels:[["beginner",'<i class="ti ti-home"></i> Cocinero Casero'],["intermediate",'<i class="ti ti-chef-hat"></i> Chef en Desarrollo'],["professional",'<i class="ti ti-award"></i> Chef Profesional']],
+    diets:[["regular",'<i class="ti ti-utensils"></i> Regular'],["vegetarian",'<i class="ti ti-leaf"></i> Vegetariano'],["vegan",'<i class="ti ti-plant-2"></i> Vegano'],["gluten-free",'<i class="ti ti-wheat-off"></i> Sin Gluten'],["lactose-free",'<i class="ti ti-droplet-off"></i> Sin Lactosa'],["paleo",'<i class="ti ti-bone"></i> Paleo'],["keto",'<i class="ti ti-flame"></i> Keto']],
+    allergies:[["nuts",'<i class="ti ti-nut"></i> Nueces'],["peanuts",'<i class="ti ti-nut"></i> Maní'],["eggs",'<i class="ti ti-egg"></i> Huevos'],["fish",'<i class="ti ti-fish"></i> Pescado'],["seafood",'<i class="ti ti-anchor"></i> Mariscos'],["soy",'<i class="ti ti-leaf"></i> Soja'],["sesame",'<i class="ti ti-circle-dotted"></i> Sésamo'],["cashew",'<i class="ti ti-nut"></i> Anacardo']],
     urgency:{full:"Totalmente rescatable",partial:"Crítico — actúa rápido",none:"No se puede rescatar",advice:"Consejo profesional"},
     timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Iniciar temporizador',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Parar',
     featuresToggleBtn:"¿Qué puedo hacer por ti? ›",featuresToggleBtnClose:"Cerrar ‹",
@@ -594,9 +594,9 @@ const T={
     speak:'<i class="ti ti-volume" aria-hidden="true"></i> Écouter',stop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Arrêter',
     exampleLabel:"ex.",exampleText:"Ma mayo a tranché",exampleQ:"Ma mayonnaise a tranché et est devenue liquide, que faire?",
     alphaBadge:'<i class="ti ti-flask" aria-hidden="true"></i> Version alpha — Pro débloqué',
-    levels:[["beginner","Amateur"],["intermediate","En Développement"],["professional","Professionnel"]],
-    diets:[["regular","Normal"],["vegetarian","Végétarien"],["vegan","Végétalien"],["gluten-free","Sans Gluten"],["lactose-free","Sans Lactose"],["paleo","Paléo"],["keto","Kéto"]],
-    allergies:[["nuts","Noix"],["peanuts","Cacahuètes"],["eggs","Oeufs"],["fish","Poisson"],["seafood","Fruits de Mer"],["soy","Soja"],["sesame","Sésame"],["cashew","Cajou"]],
+    levels:[["beginner",'<i class="ti ti-home"></i> Amateur'],["intermediate",'<i class="ti ti-chef-hat"></i> En Développement'],["professional",'<i class="ti ti-award"></i> Professionnel']],
+    diets:[["regular",'<i class="ti ti-utensils"></i> Normal'],["vegetarian",'<i class="ti ti-leaf"></i> Végétarien'],["vegan",'<i class="ti ti-plant-2"></i> Végétalien'],["gluten-free",'<i class="ti ti-wheat-off"></i> Sans Gluten'],["lactose-free",'<i class="ti ti-droplet-off"></i> Sans Lactose'],["paleo",'<i class="ti ti-bone"></i> Paléo'],["keto",'<i class="ti ti-flame"></i> Kéto']],
+    allergies:[["nuts",'<i class="ti ti-nut"></i> Noix'],["peanuts",'<i class="ti ti-nut"></i> Cacahuètes'],["eggs",'<i class="ti ti-egg"></i> Oeufs'],["fish",'<i class="ti ti-fish"></i> Poisson'],["seafood",'<i class="ti ti-anchor"></i> Fruits de Mer'],["soy",'<i class="ti ti-leaf"></i> Soja'],["sesame",'<i class="ti ti-circle-dotted"></i> Sésame'],["cashew",'<i class="ti ti-nut"></i> Cajou']],
     urgency:{full:"Totalement récupérable",partial:"Critique — agissez vite",none:"Irrécupérable",advice:"Conseil professionnel"},
     timerBtn:'<i class="ti ti-clock" aria-hidden="true"></i> Démarrer minuteur',timerStop:'<i class="ti ti-player-stop" aria-hidden="true"></i> Arrêter',
     featuresToggleBtn:"Que puis-je faire pour vous? ›",featuresToggleBtnClose:"Fermer ‹",
@@ -699,8 +699,8 @@ function applyLang(){
   renderDailyCount();
   id("pro-profile-locked").style.display="none";
   id("pro-profile-fields").style.display="block";
-  id("p-level").innerHTML=t.levels.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
-  id("p-diet").innerHTML=t.diets.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+  id("p-level-options").innerHTML=t.levels.map(([v,l])=>`<div class="checkbox-item${profile.level===v?" active":""}" data-val="${v}" onclick="setPLevel('${v}')">${l}</div>`).join("");
+  id("p-diet-options").innerHTML=t.diets.map(([v,l])=>`<div class="checkbox-item${(profile.diet[0]||"regular")===v?" active":""}" data-val="${v}" onclick="setPDiet('${v}')">${l}</div>`).join("");
   id("p-allergy-options").innerHTML=t.allergies.map(([v,l])=>`<div class="checkbox-item${profile.allergies.includes(v)?" active":""}" data-val="${v}" onclick="toggleAllergy(this)">${l}</div>`).join("");
 
   // Alpha badge
@@ -835,8 +835,6 @@ function sendFromWelcome(){
 
 function openProfile(){
   id("p-lang").value=profile.lang;
-  id("p-level").value=profile.level;
-  id("p-diet").value=profile.diet[0]||"regular";
   id("p-gender-f").classList.toggle("active",profile.gender==="f");
   id("p-gender-m").classList.toggle("active",profile.gender==="m");
   if(id("p-name"))id("p-name").value=profile.name||"";
@@ -855,6 +853,14 @@ function setPGender(g){
   id("p-gender-m").classList.toggle("active",g==="m");
 }
 
+function setPLevel(val){
+  profile.level=val;
+  document.querySelectorAll('#p-level-options .checkbox-item').forEach(el=>el.classList.toggle('active',el.dataset.val===val));
+}
+function setPDiet(val){
+  profile.diet=[val];
+  document.querySelectorAll('#p-diet-options .checkbox-item').forEach(el=>el.classList.toggle('active',el.dataset.val===val));
+}
 function toggleAllergy(el){
   el.classList.toggle("active");
   const val=el.dataset.val;
@@ -865,8 +871,6 @@ function toggleAllergy(el){
 function saveProfile(){
   profile.lang=id("p-lang").value;
   if(id("p-name"))profile.name=id("p-name").value.trim();
-  if(id("p-level"))profile.level=id("p-level").value;
-  if(id("p-diet"))profile.diet=[id("p-diet").value];
   if(id("p-gender-f")&&id("p-gender-f").classList.contains("active"))profile.gender="f";
   else if(id("p-gender-m")&&id("p-gender-m").classList.contains("active"))profile.gender="m";
   localStorage.setItem("rc_profile",JSON.stringify(profile));
