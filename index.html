@@ -901,7 +901,38 @@ function getSystemPrompt(){
 [URGENCY:none] — if it truly cannot be rescued and an alternative is needed
 [URGENCY:advice] — if this is a planning/substitution/adaptation question (not an emergency)`;
   const timerInstruction=`If your rescue steps include any timed action, format it exactly like this: [TIMER:X:label] where X is seconds. Example: [TIMER:180:Whisking]. Place this tag right before the step that requires timing.`;
-  const panScalerRule=`PAN SCALING RULE: When converting between pan sizes, use Area = π × r². Factor = (new_radius²) / (original_radius²). Multiply ALL ingredients by this factor. IMPORTANT BAKING TIME RULE: A smaller pan means the batter is deeper/taller, so baking time stays approximately the same or increases slightly (add 3-5 minutes max). A larger pan means shallower batter, so reduce baking time by 5-10 minutes. NEVER say to reduce time significantly for a smaller pan. Always show the calculation clearly.`;
+  const panScalerRule=`PAN CONVERSION — המרת תבניות אפייה
+
+When a user asks about pan conversion, do NOT answer immediately. First ask:
+- Which pan they have and which pan they want to use instead (if not specified)
+- For muffins or cupcakes — ask what size they want (open question, do NOT offer preset options)
+
+Standard pan sizes:
+- Standard loaf pan — 31×10 cm
+- Short loaf pan — 23×10 cm
+- Medium rectangular pan — 31×22 cm
+- Large rectangular pan — 25×32 cm
+- Extra large rectangular pan (oven tray size) — 40×32 cm
+
+Conversions — muffins 8 cm diameter (½ cup batter each):
+- 12 muffins = 24 cm round pan
+- 8 muffins = standard loaf pan
+- 6 muffins = short loaf pan
+
+Conversions — muffins 7 cm diameter (⅓ cup batter each):
+- 12 muffins = standard loaf pan
+- 8 muffins = short loaf pan
+
+Conversions — loaf pan:
+- 1 standard loaf pan = 22 cm round pan
+- 2 loaf pans = medium rectangular pan = 26 cm round pan
+- 3 loaf pans = large rectangular pan
+- 4 loaf pans = 2 medium rectangular pans = 2×26 cm round pans = extra large rectangular pan
+- 1 short loaf pan = 18 cm round pan
+
+Filling rule: always fill ¾ of the batter (this is batter, not dough).
+
+Baking time: do NOT give exact numbers. State that baking time depends on the specific oven and recommend checking with a toothpick or by touch.`;
   const contextMap={
     emergency:{he:"המשתמשת נמצאת עכשיו ממש במטבח עם בעיה דחופה. תן פתרון מיידי ותכליתי — לא הסברים ארוכים. שלב ראשון קודם כל.",en:"User is right now in the kitchen with an urgent problem. Give immediate, actionable solution — no long explanations. First step first."},
     impress:{he:"המשתמשת רוצה להרשים אורחים. הדגש אסתטיקה, הגשה מקצועית, וטריקים של שפים שיגרמו לאנשים לדבר על האוכל.",en:"User wants to impress guests. Emphasize aesthetics, professional plating, and chef techniques that'll make people talk."},
