@@ -116,59 +116,22 @@ html[dir="ltr"] .profile-panel.open{transform:translateX(0);}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-/* WELCOME — Saffron & Cream (exact design values) */
+/* WELCOME — Saffron & Cream (designer template, exact inline styles in renderWelcome()) */
 @keyframes rcGlow{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:.9;transform:scale(1.06);}}
 .welcome{display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:32px 20px;position:relative;overflow:hidden;
+  position:relative;overflow:hidden;width:100%;flex-shrink:0;
   background:radial-gradient(120% 80% at 50% -8%,#FCF4E4 0%,#F6EAD2 45%,#EFDFC2 100%);}
-.welcome-texture{position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 75% at 50% 40%,transparent 55%,rgba(70,45,18,.1) 100%),
-  repeating-linear-gradient(135deg,rgba(110,75,20,.03) 0px,rgba(110,75,20,.03) 1px,transparent 1px,transparent 6px);}
-.welcome-warm-band{position:absolute;top:0;left:0;right:0;height:220px;pointer-events:none;z-index:0;
-  background:linear-gradient(180deg,rgba(217,131,31,.13),rgba(217,131,31,0));}
-.welcome>*{position:relative;z-index:1;}
-.welcome-medallion-wrap{position:relative;width:84px;height:84px;margin-bottom:22px;flex-shrink:0;}
-.welcome-medallion-glow{position:absolute;inset:-12px;border-radius:50%;
-  background:radial-gradient(circle,rgba(217,131,31,.42),rgba(217,131,31,0) 70%);
-  animation:rcGlow 4.5s ease-in-out infinite;}
-.welcome-medallion-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(217,131,31,.4);}
-.welcome-medallion{width:84px;height:84px;border-radius:50%;
-  background:linear-gradient(150deg,#F0B24A,#D9831F);
-  box-shadow:0 14px 30px rgba(217,131,31,.5),inset 0 2px 3px rgba(255,255,255,.55),inset 0 -4px 8px rgba(150,80,15,.35);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.welcome-tagline{font-size:13px;font-weight:600;letter-spacing:3px;
-  color:#C9781E;text-transform:uppercase;margin-bottom:10px;}
-.welcome h1{font-family:'Frank Ruhl Libre',serif;font-size:52px;font-weight:900;
-  color:#3A2716;line-height:1.1;margin-bottom:16px;
-  text-shadow:0 1px 0 rgba(255,255,255,.55);}
-.welcome p{font-size:19px;color:rgba(58,39,22,.62);max-width:440px;margin:0 auto 24px;line-height:1.6;}
-.welcome-input-wrap{width:100%;max-width:540px;margin:0 auto 10px;}
-.welcome-box{display:flex;gap:8px;align-items:center;
-  background:linear-gradient(180deg,#FFFFFF,#FFF6E9);
-  border:1px solid rgba(217,131,31,.5);border-radius:24px;padding:11px 11px 11px 20px;
-  box-shadow:0 1px 2px rgba(70,45,18,.06),0 18px 42px rgba(70,45,18,.16),inset 0 1px 2px rgba(255,255,255,.95);
-  transition:border-color 0.2s,box-shadow 0.2s;}
-.welcome-box:focus-within{border-color:#D9831F;box-shadow:0 1px 2px rgba(70,45,18,.06),0 18px 42px rgba(70,45,18,.2),inset 0 1px 2px rgba(255,255,255,.95);}
+.welcome-box:focus-within{border-color:#D9831F !important;box-shadow:0 1px 2px rgba(70,45,18,.06),0 18px 42px rgba(70,45,18,.2),inset 0 1px 2px rgba(255,255,255,.95) !important;}
 .welcome-box textarea{flex:1;background:transparent;border:none;color:#3A2716;
-  font-family:"Heebo",sans-serif;font-size:15px;resize:none;outline:none;
-  line-height:1.6;max-height:140px;min-height:32px;text-align:right;}
+  font-family:"Heebo",sans-serif;font-size:17px;resize:none;outline:none;
+  line-height:1.5;max-height:140px;min-height:24px;text-align:right;}
 html[dir="ltr"] .welcome-box textarea{text-align:left;}
 .welcome-box textarea::placeholder{color:rgba(58,39,22,.4);}
-.welcome-send{width:52px;height:52px;border-radius:16px;border:none;
-  background:linear-gradient(150deg,#F0B24A,#D9831F);
-  color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;transition:all 0.2s;
-  box-shadow:0 8px 20px rgba(217,131,31,.55),inset 0 1px 1px rgba(255,255,255,.5);}
-.welcome-send:hover{opacity:0.9;box-shadow:0 10px 24px rgba(217,131,31,.65),inset 0 1px 1px rgba(255,255,255,.5);}
-.shortcut-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:540px;margin:0 auto 16px;}
-.shortcut-btn{font-family:"Heebo",sans-serif;font-size:14px;font-weight:500;color:#6B4520;
-  background:rgba(255,255,255,.6);border:1px solid rgba(217,131,31,.4);
-  border-radius:999px;padding:9px 15px;cursor:pointer;white-space:nowrap;transition:all 0.15s;
-  box-shadow:0 2px 8px rgba(70,45,18,.08),inset 0 1px 1px rgba(255,255,255,.7);}
-.shortcut-btn:hover{background:rgba(255,255,255,.85);border-color:rgba(217,131,31,.7);}
+.welcome-send:hover{opacity:0.92;}
+.shortcut-btn:hover{background:rgba(255,255,255,.85) !important;border-color:rgba(217,131,31,.7) !important;}
 @media(max-width:600px){
-  .shortcut-btns{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px;}
-  .welcome h1{font-size:36px;}
+  #welcome-chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px;}
+  #welcome-title{font-size:36px !important;}
 }
 .welcome-example{font-size:12px;color:var(--muted);margin-top:4px;}
 .welcome-example button{background:none;border:none;color:var(--accent);font-family:"Heebo",sans-serif;
@@ -781,7 +744,7 @@ function renderWelcome(){
   id("home-btn").style.display="none";
   const w=document.createElement("div");
   w.className="welcome"; w.id="welcome";
-  const SVG_BIG=`<svg fill="rgba(255,255,255,0.92)" height="48px" width="48px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M89.531,0h-0.125C51.284,0,20.255,41.902,20.255,80.024v63.312c0,32.182,22.096,59.219,51.893,66.864c-0.119,0.81-0.131,1.633-0.131,2.477v282.444c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V212.677c0-0.762,0.039-1.507-0.059-2.243c30.309-7.286,52.946-34.553,52.946-67.098V80.024C158.664,41.902,127.652,0,89.531,0z"/></g></g><g><g><path d="M334.207,1.041c-9.322,0-16.879,7.557-16.879,16.879v145.859c0,11.314-8.761,20.766-20.074,20.766h-3.557V17.92c0-9.322-7.557-16.879-16.879-16.879c-9.322,0-16.879,7.557-16.879,16.879v166.625h-4.413c-11.312,0-20.343-9.452-20.343-20.766V17.92c0-9.322-7.557-16.879-16.879-16.879s-16.879,7.557-16.879,16.879v145.859c0,29.928,24.174,54.524,54.101,54.524h4.413v276.086c0,9.322,7.557,16.879,16.879,16.879c9.322,0,16.879-7.557,16.879-16.879V218.303h3.557c29.927,0,53.832-24.596,53.832-54.524V17.92C351.086,8.598,343.528,1.041,334.207,1.041z"/></g></g><g><g><path d="M451.408,13.351c-9.138-8.046-21.717-9.929-32.813-4.915c-11.096,5.014-17.998,15.693-17.998,27.87v458.084c0,9.322,7.557,16.879,16.879,16.879s16.879-7.557,16.879-16.879V324.047l49.729-32.616c4.753-3.12,7.66-8.424,7.66-14.111V102.448C491.745,68.355,476.997,35.88,451.408,13.351z"/></g></g></svg>`;
+  const SVG_BIG=`<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFF8EC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"></path><path d="M21 15v7"></path></svg>`;
 
   const featuresRowsHtml=t.featuresRows.map(([feat,free,pro])=>`
     <div class="features-row">
@@ -796,31 +759,41 @@ function renderWelcome(){
   const chip2=profile.lang==="he"?"תחליף לביצים":profile.lang==="fr"?"Substitut aux œufs":profile.lang==="es"?"Sustituto de huevos":"Egg substitute";
   const chip3=profile.lang==="he"?"הרוטב נפרד":profile.lang==="fr"?"La sauce a tranché":profile.lang==="es"?"La salsa se cortó":"The sauce broke";
   w.innerHTML=`
-    <div class="welcome-texture"></div>
-    <div class="welcome-warm-band"></div>
-    <div class="welcome-medallion-wrap">
-      <div class="welcome-medallion-glow"></div>
-      <div class="welcome-medallion-ring"></div>
-      <div class="welcome-medallion">${SVG_BIG}</div>
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 75% at 50% 40%,transparent 55%,rgba(70,45,18,.1) 100%),repeating-linear-gradient(135deg,rgba(110,75,20,.03) 0px,rgba(110,75,20,.03) 1px,transparent 1px,transparent 6px);pointer-events:none;"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:220px;background:linear-gradient(180deg,rgba(217,131,31,.13),rgba(217,131,31,0));pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:1;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 36px;width:100%;">
+      <div style="position:relative;width:104px;height:104px;margin-bottom:30px;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;inset:-12px;border-radius:50%;background:radial-gradient(circle,rgba(217,131,31,.42),rgba(217,131,31,0) 70%);animation:rcGlow 4.5s ease-in-out infinite;"></div>
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(217,131,31,.4);"></div>
+        <div style="width:84px;height:84px;border-radius:50%;background:linear-gradient(150deg,#F0B24A,#D9831F);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(217,131,31,.5),inset 0 2px 3px rgba(255,255,255,.55),inset 0 -4px 8px rgba(150,80,15,.35);">
+          ${SVG_BIG}
+        </div>
+      </div>
+
+      <span style="font-weight:600;font-size:13px;letter-spacing:3px;color:#C9781E;margin-bottom:16px;">הסו־שף האישי שלך</span>
+      <h1 id="welcome-title" style="margin:0 0 20px 0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:52px;line-height:1.05;color:#3A2716;text-shadow:0 1px 0 rgba(255,255,255,.55);">אני RescueChef</h1>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
+        <span style="width:38px;height:1px;background:linear-gradient(90deg,transparent,#D9831F);"></span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#D9831F;"></span>
+        <span style="width:38px;height:1px;background:linear-gradient(90deg,#D9831F,transparent);"></span>
+      </div>
+      <p style="margin:0;font-weight:400;font-size:19px;line-height:1.5;color:rgba(58,39,22,.62);max-width:300px;">ספרי לי מה קורה במטבח</p>
     </div>
-    <div class="welcome-tagline">הסו-שף האישי שלך</div>
-    <h1>אני RescueChef</h1>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;position:relative;z-index:1;">
-      <span style="width:38px;height:1px;background:linear-gradient(90deg,transparent,#D9831F);display:block;"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#D9831F;display:block;flex-shrink:0;"></span>
-      <span style="width:38px;height:1px;background:linear-gradient(90deg,#D9831F,transparent);display:block;"></span>
+
+    <div id="welcome-chips" style="position:relative;z-index:1;flex-shrink:0;display:flex;gap:9px;padding:0 24px 16px 24px;flex-wrap:wrap;justify-content:center;width:100%;max-width:540px;margin:0 auto;">
+      <button class="shortcut-btn" style="font-family:'Heebo',sans-serif;font-size:14px;font-weight:500;color:#6B4520;background:rgba(255,255,255,.6);border:1px solid rgba(217,131,31,.4);border-radius:999px;padding:9px 15px;box-shadow:0 2px 8px rgba(70,45,18,.08),inset 0 1px 1px rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip3}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip3}</button>
+      <button class="shortcut-btn" style="font-family:'Heebo',sans-serif;font-size:14px;font-weight:500;color:#6B4520;background:rgba(255,255,255,.6);border:1px solid rgba(217,131,31,.4);border-radius:999px;padding:9px 15px;box-shadow:0 2px 8px rgba(70,45,18,.08),inset 0 1px 1px rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip2}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip2}</button>
+      <button class="shortcut-btn" style="font-family:'Heebo',sans-serif;font-size:14px;font-weight:500;color:#6B4520;background:rgba(255,255,255,.6);border:1px solid rgba(217,131,31,.4);border-radius:999px;padding:9px 15px;box-shadow:0 2px 8px rgba(70,45,18,.08),inset 0 1px 1px rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip1}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip1}</button>
     </div>
-    <p>ספרי לי מה קורה במטבח</p>
-    <div class="shortcut-btns">
-      <button class="shortcut-btn" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip1}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip1}</button>
-      <button class="shortcut-btn" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip2}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip2}</button>
-      <button class="shortcut-btn" onclick="(function(){var ta=document.getElementById('welcome-ta');ta.value='${chip3}';ta.dispatchEvent(new Event('input'));ta.focus();})()">${chip3}</button>
-    </div>
-    <div class="welcome-input-wrap">
-      <div class="welcome-box">
-        <button class="welcome-send" onclick="sendFromWelcome()" aria-label="שלח"><i class="ti ti-arrow-left" aria-hidden="true"></i></button>
+
+    <div style="position:relative;z-index:1;flex-shrink:0;width:100%;max-width:540px;margin:0 auto;padding:0 24px 32px 24px;">
+      <div class="welcome-box" style="display:flex;align-items:center;gap:11px;background:linear-gradient(180deg,#FFFFFF,#FFF6E9);border:1px solid rgba(217,131,31,.5);border-radius:24px;padding:11px 11px 11px 20px;box-shadow:0 1px 2px rgba(70,45,18,.06),0 18px 42px rgba(70,45,18,.16),inset 0 1px 2px rgba(255,255,255,.95);">
         <textarea id="welcome-ta" rows="1" placeholder="...כתבי כאן מה קרה"
           oninput="autoResize(this)" onkeydown="handleWelcomeKey(event)"></textarea>
+        <button class="welcome-send" onclick="sendFromWelcome()" aria-label="שלח" style="width:52px;height:52px;flex:none;border:none;border-radius:16px;background:linear-gradient(150deg,#F0B24A,#D9831F);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 20px rgba(217,131,31,.55),inset 0 1px 1px rgba(255,255,255,.5);">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFF8EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+        </button>
       </div>
     </div>
 
